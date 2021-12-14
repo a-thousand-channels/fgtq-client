@@ -1,5 +1,5 @@
 <style>
-   .bg-a100c-1 {
+   .bg-a100c-1-splash {
       background: rgb(255,0,249);
       background: linear-gradient(90deg, rgba(255,0,249,0.15) 0%, rgba(255,117,0,0.15) 50%, rgba(255,0,35,0.15) 100%);
       background-image: url(/fgtq-client/background-test4.jpg)
@@ -28,7 +28,7 @@
 
 <template>
 <div id="page">
-  <div class="relative flex items-top justify-center min-h-screen bg-pink-100 bg-a100c-1 sm:items-center sm:pt-0">
+  <div class="relative flex items-top justify-center min-h-screen bg-pink-100 bg-a100c-1-splash sm:items-center sm:pt-0">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
     <div class="max-w-4xl mx-auto sm:px-6 lg:px-12">
       <div class="flex justify-center pt-8 mt-8 sm:pt-0">
