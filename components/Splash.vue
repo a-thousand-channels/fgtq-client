@@ -2,6 +2,7 @@
    .bg-a100c-1 {
       background: rgb(255,0,249);
       background: linear-gradient(90deg, rgba(255,0,249,0.15) 0%, rgba(255,117,0,0.15) 50%, rgba(255,0,35,0.15) 100%);
+      background-image: url(/background-test4.jpg)
    }
    .bg-a100c-1-hover {
       background: rgb(255,0,249);
@@ -31,7 +32,6 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
     <div class="max-w-4xl mx-auto sm:px-6 lg:px-12">
       <div class="flex justify-center pt-8 mt-8 sm:pt-0">
-
       </div>
       <div class="mt-8 bg-white overflow-hidden shadow sm:rounded-lg p-6">
         <h2 class="text-2xl leading-7 font-semibold">
@@ -54,16 +54,16 @@
         <p class="mt-2 pt-4 text-gray-800 text-center">
           <nuxt-link :to="{ path: '/main', hash:'map', query: { layer: this.custom_data_url }}" class="bg-red-400 bg-a100c-1 text-white text-center px-4 py-2 rounded-lg">View</nuxt-link>
         </p>
-        <p class="mt-4 pt-4 text-gray-600">
+        <p class="mt-2 pt-4 text-gray-600">
           This map is work in progress. It is part of the <a href="https://citydataexplosion.tumblr.com/intersections-and-constellations" target="_blank" class="text-link">Intersections + Constellations: „From gay to queer“. Ein queeres Mapping Projekt.</a>
         </p>
-        <p class="mt-4 pt-4 text-gray-600">
+        <p class="mt-2 pt-4 text-gray-600">
           Please feel free to try out. We would very happy about feedback and contributions.
         </p>
-        <p class="mt-4 pt-4 text-gray-600">
+        <p class="mt-2 pt-4 text-sm text-gray-600">
           If you have questions or remarks to the content please contact us via <a href="mailto:queer-narratives-mapped@citydataexplosion.de" class="text-link">queer-narratives-mapped@citydataexplosion.de</a>.
         </p>
-        <p class="mt-4 pt-4 text-gray-600">
+        <p class="mt-2 pt-4 text-sm text-gray-600">
           For questions about the website please visit the <a href="https://github.com/a-thousand-channels/a1000c-map-client" class="text-link">A 1000 Channels Github repository for this project</a> or send a mail to <a href="mailto:hello@a-thousand-channels.xyz" class="text-link">hello@a-thousand-channels.xyz</a>.
         </p>
       </div>

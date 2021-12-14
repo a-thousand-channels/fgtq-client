@@ -309,10 +309,10 @@
             </button>
           </p>
         </div>
-        <div id="map_inner" class="h-full bg-red-100 bg-opacity-10 my-1 mx-1">
+        <div id="map_inner" class="h-full bg-red-0 bg-opacity-0 my-1 mx-1">
           <div id="map_map" class="h-full w-full border-solid border-2 border-white shadow z-40">
            <client-only>
-                <l-map :zoom=13 :minZoom=2 :maxZoom=19 :center="[53.075878, 8.807311]" ref="map" @ready="onMapReady">
+                <l-map :zoom=12 :minZoom=2 :maxZoom=19 :center="[53.075878, 8.807311]" ref="map" @ready="onMapReady">
                   <l-control-layers position="topright"></l-control-layers>
                   <l-layer-group
                       v-for="(layer,lindex) in this.data.layer"
@@ -554,12 +554,13 @@ export default {
           controlelements[0].removeChild(elements[0]);
 
           var openstreetmap_layer = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', { attribution: 'Openstreemap + Contributors' })
-          var simple_basemap_pop_grey_layer = L.tileLayer('https://tiles.3plusx.io/world_populated_places/lightgrey/{z}/{x}/{y}.png', {attribution: ''})
-          var simple_basemap_pop_yellow_layer = L.tileLayer('https://tiles.3plusx.io/world_populated_places/lightyellow/{z}/{x}/{y}.png', {attribution: ''}).addTo(this.$refs.map.mapObject);
+          var simple_basemap_pop_grey_layer = L.tileLayer('https://tiles.3plusx.io/world_populated_places/lightgrey/{z}/{x}/{y}.png', {attribution: ''}).addTo(this.$refs.map.mapObject);
+          var simple_basemap_pop_yellow_layer = L.tileLayer('https://tiles.3plusx.io/world_populated_places/lightyellow/{z}/{x}/{y}.png', {attribution: ''})
 
+          /*
           var m = document.getElementById("map_map");
           m.classList.add("dark");
-
+          */
           var baseMaps = {
               "Basemap": simple_basemap_pop_grey_layer,
               "Basemap (dark)": simple_basemap_pop_yellow_layer,
