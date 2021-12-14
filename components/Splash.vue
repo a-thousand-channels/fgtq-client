@@ -15,6 +15,14 @@
       background: rgb(255,0,249);
       background: linear-gradient(90deg, rgba(255,0,35,0.15) 0%, rgba(255,0,249,0.15) 50%, rgba(255,117,0,0.15) 100% );
    }
+  button.text-link,
+    a.text-link {
+      text-decoration: none;
+      background-image: linear-gradient(120deg, #fde68a 0, #fde68a 100%);
+      background-repeat: no-repeat;
+      background-size: 100% 0.4em;
+      background-position: 0 100%;
+    }
 </style>
 
 <template>
@@ -23,24 +31,35 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
     <div class="max-w-4xl mx-auto sm:px-6 lg:px-12">
       <div class="flex justify-center pt-8 mt-8 sm:pt-0">
-        <img src="Main-Logo-gradiant-2-smalll-gif-.gif" title="A thousand channels">
+
       </div>
       <div class="mt-8 bg-white overflow-hidden shadow sm:rounded-lg p-6">
         <h2 class="text-2xl leading-7 font-semibold">
-          Welcome to an early prototype of our web map.
+          From Gay To Queer — A mapping by "Queer narratives, mapped"
         </h2>
-        <p class="mt-3 text-gray-600">
-          We are developing a web map, that can easily be generated and published on the web. You will not need server side technologies for that, just a simple webspace. This prototype is work in progress.
+      </div>
+      <div class="mt-8 bg-white overflow-hidden shadow sm:rounded-lg p-6">
+
+        <p class="mt-2 pt-4 text-gray-800 text-center">
+          <select id="layer-selector" v-on:change="onChange($event)" class="border bg-white rounded px-3 py-2 outline-none">
+          {{layers}}
+            <option v-for="layer in layers" :value="layer.url" class="py-1">
+                {{layer.title}}
+            </option>
+          </select>
+          <nuxt-link :to="{ path: '/main', hash:'map', query: { layer: this.custom_data_url }}" class="bg-red-400 bg-a100c-1 text-white text-center px-4 py-2 rounded-lg">Open map</nuxt-link>
         </p>
-        <p
-        <p class="mt-4 pt-4 text-gray-800 border-t border-dashed">
-          <nuxt-link :to="{ path: '/main', hash:'map', query: { layer: this.custom_data_url }}" class="bg-red-400 bg-a100c-1 text-white text-center px-4 py-2 rounded-lg">Check it out</nuxt-link>
+        <p class="mt-4 pt-4 text-gray-600">
+          This map is work in progress. It is part of the <a href="https://citydataexplosion.tumblr.com/intersections-and-constellations" target="_blank" class="text-link">Intersections + Constellations: „From gay to queer“. Ein queeres Mapping Projekt.</a>
         </p>
-        <p class="mt-4 pt-4 text-gray-800 border-t border-dashed">
+        <p class="mt-4 pt-4 text-gray-600">
           Please feel free to try out. We would very happy about feedback and contributions.
         </p>
-        <p class="mt-4 pt-4 text-gray-800">
-          Give us a shout if you have questions or need help. Please visit the <a href="https://github.com/a-thousand-channels/a1000c-map-client" style="text-decoration: none; background-image: linear-gradient(120deg, #fde68a 0, #fde68a 100%); background-repeat: no-repeat; background-size: 100% 0.4em; background-position: 0 100%">Github repository for this project</a>.
+        <p class="mt-4 pt-4 text-gray-600">
+          If you have questions or remarks to the content please contact us via <a href="mailto:queer-narratives-mapped@citydataexplosion.de" class="text-link">queer-narratives-mapped@citydataexplosion.de</a>.
+        </p>
+        <p class="mt-4 pt-4 text-gray-600">
+          For questions about the website please visit the <a href="https://github.com/a-thousand-channels/a1000c-map-client" class="text-link">A 1000 Channels Github repository for this project</a> or send a mail to <a href="mailto:hello@a-thousand-channels.xyz" class="text-link">hello@a-thousand-channels.xyz</a>.
         </p>
       </div>
       <div class="flex justify-center p-4 m-2 space-x-2">
@@ -54,10 +73,19 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
+ props: {
+    layers: {
+      type: Object,
+      required: true
+    },
+ },
  data() {
     return {
-      custom_data_url: ''
+      custom_data_url: '',
+      layers_json_url: ''
     }
   },
   mounted: function() {
@@ -67,6 +95,12 @@ export default {
     }
     console.log(this.$route.query);
 
+  },
+  methods: {
+    onChange(event) {
+      this.custom_data_url = event.target.value;
+      console.log(this.custom_data_url)
+    }
   }
 }
 </script>

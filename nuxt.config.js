@@ -2,12 +2,12 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
-  publicPath: '/a1000c-map-client/',
+  publicPath: '/fgtq-client/',
 
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'a1000c-map-client',
+    title: 'From Gay To Queer — A mapping by Queer narratives, mapped',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -85,7 +85,7 @@ export default {
   build: {
   },
   router: {
-    base: '/a1000c-map-client/',
+    base: '/fgtq-client/',
     scrollBehavior: async (to, from, savedPosition) => {
       console.log("scrollBehavior")
       if (savedPosition) {
