@@ -1,0 +1,32 @@
+{
+  "0": {
+    "id":"57",
+    "title":"Manu",
+    "url":"https://orte.link/public/maps/from-gay-to-queer/layers/manu.json"
+  },
+  "1": {
+    "id":"60",
+    "title":"Thomas B",
+    "url":"https://orte.link/public/maps/from-gay-to-queer/layers/thomas.json"
+  },
+  "2": {
+    "id":"61",
+    "title":"Arno",
+    "url":"https://orte.link/public/maps/from-gay-to-queer/layers/arno.json"
+  },
+  "3": {
+    "id":"62",
+    "title":"Marcio",
+    "url":"https://orte.link/public/maps/from-gay-to-queer/layers/marcio.json"
+  },
+  "4": {
+    "id":"64",
+    "title":"Annette",
+    "url":"https://orte.link/public/maps/from-gay-to-queer/layers/anette.json"
+  },
+  "5": {
+    "id":"65",
+    "title":"Unsere Träume",
+    "url":"https://orte.link/public/maps/from-gay-to-queer/layers/65.json"
+  }
+}
