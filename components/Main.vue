@@ -486,8 +486,9 @@ export default {
       this.data.layer[0] = this.dataobj.layer
       console.log("Data for a map with " + this.data.layer.length + " accessible layer")
       this.places = this.data.places
+      this.places_with_relations = this.data.places_with_relations
       this.list_content = this.data.places
-      console.log("Map with "+this.places.length+" places")
+      console.log("Map with "+this.places.length+" places and "+this.places_with_relations.length+" Relations")
 
       // add state value to all places
       for (let i = 0; i < this.data.places.length; i++) {
@@ -499,6 +500,20 @@ export default {
         }
       }
     }
+
+    if ( (this.data) && (this.places) && (this.$refs.map) ) {
+      if ( this.places.length > 0 ) {
+        // console.log("afterFetch: fitBounds w/"+this.places.length)
+        // this.$refs.map.mapObject.fitBounds(this.places.map(m => { return [m.lat, m.lon] }))
+      } else {
+        console.log("afterFetch: NO fitBounds w/"+this.places.length)
+      }
+      if ( this.data.layer ) {
+        console.log("Check for data.layer w/"+this.data.layer.length+ " layer(s)")
+        this.drawCurves();
+      }
+    }
+
     this.$set(this.data, 'state', false)
 
     // exposes $fetchState with .pending and .error
@@ -525,21 +540,29 @@ export default {
     onMapReady(mapObject) {
       this.$nextTick(() => {
         this.mapobj = mapObject;
-        if ( (this.data) && (this.places) && (this.$refs.map) && (this.$refs.map.mapObject) ) {
+        if ( (this.data) && (this.places) && (this.$refs.map) ) {
           if ( this.places.length > 0 ) {
-            console.log("onMapReady: fitBounds w/"+this.places.length)
-            this.$refs.map.mapObject.fitBounds(this.places.map(m => { return [m.lat, m.lon] }))
+            // use bremen as center for ever :)
+            // console.log("onMapReady: fitBounds w/"+this.places.length)
+            // this.$refs.map.mapObject.fitBounds(this.places.map(m => { return [m.lat, m.lon] }))
           } else {
             console.log("onMapReady: NO fitBounds w/"+this.places.length)
           }
 
-          var openstreetmap_layer = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {foo: 'bar'})
-          var simple_basemap_pop_yellow_layer = L.tileLayer('https://tiles.3plusx.io/world_populated_places/lightgrey/{z}/{x}/{y}.png', {foo: 'bar'});
-          var simple_basemap_pop_grey_layer = L.tileLayer('https://tiles.3plusx.io/world_populated_places/lightyellow/{z}/{x}/{y}.png', {foo: 'bar'}).addTo(this.$refs.map.mapObject);
+          const controlelements = document.getElementsByClassName('leaflet-top leaflet-right');
+          var elements = controlelements[0].getElementsByClassName('leaflet-control-layers');
+          controlelements[0].removeChild(elements[0]);
+
+          var openstreetmap_layer = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', { attribution: 'Openstreemap + Contributors' })
+          var simple_basemap_pop_grey_layer = L.tileLayer('https://tiles.3plusx.io/world_populated_places/lightgrey/{z}/{x}/{y}.png', {attribution: ''})
+          var simple_basemap_pop_yellow_layer = L.tileLayer('https://tiles.3plusx.io/world_populated_places/lightyellow/{z}/{x}/{y}.png', {attribution: ''}).addTo(this.$refs.map.mapObject);
+
+          var m = document.getElementById("map_map");
+          m.classList.add("dark");
 
           var baseMaps = {
-              "Basemap": simple_basemap_pop_yellow_layer,
-              "Basemap (dark)": simple_basemap_pop_grey_layer,
+              "Basemap": simple_basemap_pop_grey_layer,
+              "Basemap (dark)": simple_basemap_pop_yellow_layer,
               "OpenStreetMap": openstreetmap_layer
           };
 
@@ -558,9 +581,18 @@ export default {
             }
           });
 
-          var curves_layer = L.layerGroup().addTo(mapObject);
+
 
           if ( this.data.layer ) {
+            console.log("Check for data.layer w/"+this.data.layer.length+ " layer(s)")
+            this.drawCurves();
+          }
+
+        }
+      })
+    },
+    drawCurves() {
+        var curves_layer = L.layerGroup().addTo(this.mapobj);
             this.data.layer.forEach ((layer, lkey) => {
               if ( layer.places_with_relations ) {
                 layer.places_with_relations.forEach ((place, key) => {
@@ -584,7 +616,7 @@ export default {
                     var pathOptions = {
                             color: color,
                             weight: 5,
-                            opacity: 1,
+                            opacity: 0.75,
                             className: 'curve_normal curve_',
                             animate: false
                     }
@@ -624,10 +656,7 @@ export default {
                 });
               }
             });
-          }
 
-        }
-      })
     },
     calcControlPoint(point1,point2,distance_in_kms) {
       var boost = 2.9;
