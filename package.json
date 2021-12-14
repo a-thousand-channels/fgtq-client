@@ -1,0 +1,29 @@
+{
+  "name": "a1000c-map-client",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
+  },
+  "dependencies": {
+    "@elfalem/leaflet-curve": "^0.9.1",
+    "@nuxt/content": "^1.15.1",
+    "@nuxtjs/axios": "^5.13.6",
+    "@nuxtjs/pwa": "^3.3.5",
+    "core-js": "^3.19.3",
+    "nuxt": "^2.15.7",
+    "nuxt-leaflet": "^0.0.27",
+    "push-dir": "^0.4.1",
+    "swiper": "^7.3.2",
+    "vue-awesome-swiper": "^4.1.1",
+    "vue-shortkey": "^3.1.7"
+  },
+  "devDependencies": {
+    "@nuxtjs/tailwindcss": "^4.2.0",
+    "postcss": "^8.4.5"
+  }
+}
