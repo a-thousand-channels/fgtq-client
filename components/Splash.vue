@@ -2,7 +2,7 @@
    .bg-a100c-1 {
       background: rgb(255,0,249);
       background: linear-gradient(90deg, rgba(255,0,249,0.15) 0%, rgba(255,117,0,0.15) 50%, rgba(255,0,35,0.15) 100%);
-      background-image: url(/background-test4.jpg)
+      background-image: url(/fgtq-client/background-test4.jpg)
    }
    .bg-a100c-1-hover {
       background: rgb(255,0,249);
@@ -52,7 +52,7 @@
           </select>
         </p>
         <p class="mt-2 pt-4 text-gray-800 text-center">
-          <nuxt-link :to="{ path: '/main', hash:'map', query: { layer: this.custom_data_url }}" class="bg-red-400 bg-a100c-1 text-white text-center px-4 py-2 rounded-lg">View</nuxt-link>
+          <nuxt-link :to="{ path: '/main', hash:'map', query: { layer: this.custom_data_url }}" class="bg-white  bg-a100c-1-hover text-white text-center px-4 py-2 rounded-lg">View</nuxt-link>
         </p>
         <p class="mt-2 pt-4 text-gray-600">
           This map is work in progress. It is part of the <a href="https://citydataexplosion.tumblr.com/intersections-and-constellations" target="_blank" class="text-link">Intersections + Constellations: „From gay to queer“. Ein queeres Mapping Projekt.</a>

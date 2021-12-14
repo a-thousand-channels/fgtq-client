@@ -56,12 +56,11 @@
             </div>
             <div class="modal-player">
                 <p class="captions" :id="'place-' + place.id + '-infos'"></p>
-                <div id="audio" class="player-wrapper" v-if="place.audio">
+                <div id="audio" class="player-wrapper px-4" v-if="place.audio">
                   <audio-player :place="place"></audio-player>
                 </div>
-                <div id="audio" class="player-wrapper" v-if="place.audiolink" v-html="place.audiolink">
+                <div id="audio" class="player-wrapper px-4" v-if="place.audiolink" v-html="place.audiolink">
                 </div>
-
             </div>
             <footer>
               <p class="text-sm sm:text-md text-gray-500 px-4 py-1 sm:px-4 sm:py-4">
