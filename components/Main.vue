@@ -312,7 +312,7 @@
         <div id="map_inner" class="h-full bg-red-100 bg-opacity-10 my-1 mx-1">
           <div id="map_map" class="h-full w-full border-solid border-2 border-white shadow z-40">
            <client-only>
-                <l-map :zoom=4 :minZoom=2 :maxZoom=19 :center="[55.9464418,8.1277591]" ref="map" @ready="onMapReady">
+                <l-map :zoom=13 :minZoom=2 :maxZoom=19 :center="[53.075878, 8.807311]" ref="map" @ready="onMapReady">
                   <l-control-layers position="topright"></l-control-layers>
                   <l-layer-group
                       v-for="(layer,lindex) in this.data.layer"

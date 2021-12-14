@@ -4,11 +4,11 @@
 
 <script>
 
-
 export default {
+
  data() {
     return {
-      title: 'Map prototype'
+      title: 'From Gay To Queer — A mapping by Queer narratives, mapped',
     }
   },
   head() {
@@ -16,9 +16,9 @@ export default {
       title: this.title,
       meta: [
         {
-          hid: 'description',
-          name: 'description',
-          content: 'My custom description'
+          hid: 'From Gay To Queer — A mapping by Queer narratives, mapped',
+          name: 'From Gay To Queer — A mapping by Queer narratives, mapped',
+          content: 'Mapping of the stories and material collected during the Intersections & Constellations: How to map queer narratives? project. This is Work-in-progress'
         }
       ]
     }
