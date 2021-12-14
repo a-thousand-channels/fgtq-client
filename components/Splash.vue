@@ -43,11 +43,14 @@
         <p class="mt-2 pt-4 text-gray-800 text-center">
           <select id="layer-selector" v-on:change="onChange($event)" class="border bg-white rounded px-3 py-2 outline-none">
           {{layers}}
+            <option>
+              Select a map
+            </option>
             <option v-for="layer in layers" :value="layer.url" class="py-1">
                 {{layer.title}}
             </option>
           </select>
-          <nuxt-link :to="{ path: '/main', hash:'map', query: { layer: this.custom_data_url }}" class="bg-red-400 bg-a100c-1 text-white text-center px-4 py-2 rounded-lg">Open map</nuxt-link>
+          <nuxt-link :to="{ path: '/main', hash:'map', query: { layer: this.custom_data_url }}" class="bg-red-400 bg-a100c-1 text-white text-center px-4 py-2 rounded-lg">View</nuxt-link>
         </p>
         <p class="mt-4 pt-4 text-gray-600">
           This map is work in progress. It is part of the <a href="https://citydataexplosion.tumblr.com/intersections-and-constellations" target="_blank" class="text-link">Intersections + Constellations: „From gay to queer“. Ein queeres Mapping Projekt.</a>
