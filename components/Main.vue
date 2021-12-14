@@ -293,7 +293,7 @@
           <div v-else>
             <p id="map_header_content" class="text-sm text-red-300">
               <nuxt-link :to="{ path: '/main', hash: 'info'}">{{ this.data.title }}</nuxt-link> //
-              <button @click="$fetch" >Reload view</button> //
+              <button @click="$fetch" >Reload</button> //
               <nuxt-link :to="{ path: '/'}" class="text-red-300">Home</nuxt-link>
             </p>
           </div>

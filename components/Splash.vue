@@ -50,6 +50,8 @@
                 {{layer.title}}
             </option>
           </select>
+        </p>
+        <p class="mt-2 pt-4 text-gray-800 text-center">
           <nuxt-link :to="{ path: '/main', hash:'map', query: { layer: this.custom_data_url }}" class="bg-red-400 bg-a100c-1 text-white text-center px-4 py-2 rounded-lg">View</nuxt-link>
         </p>
         <p class="mt-4 pt-4 text-gray-600">
