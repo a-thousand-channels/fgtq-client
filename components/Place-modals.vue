@@ -52,7 +52,7 @@
               <h2><strong>{{place.title}}</strong> ({{place.id}})</h2>
             </div>
             <div class="modal-content">
-              <div v-if="place.teaser" class="text-gray-500 px-4" :inner-html.prop="place.teaser | truncate(200, '...')"></div>
+              <div v-if="place.teaser" class="text-sm sm:text-md  text-gray-500 px-4" :inner-html.prop="place.teaser | truncate(200, '...')"></div>
             </div>
             <div class="modal-player">
                 <p class="captions" :id="'place-' + place.id + '-infos'"></p>
@@ -61,7 +61,7 @@
                 </div>
             </div>
             <footer>
-              <p class="text-gray-500 px-4 py-2 sm:px-4 sm:py-4">
+              <p class="text-sm sm:text-md text-gray-500 px-4 py-1 sm:px-4 sm:py-4">
                 <button @click="showPlaceInList(place)" class="text-link">Show details</button>
               </p>
             </footer>

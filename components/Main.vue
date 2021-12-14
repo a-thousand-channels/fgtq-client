@@ -187,7 +187,7 @@
       background-color: rgba(255,255,255,0.8);
    }
    .bg-red-100 {
-      background-color: transparent;
+
    }
    .text-gray {
      color: rgba(0,0,0,0.3);
@@ -264,8 +264,8 @@
   <div id="page_inner" class="flex a1000c-horizontal" ref="scroll_container" @wheelX="scrollX">
     <section ref="info" id="info" class="flex items-stretch min-h-screen max-h-screen bg-a100c-1 sm:pt-0 sm:pb-8"> <div class="content flex items-top overflow-x-auto">
         <div id="info_inner" class="bg-red-100 bg-opacity-30 my-4 mx-5">
-          <p v-if="$fetchState.pending">Loading...</p>
-          <p v-else-if="$fetchState.error">An error occurred :(</p>
+          <p v-if="$fetchState.pending" class="text-sm text-red-300">Loading...</p>
+          <p v-else-if="$fetchState.error" class="text-sm text-red-300">Please wait ...</p>
           <div v-else>
             <info :data="this.data"></info>
           </div>
@@ -289,7 +289,7 @@
       <div class="content items-center justify-center">
         <div id="map_header" class="block">
           <p v-if="$fetchState.pending" class="text-sm text-red-300">Fetching places...</p>
-          <p v-else-if="$fetchState.error" class="text-sm text-red-300">An error occurred :(</p>
+          <p v-else-if="$fetchState.error" class="text-sm text-red-300">Please wait ...</p>
           <div v-else>
             <p id="map_header_content" class="text-sm text-red-300">
               <nuxt-link :to="{ path: '/main', hash: 'info'}">{{ this.data.title }}</nuxt-link> //
@@ -346,7 +346,7 @@
         </div>
       </div>
       <p v-if="$fetchState.pending" class="text-sm text-red-300">...</p>
-      <p v-else-if="$fetchState.error" class="text-sm text-red-300">An error occurred :(</p>
+      <p v-else-if="$fetchState.error" class="text-sm text-red-300">...</p>
       <div v-else id="modals_wrapper" class="sm:absolute sm:top-4 sm:right-4" :class="{ 'is-active' : this.data.state }">
         <place-modals :layers="this.data.layer" :data="this.data"></place-modals>
       </div>
@@ -427,7 +427,7 @@ export default {
           radius: 14,
           color: 'transparent',
           fillcolor: 'rgba(242, 71, 38, 1)',
-          fillopacity: 0.85
+          fillopacity: 0.95
         }
       }
   },
@@ -451,11 +451,8 @@ export default {
     // }
     this.dataobj = await axios.get(this.data_url).then(response =>
       response.data
-    ).catch(function (error) {
-      // handle error
-      console.log(error);
-    })
-    console.log('fetch... add state value')
+    )
+    console.log('fetch... success')
 
     // check if its a map
     if ( this.dataobj.map ) {
