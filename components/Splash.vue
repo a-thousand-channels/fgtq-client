@@ -82,6 +82,7 @@
       background: rgb(255,0,249);
       background: linear-gradient(90deg, rgba(255,0,249,0.15) 0%, rgba(255,117,0,0.15) 50%, rgba(255,0,35,0.15) 100%);
       background-image: url(/fgtq-client/client-splash-background-light.jpg)
+      background-size: cover;
    }
    .bg-a100c-1-hover {
       background: rgb(255,0,249);
