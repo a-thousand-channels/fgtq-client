@@ -45,11 +45,10 @@
         <div class="text-gray-500 px-4 sm:px-16 sm:py-3" v-html="place.teaser"></div>
         <div :id="'list-audio-'+place.id" class="player-wrapper px-4 sm:px-16 sm:py-3" v-if="place.audiolink" v-html="place.audiolink">
         </div>
-        <ul v-if="place.annotations.length > 0" class="pb-4 sm:px-8">
-          <li v-for="(annotation,aindex) in place.annotations" class="bg-a100c-3 px-4 py-4 rounded shadow mt-4 mb-6">
+        <ul v-if="place.annotations.length > 0" class="pb-0 sm:px-8">
+          <li v-for="(annotation,aindex) in place.annotations" class="bg-a100c-3 px-4 py-6 rounded shadow mt-4 mb-6">
             <h4 v-if="annotation.title" class="font-semibold text-md px-4 py-2">{{ annotation.title }}</h4>
             <div class="text-gray-500 px-4" v-html="annotation.text"></div>
-
           </li>
         </ul>
         <footer class="pb-4">

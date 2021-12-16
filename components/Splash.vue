@@ -128,8 +128,8 @@
       <div class="flex justify-center sm:mt-8 sm:pt-0">
       </div>
       <div class="mt-8 overflow-hidden bg-white shadow sm:rounded-lg p-6">
-        <h2 class="text-2xl font-semibold">
-          From Gay To Queer <span class="text-a100c-1">— A mapping by "Queer narratives, mapped"</span>
+        <h2 class="text-2xl">
+          <span class="text-a100c-1  font-semibold">"From Gay To Queer"</span> — A mapping by Queer narratives, mapped"</span>
         </h2>
       </div>
       <div class="mt-8 md:mx-24 lg:mx-36 bg-white overflow-hidden shadow sm:rounded-lg p-6">

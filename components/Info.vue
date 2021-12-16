@@ -25,39 +25,50 @@
       the map
     </nuxt-link>
   </div>
-    <div class="block bg-a100c-white rounded shadow py-2 px-2 sm:px-10 lg:px-10 lg:py-8 mt-4 mb-4">
-    <h3 class="font-semibold text-gray-800 mt-2 pt-4 px-4 py-1 lg:px-8">
-        About this project
+    <div class="block bg-a100c-white rounded shadow py-2 px-2 sm:px-10 lg:px-10 lg:py-8 mt-4">
+    <h2 class="font-semibold text-gray-800 px-4 py-1 lg:px-8"><span class="text-a100c-1"><nuxt-link :to="{ path: '/'}">From Gay To Queer</nuxt-link></span> — A mapping by "Queer narratives, mapped"</h2>
+    <h3 class="text-gray-800 px-4 py-1 lg:px-8">
+        About this project:
     </h3>
-    <p class="mt-2 pt-4 text-gray-800 px-4 py-1 lg:px-8">
+    <p class="text-gray-800 px-4 py-1 lg:px-8">
           In a process of research, interviewing, mapping and contextualization, we have tried to understand how queer (sub)cultures have developed from its seperated LGBTI niches, with the focus on Bremen and the second half of the 1990s. This is a spotlight, they are so many other voices, narrations and traces, that hopefully will be collected and documented too.
     </p>
-    <p class="mt-2 pt-4 text-gray-800 px-4 py-1 lg:px-8">
+    <p class="text-gray-800 px-4 py-1 lg:px-8">
           More about this project <a href="https://citydataexplosion.tumblr.com/intersections-and-constellations" target="_blank" class="text-link">Intersections + Constellations: „From gay to queer“. A queer mapping project</a>
     </p>
   </div>
-  <div class="block bg-a100c-white rounded shadow py-2 px-2 sm:px-10 lg:px-10 lg:py-8 mt-4 mb-4">
-    <h3 class="font-semibold text-gray-800 mt-2 pt-4 px-4 py-1 lg:px-8">
-        Credits + Imprint
+  <div class="block bg-a100c-white rounded shadow  py-2 px-2 sm:px-10 lg:px-10 lg:py-8 mt-4">
+    <h3 class="font-semibold text-gray-800 px-4 py-1 lg:px-8">
+        Credits
     </h3>
-    <p class="mt-2 pt-4 text-gray-800 px-4 py-1 lg:px-8">
-        People that participated...
+    <p class="text-gray-800 px-4 py-1 lg:px-8">
+        List of people that participated...
     </p>
-    <p class="mt-2 pt-4 text-gray-800 px-4 py-1 lg:px-8">
-        Many thanks to the interviewees: Annette, Arno, Manu, Marcio, Niels, Thomas B, Thomas M and Ulf
+    <p class="text-gray-800 px-4 py-1 lg:px-8">
+        Many thanks to the interviewees, for sharing your thoughts and impressions: Annette, Arno, Manu, Marcio, Niels, Thomas B, Thomas M and Ulf
 
     </p>
-    <p class="mt-2 pt-4 text-gray-800 px-4 py-1 lg:px-8">
+    <p class="text-gray-400 px-4 py-1 text-sm lg:px-8">
+        Map data by <a href="www.openstreetmap.org/copyright" target="_blank" class="text-link">Openstreetmap and its contributors</a>
+        <br/>
+        Base map design by Ulf Treger
+    </p>
+  </div>
+  <div class="block bg-a100c-white rounded shadow  py-2 px-2 sm:px-10 lg:px-10 lg:py-8 mt-4">
+    <p class="text-gray-800 px-4 py-1 lg:px-8">
         Published by
         <a href="https://spedition-bremen.com/" target="_blank" class="text-link">
           kunst- und kulturverein Spedition e.V., Bremen
         </a>
     </p>
-    <p class="mt-2 pt-4 text-gray-400 px-4 py-1 text-sm lg:px-8">
-        Map data by <a href="www.openstreetmap.org/copyright" target="_blank" class="text-link">Openstreetmap and its contributors</a>
-        <br/>
-        Base map design by Ulf Treger
+    <p class="text-gray-800 px-4 py-1 lg:px-8">
+        Das Projekt wird gefördert vom Fonds Soziokultur im Rahmen des Programms "Neustart Kultur".
+        <img src="neustart_kultur.png" alt="Logos des Fonds Soziokultur, des Programms Neustart Kultur und der Beauftragten der Bundesregierung für Kultur und Medien">
     </p>
+    <p class="text-gray-800 px-4 py-1 lg:px-8">
+
+    </p>
+
 
   </div>
 </div>
