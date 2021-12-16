@@ -420,7 +420,6 @@ export default {
         },
         data_url: '',
         custom_data_url1: 'https://orte.link/public/maps/queer-places-in-hamburg/layers/nachtbar.json',
-        custom_data_url1: 'https://staging.orte.link/public/maps/from-gay-to-queer.json',
         custom_data_url: 'https://orte.link/public/maps/from-gay-to-queer/layers/manu.json',
 
         circle: {
@@ -554,7 +553,7 @@ export default {
           controlelements[0].removeChild(elements[0]);
 
           var openstreetmap_layer = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', { attribution: 'Openstreemap + Contributors' })
-          var simple_basemap_pop_grey_layer = L.tileLayer('https://tiles.3plusx.io/world_populated_places/lightgrey/{z}/{x}/{y}.png', {attribution: ''}).addTo(this.$refs.map.mapObject);
+          var simple_basemap_pop_grey_layer = L.tileLayer('https://tiles.3plusx.io/world_populated_places/lightpink/{z}/{x}/{y}.png', {attribution: ''}).addTo(this.$refs.map.mapObject);
           var simple_basemap_pop_yellow_layer = L.tileLayer('https://tiles.3plusx.io/world_populated_places/lightyellow/{z}/{x}/{y}.png', {attribution: ''})
 
           /*

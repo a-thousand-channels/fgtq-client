@@ -10,7 +10,6 @@ import layers from '~/static/layers.json'
 
 export default {
  asyncData ({ params }) {
-    console.log(layers)
     return { layers }
  },
  data() {
