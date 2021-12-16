@@ -78,7 +78,7 @@
     button.text-link,
     a.text-link {
       text-decoration: none;
-      background-image: linear-gradient(120deg, #fde68a 0, #fde68a 100%);
+      background-image: linear-gradient(120deg,rgba(255,0,249,.35),rgba(255,117,0,.35) 50%,rgba(255,0,35,.35));
       background-repeat: no-repeat;
       background-size: 100% 0.4em;
       background-position: 0 100%;

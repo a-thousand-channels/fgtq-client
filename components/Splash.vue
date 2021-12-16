@@ -81,7 +81,7 @@
    .bg-a100c-1-splash {
       background: rgb(255,0,249);
       background: linear-gradient(90deg, rgba(255,0,249,0.15) 0%, rgba(255,117,0,0.15) 50%, rgba(255,0,35,0.15) 100%);
-      background-image: url(/fgtq-client/client-splash-background-light.jpg)
+      background-image: url(/fgtq-client/client-splash-background-light.jpg);
       background-size: cover;
    }
    .bg-a100c-1-hover {
@@ -90,6 +90,10 @@
    }
    .text-a100c-1 {
       color: #ff6d6d;
+      background: -webkit-linear-gradient(120deg,rgba(255,0,35,.65),rgba(255,117,0,.65) 50%,rgba(255,0,249,.65));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
    }
    .bg-a100c-2 {
       background: rgb(255,0,249);
@@ -102,9 +106,9 @@
   button.text-link,
     a.text-link {
       text-decoration: none;
-      background-image: linear-gradient(120deg, #fde68a 0, #fde68a 100%);
+      background-image: linear-gradient(120deg,rgba(255,0,249,.35),rgba(255,117,0,.35) 50%,rgba(255,0,35,.35));
       background-repeat: no-repeat;
-      background-size: 100% 0.4em;
+      background-size: 100% 0.2em;
       background-position: 0 100%;
     }
     button,
@@ -115,7 +119,8 @@
     }
     button:disabled,
     button[disabled]{
-        opacity: 0.25;
+        opacity: 0.5;
+        filter: grayscale(1);
         cursor: disabled;
         transition: all 0.3s;
     }
@@ -123,17 +128,17 @@
 
 <template>
 <div id="page">
-  <div class="relative flex overflow-y-auto items-top justify-center min-h-screen bg-pink-100 bg-a100c-1-splash sm:items-center sm:pt-0">
+  <div class="relative flex overflow-x-auto items-top justify-center min-h-screen bg-pink-100 bg-a100c-1-splash sm:items-center sm:pt-0">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
     <div class="max-w-4xl mx-auto sm:px-6 lg:px-12">
       <div class="flex justify-center sm:mt-8 sm:pt-0">
       </div>
-      <div class="mt-8 overflow-hidden bg-white shadow sm:rounded-lg p-6">
-        <h2 class="text-2xl">
-          <span class="text-a100c-1  font-semibold">"From Gay To Queer"</span> — A mapping by Queer narratives, mapped"</span>
+      <div class="mt-4 overflow-hidden bg-white shadow sm:rounded-lg  md:px-4 lg:px-8 p-2">
+        <h2 class="text-3xl">
+          <span class="text-a100c-1  font-semibold">"From Gay To Queer"</span> — A project by Queer narratives, mapped</span>
         </h2>
       </div>
-      <div class="mt-8 md:mx-24 lg:mx-36 bg-white overflow-hidden shadow sm:rounded-lg p-6">
+      <div class="mt-2 md:mx-24 lg:mx-36 bg-transparent overflow-hidden sm:rounded-lg p-2">
 
         <div class="mt-2 pt-2 text-gray-800 text-center">
           <select id="layer-selector" v-on:change="onChange($event)" class="border bg-white rounded text-lg  px-3 py-2 outline-none">
@@ -146,28 +151,23 @@
             </option>
           </select>
         </div>
-        <p class="mt-2 pt-4 pb-2 text-gray-800 text-center">
-          <nuxt-link :to="{ path: '/main', hash:'map', query: { layer: this.custom_data_url }}" tag="button" :disabled="this.disabled" class="bg-white  bg-a100c-1-hover text-white text-bold drop-shadow text-center px-4 py-2 rounded-lg">View map</nuxt-link>
+        <p class="mt-2 pt-2 text-gray-800 text-center">
+          <nuxt-link :to="{ path: '/main', hash:'map', query: { layer: this.custom_data_url }}" tag="button" :disabled="this.disabled" class="bg-white bg-a100c-1-hover text-white text-bold drop-shadow text-center px-4 py-2 rounded-lg">View map</nuxt-link>
         </p>
       </div>
-      <div class="mt-8 bg-white overflow-hidden shadow sm:rounded-lg p-6">
-        <p class="mt-2 pt-4 text-gray-600">
+      <div class="mt-4 mb-4 bg-white overflow-hidden shadow sm:rounded-lg md:px-4 lg:px-8 py-4 p-2">
+        <p class="mt-2 pt-2 text-gray-600">
           This map is work in progress. It is part of the <a href="https://citydataexplosion.tumblr.com/intersections-and-constellations" target="_blank" class="text-link">Intersections + Constellations: „From gay to queer“. A queer mapping project.</a>
         </p>
-        <p class="mt-2 pt-4 text-gray-600">
+        <p class="mt-2 pt-2 text-gray-600">
           Please feel free to try out. We would very happy about feedback and contributions.
         </p>
-        <p class="mt-2 pt-4 text-sm text-gray-600">
+        <p class="mt-2 pt-2 text-sm text-gray-600">
           If you have questions or remarks to the content please contact us via <a href="mailto:queer-narratives-mapped@citydataexplosion.de" class="text-link">queer-narratives-mapped@citydataexplosion.de</a>.
         </p>
-        <p class="mt-2 pt-4 text-sm text-gray-600">
-          For questions about the website please visit the <a href="https://github.com/a-thousand-channels/a1000c-map-client" class="text-link">A 1000 Channels Github repository for this project</a> or send a mail to <a href="mailto:hello@a-thousand-channels.xyz" class="text-link">hello@a-thousand-channels.xyz</a>.
+        <p class="mt-2 pt-2 text-sm text-gray-600">
+          For questions about design and technique please visit the <a href="https://github.com/a-thousand-channels/a1000c-map-client" class="text-link">A 1000 Channels Github repository for this project</a> or send a mail to <a href="mailto:hello@a-thousand-channels.xyz" class="text-link">hello@a-thousand-channels.xyz</a>.
         </p>
-      </div>
-      <div class="flex justify-center p-4 m-2 space-x-2">
-        <a href="https://www.a-thousand-channels.xyz/" target="_blank" style="text-decoration: none; background-image: linear-gradient(120deg, #fde68a 0, #fde68a 100%); background-repeat: no-repeat; background-size: 100% 0.4em; background-position: 0 100%">
-          A Thousand Channels – a queer 🏳️‍🌈 mapping 🗺 platform 🎁
-        </a>
       </div>
     </div>
   </div>
