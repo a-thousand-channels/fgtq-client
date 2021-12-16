@@ -312,7 +312,7 @@
         <div id="map_inner" class="h-full bg-red-0 bg-opacity-0 my-1 mx-1">
           <div id="map_map" class="h-full w-full border-solid border-2 border-white shadow z-40">
            <client-only>
-                <l-map :zoom=12 :minZoom=2 :maxZoom=19 :center="[53.075878, 8.807311]" ref="map" @ready="onMapReady">
+                <l-map :zoom="this.mapzoom" :minZoom=2 :maxZoom=19 :center="this.mapcenter" ref="map" @ready="onMapReady">
                   <l-control-layers position="topright"></l-control-layers>
                   <l-layer-group
                       v-for="(layer,lindex) in this.data.layer"
@@ -421,7 +421,8 @@ export default {
         data_url: '',
         custom_data_url1: 'https://orte.link/public/maps/queer-places-in-hamburg/layers/nachtbar.json',
         custom_data_url: 'https://orte.link/public/maps/from-gay-to-queer/layers/manu.json',
-
+        mapcenter: [53.075878, 8.807311],
+        mapzoom: 12,
         circle: {
           radius: 14,
           color: 'transparent',
@@ -453,6 +454,8 @@ export default {
     )
     console.log('fetch... success')
 
+
+
     // check if its a map
     if ( this.dataobj.map ) {
       this.data = this.dataobj.map
@@ -483,11 +486,18 @@ export default {
       this.data = this.dataobj.layer
       this.data.layer = []
       this.data.layer[0] = this.dataobj.layer
+
+      if (this.data.mapcenter_lat && this.data.mapcenter_lon ) {
+        this.mapcenter = [this.data.mapcenter_lat, this.data.mapcenter_lon]
+      }
+      if (this.data.zoom) {
+        this.mapzoom = this.data.zoom
+      }
       console.log("Data for a map with " + this.data.layer.length + " accessible layer")
       this.places = this.data.places
       this.places_with_relations = this.data.places_with_relations
       this.list_content = this.data.places
-      console.log("Map with "+this.places.length+" places and "+this.places_with_relations.length+" Relations")
+      console.log("Layer Map with "+this.places.length+" places and "+this.places_with_relations.length+" Relations")
 
       // add state value to all places
       for (let i = 0; i < this.data.places.length; i++) {
