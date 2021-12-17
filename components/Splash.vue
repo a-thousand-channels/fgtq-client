@@ -103,6 +103,17 @@
       background: rgb(255,0,249);
       background: linear-gradient(90deg, rgba(255,0,35,0.15) 0%, rgba(255,0,249,0.15) 50%, rgba(255,117,0,0.15) 100% );
    }
+   h2.beta::after {
+      content: "(Beta)";
+      padding: 3px 2px;
+      margin-left: 4px;
+      display: inline-block;
+      font-family: monospace;
+      color: #666;
+      font-size: 0.6em;
+      line-height: 1;
+      vertical-align: text-top;
+   }
   button.text-link,
     a.text-link {
       text-decoration: none;
@@ -134,7 +145,7 @@
       <div class="flex justify-center sm:mt-8 sm:pt-0">
       </div>
       <div class="mt-4 overflow-hidden bg-white shadow sm:rounded-lg  md:px-4 lg:px-8 p-2">
-        <h2 class="text-3xl">
+        <h2 class="text-3xl beta">
           <span class="text-a100c-1  font-semibold">"From Gay To Queer"</span> — A project by Queer narratives, mapped</span>
         </h2>
       </div>
@@ -166,7 +177,7 @@
           If you have questions or remarks to the content please contact us via <a href="mailto:queer-narratives-mapped@citydataexplosion.de" class="text-link">queer-narratives-mapped@citydataexplosion.de</a>.
         </p>
         <p class="mt-2 pt-2 text-sm text-gray-600">
-          For questions about design and technique please visit the <a href="https://github.com/a-thousand-channels/a1000c-map-client" class="text-link">A 1000 Channels Github repository for this project</a> or send a mail to <a href="mailto:hello@a-thousand-channels.xyz" class="text-link">hello@a-thousand-channels.xyz</a>.
+          For questions about design and technique please visit the <a href="https://www.a-thousand-channels.xyz" class="text-link">A 1000 Channels website</a> or send a e-mail to <a href="mailto:hello@a-thousand-channels.xyz" class="text-link">hello@a-thousand-channels.xyz</a>.
         </p>
       </div>
     </div>
