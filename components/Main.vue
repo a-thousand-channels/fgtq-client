@@ -423,7 +423,7 @@ export default {
         default_data_url2: 'https://orte.link/public/maps/from-gay-to-queer/layers/manu.json',
         default_data_url: '',
         mapcenter: [53.075878, 8.807311],
-        mapzoom: 14,
+        mapzoom: 12,
         circle: {
           radius: 14,
           color: 'transparent',
@@ -489,7 +489,7 @@ export default {
       if (this.data.mapcenter_lat && this.data.mapcenter_lon ) {
         this.mapcenter = [this.data.mapcenter_lat, this.data.mapcenter_lon]
       }
-      if (this.data.zoom != "12" ) {
+      if (this.data.zoom ) {
         this.mapzoom = this.data.zoom
       }
       console.log("Data for a map with " + this.data.layer.length + " accessible layer")
