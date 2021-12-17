@@ -43,13 +43,14 @@
     </h3>
     <p class="text-gray-800 px-4 py-1 lg:px-8">
         List of people that participated...
+
     </p>
     <p class="text-gray-800 px-4 py-1 lg:px-8">
         Many thanks to the interviewees, for sharing your thoughts and impressions: Annette, Arno, Manu, Marcio, Niels, Thomas B, Thomas M and Ulf
 
     </p>
     <p class="text-gray-400 px-4 py-1 text-sm lg:px-8">
-        Map data by <a href="www.openstreetmap.org/copyright" target="_blank" class="text-link">Openstreetmap and its contributors</a>
+        Map data by <a href="https://www.openstreetmap.org/copyright" target="_blank" class="text-link">Openstreetmap and its contributors</a>
         <br/>
         Base map design by Ulf Treger
     </p>
