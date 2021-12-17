@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/main", {data:[{}],fetch:{"App:0":{_error:{message:"Cannot read property 'replace' of null",statusCode:500}}},mutations:void 0});
