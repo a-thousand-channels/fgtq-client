@@ -42,17 +42,30 @@
         Credits
     </h3>
     <p class="text-gray-800 px-4 py-1 lg:px-8">
-        List of people that participated...
+      A project by
 
+        Thomas Böker, Dafne Jaramillo, Kyan Mitwollen, Brunn Morais, Laura Franziska Reyes Pollak and Ulf Treger.
+        <br />
+        With editorial support by Jimena Stephanie Alvarez
     </p>
     <p class="text-gray-800 px-4 py-1 lg:px-8">
-        Many thanks to the interviewees, for sharing your thoughts and impressions: Annette, Arno, Manu, Marcio, Niels, Thomas B, Thomas M and Ulf
+          Many thanks to the interviewees, for sharing your thoughts and impressions: Annette, Arno, Manu, Marcio, Niels, Thomas B, Thomas M, Ulf
+    </p>
+    <p class="text-gray-800 px-4 py-1 lg:px-8">
 
+          Thanks and big shout to the other members of "Queer narratives, mapped" working group. Thanks also to all the participants of our workshops!
+    </p>
+    <p class="text-gray-800 px-4 py-1 lg:px-8">
+          Thanks also to our cooperation partner and funding bodies!
+    </p>
+    <p class="text-gray-800 px-4 py-1 lg:px-8">
+          Thanks to "A thousand channels" for allow us to use the prototype of their mapping client.
+    </p>
+    <p class="text-gray-800 px-4 py-1 lg:px-8">
+      For all texts and images: All rights reserved. No Redistribution, no copying and re-publishing of texts and visual material. If would like to use quotes or other excerpts, please contact us.
     </p>
     <p class="text-gray-400 px-4 py-1 text-sm lg:px-8">
-        Map data by <a href="https://www.openstreetmap.org/copyright" target="_blank" class="text-link">Openstreetmap and its contributors</a>
-        <br/>
-        Base map design by Ulf Treger
+        Map design by Ulf Treger. Map data by <a href="https://www.openstreetmap.org/copyright" target="_blank" class="text-link">Openstreetmap and its contributors</a> with a Creative Commons (CC BY-SA 2.0) licence
     </p>
   </div>
   <div class="block bg-a100c-white rounded shadow  py-2 px-2 sm:px-10 lg:px-10 lg:py-8 mt-4">
