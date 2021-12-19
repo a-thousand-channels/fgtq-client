@@ -49,10 +49,9 @@
         With editorial support by Jimena Stephanie Alvarez
     </p>
     <p class="text-gray-800 px-4 py-1 lg:px-8">
-          Many thanks to the interviewees, for sharing your thoughts and impressions: Annette, Arno, Manu, Marcio, Niels, Thomas B, Thomas M, Ulf
+          Many thanks to the interviewees, for sharing your thoughts and impressions: Annette, Arno, Manu, Marcio, Nils, Thomas B, Thomas M, Ulf
     </p>
     <p class="text-gray-800 px-4 py-1 lg:px-8">
-
           Thanks and big shout to the other members of "Queer narratives, mapped" working group. Thanks also to all the participants of our workshops!
     </p>
     <p class="text-gray-800 px-4 py-1 lg:px-8">
