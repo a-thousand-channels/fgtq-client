@@ -294,7 +294,7 @@
             <p id="map_header_content" class="text-sm text-red-300">
               <nuxt-link :to="{ path: '/main', hash: 'info'}">{{ this.data.title }}</nuxt-link> //
               <button @click="$fetch" >Reload</button> //
-              <nuxt-link :to="{ path: '/'}" class="text-red-300">Home</nuxt-link>
+              <nuxt-link :to="{ path: '/'}" class="text-red-300">Start</nuxt-link>
             </p>
           </div>
           <p>
@@ -471,7 +471,6 @@ export default {
       this.data.layer.forEach ((layer, lkey) => {
         for (let i = 0; i < layer.places.length; i++) {
           if ( i=== 0) {
-            // this.$set(this.data.places[i], 'state', true)
             this.$set(layer.places[i], 'state', false)
           } else {
             this.$set(layer.places[i], 'state', false)
@@ -501,7 +500,6 @@ export default {
       // add state value to all places
       for (let i = 0; i < this.data.places.length; i++) {
         if ( i=== 0) {
-          // this.$set(this.data.places[i], 'state', true)
           this.$set(this.data.places[i], 'state', false)
         } else {
           this.$set(this.data.places[i], 'state', false)
@@ -813,8 +811,8 @@ export default {
         console.log("Clicked layer index: "+e.target.options.layer_index)
         // show modal
         this.places[clicked_place_index].state = !this.places[clicked_place_index].state;
-        this.data.state = !this.data.state;
         console.log("this.data.state: "+this.data.state)
+        this.data.state = true;
 
 
         this.data.layer[parseInt(e.target.options.layer_index)].places[parseInt(e.target.options.place_index)].state = !this.data.layer[parseInt(e.target.options.layer_index)].places[parseInt(e.target.options.place_index)].state.state;
