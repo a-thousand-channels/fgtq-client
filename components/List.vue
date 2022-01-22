@@ -22,17 +22,17 @@
         to learn more about this map :)
       </li>
       <li v-else class="bg-a100c-white px-4 py-2 rounded shadow mt-4 ">
-        <h2 class="font-semibold pl-0 md:pl-12"><span v-if="data.title != data.layer[parseInt(layerindex)].title">{{data.title}}</span><span v-else><nuxt-link :to="{ path: '/'}">From Gay To Queer</nuxt-link></span> <span v-if="data.layer[parseInt(layerindex)]">— {{ data.layer[parseInt(layerindex)].title}}</span></h2>
+        <h2 class="font-semibold pl-0 sm:pl-4 md:pl-16"><span v-if="data.title != data.layer[parseInt(layerindex)].title">{{data.title}}</span><span v-else><nuxt-link :to="{ path: '/'}">From Gay To Queer</nuxt-link></span> <span v-if="data.layer[parseInt(layerindex)]">— {{ data.layer[parseInt(layerindex)].title}}</span></h2>
       </li>
 
       <li v-for="(place,index) in places" :id="'list-place-'+place.id" class="bg-a100c-white px-4 py-2 rounded shadow mt-4">
         <div v-swiper:[index]="swiperOptions" class="md:px-12">
           <div class="swiper-wrapper" v-if="place.images">
             <div v-for="(image,iindex) in place.images" :key="iindex" class="swiper-slide px-0 pb-4 pt-2 sm:px-4 sm:pt-4">
-              <p v-if="place.images.length > 1" class="text-sm text-gray max-w-60 text-left">({{iindex+1}}/{{place.images.length}})</p>
+              <p v-if="place.images.length > 1" class="text-sm text-gray max-w-60 text-left">{{iindex+1}}/{{place.images.length}}</p>
               <span v-if="image">
                 <img v-bind:src="image.image_url" :alt="image.alt" class="max-w-full sm:max-w-ws max-h-72 sm:max-h-80 lg:max-h-96">
-                <span class="text-sm leading-tight text-gray max-w-60">{{image.title}}</span>
+                <span class="text-sm leading-tight text-gray-500 max-w-60">{{image.title}}</span>
               </span>
               <span v-else>
                 <img src="https://via.placeholder.com/585x870?text=Platzhalter_585x870px" alt="">
@@ -42,18 +42,23 @@
           <div class="swiper-pagination"></div>
         </div>
         <h3 class="font-semibold text-lg px-4 py-2 sm:px-16 sm:pt-6">{{ place.title }}</h3>
-        <div class="text-gray-500 px-4 sm:px-16 sm:py-3" v-html="place.teaser"></div>
+        <div class="text-gray-800 px-4 md:text-lg sm:px-16 sm:py-3  lg:max-w-3xl" v-html="place.teaser"></div>
         <div :id="'list-audio-'+place.id" class="player-wrapper px-4 sm:px-16 sm:py-3" v-if="place.audiolink" v-html="place.audiolink">
         </div>
         <ul v-if="place.annotations.length > 0" class="pb-0 sm:px-8">
-          <li v-for="(annotation,aindex) in place.annotations" class="bg-a100c-3 px-4 py-6 rounded shadow mt-4 mb-6">
-            <h4 v-if="annotation.title" class="font-semibold text-md px-4 py-2">{{ annotation.title }}</h4>
-            <div class="text-gray-500 px-4" v-html="annotation.text"></div>
+          <li v-for="(annotation,aindex) in place.annotations" class="bg-a100c-3 rounded shadow mt-4 mb-6 px-4 py-3 sm:px-4 sm:py-6 lg:max-w-3xl">
+            <h4 v-if="annotation.title" class="font-semibold md:text-lg px-4 py-2">{{ annotation.title }}</h4>
+            <div class="text-gray-800 px-4 annotation-text-block" v-html="annotation.text"></div>
           </li>
         </ul>
-        <footer class="pb-4">
-          <p class="text-gray-500 px-4 py-2 sm:px-16 sm:py-3">
+        <footer class="flex pb-4 lg:max-w-3xl lg:pl-16">
+          <p class="flex-auto text-gray-500 px-0 py-2">
             <button @click="recenterMap(place.lat,place.lon,index)" class="text-link">Show on the map</button>
+          </p>
+          <p class="flex-auto text-gray-500 text-right x-0 py-2">
+            <button @click="scrollToTop" class="text-link">
+             To top
+            </button>
           </p>
         </footer>
       </li>

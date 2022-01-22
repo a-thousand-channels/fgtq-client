@@ -171,6 +171,9 @@
     #list #list_inner {
       width: 97%;
     }
+    #list #list_inner .annotation-text-block p {
+      @apply md:text-lg
+    }
    .bg-a100c-1 {
       background: rgb(255,0,249);
       background: linear-gradient(90deg, rgba(255,0,249,0.15) 0%, rgba(255,117,0,0.15) 50%, rgba(255,0,35,0.15) 100%);
@@ -189,11 +192,11 @@
    .bg-red-100 {
 
    }
-   .text-gray {
-     color: rgba(0,0,0,0.3);
+   .text-gray, .text-gray-500 {
+     color: rgba(0,0,0,0.6);
    }
-   .text-gray:hover {
-     color: rgba(0,0,0,0.8);
+   .text-gray:hover, .text-gray-500:hover {
+     color: rgba(0,0,0,0.9);
    }
    .text-white {
       color: rgba(255,255,255,0.8);
@@ -365,7 +368,7 @@
         </nuxt-link>
       </div>
       <div id="list_content" class="content flex items-top overflow-x-auto pb-10">
-          <div id="list_inner" class="bg-red-100 bg-opacity-30 my-0 mx-0 mr-6 sm:my-4 sm:mx-5">
+          <div id="list_inner" class="bg-opacity-30 my-0 mx-0 mr-6 sm:my-4 sm:mx-5">
             <p v-if="$fetchState.pending">Loading...</p>
             <p v-else-if="$fetchState.error">An error occurred :(</p>
             <div v-else>
