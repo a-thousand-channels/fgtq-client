@@ -101,7 +101,11 @@ export default {
         this.map.flyTo([lat,lon],17);
 
       })
-    }
+    },
+    scrollToTop() {
+      console.log('Scroll')
+      document.getElementById('list_content').scrollTo({ top: 0, behavior: 'smooth' })
+    },
   },
   data() {
     return {
