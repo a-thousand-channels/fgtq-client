@@ -58,7 +58,10 @@
           Thanks also to our cooperation partner and funding bodies!
     </p>
     <p class="text-gray-800 px-4 py-1 lg:px-8">
-          Thanks to "A thousand channels" for allow us to use the prototype of their mapping client.
+          Thanks to <a href="https://www.a-thousand-channels.xyz/" target="_blank" class="text-link">A thousand channels a queer mapping platform</a> for allow us to use the their mapping client.
+    </p>
+    <p class="text-gray-600 text-sm px-4 py-1 lg:px-8">
+        For questions about design and technique please visit send an e-mail to <a href="mailto:hello@a-thousand-channels.xyz" class="text-link">hello@a-thousand-channels.xyz</a>.
     </p>
     <p class="text-gray-800 px-4 py-1 lg:px-8">
       For all texts and images: All rights reserved. No Redistribution, no copying and re-publishing of texts and visual material. If would like to use quotes or other excerpts, please contact us.

@@ -51,7 +51,7 @@
             <div class="text-gray-800 px-4 annotation-text-block" v-html="annotation.text"></div>
           </li>
         </ul>
-        <footer class="flex pb-4 lg:max-w-3xl lg:pl-16">
+        <footer class="flex pb-4 lg:max-w-3xl pl-4 md:pl-16 lg:pl-16 pr-4 md:pr-12 lg:pr-4">
           <p class="flex-auto text-gray-500 px-0 py-2">
             <button @click="recenterMap(place.lat,place.lon,index)" class="text-link">Show on the map</button>
           </p>
