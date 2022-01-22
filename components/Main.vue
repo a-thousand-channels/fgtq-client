@@ -422,9 +422,8 @@ export default {
         tooltip: {
         },
         data_url: '',
-        default_data_url1: 'https://orte.link/public/maps/queer-places-in-hamburg/layers/nachtbar.json',
-        default_data_url2: 'https://orte.link/public/maps/from-gay-to-queer/layers/manu.json',
         default_data_url: '',
+        custom_data_url: '',
         mapcenter: [53.075878, 8.807311],
         mapzoom: 12,
         circle: {
@@ -435,21 +434,24 @@ export default {
         }
       }
   },
+  fetchOnServer: false,
   async fetch() {
     if (this.$route.query.layer ) {
       this.custom_data_url = this.$route.query.layer
+      localStorage.setItem('layer', this.$route.query.layer)
+    } else  {
+      this.custom_data_url = localStorage.getItem('layer')
     }
-    console.log('fetch...')
+    console.log('start to fetch...')
     console.log(this.dataobj)
-    if ( this.dataobj ) {
-      console.log('data already fetched')
-    }
-    if ( this.custom_data_url ) {
+
+    if ( this.custom_data_url.length > 0 ) {
       this.data_url = this.custom_data_url
-    } else {
-      // does not work (yet)
-      // this.$router.push('/')
+    } else if ( this.default_data_url.length > 0 ) {
       this.data_url = this.default_data_url
+    } else {
+      window.location = "/"
+
     }
     console.log(this.data_url)
 
@@ -457,6 +459,7 @@ export default {
       response.data
     )
     console.log('fetch... success')
+
 
     // check if its a map
     if ( this.dataobj.map ) {
