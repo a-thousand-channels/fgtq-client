@@ -74,6 +74,7 @@
       a {
 
       }
+      .border-transparent { border-color: transparent; }
     }
     button.text-link,
     a.text-link {
@@ -258,14 +259,18 @@
         box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
 
-
+    /* hotfix for display error #40 */
+    div#page_inner {
+      @apply border-solid border-2 border-transparent
+    }
 
 </style>
 
 <template>
 <div id="page">
   <div id="page_inner" class="flex a1000c-horizontal" ref="scroll_container" @wheelX="scrollX">
-    <section ref="info" id="info" class="flex items-stretch min-h-screen max-h-screen bg-a100c-1 sm:pt-0 sm:pb-8"> <div class="content flex items-top overflow-x-auto">
+    <section ref="info" id="info" class="flex items-stretch min-h-screen max-h-screen bg-a100c-1 sm:pt-0 sm:pb-8">
+      <div class="content flex items-top overflow-x-auto">
         <div id="info_inner" class="bg-red-100 bg-opacity-30 my-4 mx-5">
           <p v-if="$fetchState.pending" class="text-sm text-red-300">Loading...</p>
           <p v-else-if="$fetchState.error" class="text-sm text-red-300">Please wait ...</p>
@@ -369,10 +374,10 @@
       </div>
       <div id="list_content" class="content flex items-top overflow-x-auto pb-10">
           <div id="list_inner" class="bg-opacity-30 my-0 mx-0 mr-6 sm:my-4 sm:mx-5">
-            <p v-if="$fetchState.pending">Loading...</p>
-            <p v-else-if="$fetchState.error">An error occurred :(</p>
+            <p v-if="$fetchState.pending" class="text-sm text-red-300">Loading...</p>
+            <p v-else-if="$fetchState.error" class="text-sm text-red-300">An error occurred :(</p>
             <div v-else>
-              <list :places="this.list_content" :layerindex="this.list_content_layer_index" :data="this.data" :map="this.mapobj"></list>
+              <list :places="this.list_content" :places_with_relations="this.places_with_relations" :layerindex="this.list_content_layer_index" :data="this.data" :map="this.mapobj"></list>
             </div>
         </div>
       </div>
