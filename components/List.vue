@@ -51,6 +51,21 @@
             <div class="text-gray-800 px-4 annotation-text-block" v-html="annotation.text"></div>
           </li>
         </ul>
+        <div v-if="places_with_relations" v-for="(rwr,rwrindex) in places_with_relations">
+
+          <div v-if="rwr.relations[0].from.id == place.id">
+            <ul v-if="rwr.relations.length > 0" class="pb-0 sm:px-8">
+              <li class="mt-0 mb-0 px-8 py-3 lg:max-w-3xl">See also:</li>
+              <li v-for="(relation,rindex) in rwr.relations" class="bg-a100c-2 rounded shadow mt-2 mb-3 px-4 py-3 lg:max-w-3xl">
+                <p v-if="relation.to.title" class="px-4">
+                  <button @click="scrollToEntry(relation.to.id)" class="text-link" >
+                    {{ relation.to.title }}
+                  </button>
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
         <footer class="flex pb-4 lg:max-w-3xl pl-4 md:pl-16 lg:pl-16 pr-4 md:pr-12 lg:pr-4">
           <p class="flex-auto text-gray-500 px-0 py-2">
             <button @click="recenterMap(place.lat,place.lon,index)" class="text-link">Show on the map</button>
@@ -73,6 +88,10 @@
 export default {
   props: {
     places: {
+      type: Array,
+      required: false
+    },
+    places_with_relations: {
       type: Array,
       required: false
     },
@@ -106,6 +125,11 @@ export default {
       console.log('Scroll')
       document.getElementById('list_content').scrollTo({ top: 0, behavior: 'smooth' })
     },
+    scrollToEntry(id) {
+      console.log('list-place-'+id)
+      let el = document.getElementById('list-place-'+id)
+      document.getElementById('list_content').scrollTo({ top: el.offsetTop, behavior: 'smooth' })
+    }
   },
   data() {
     return {

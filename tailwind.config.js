@@ -9,7 +9,8 @@ module.exports = {
   // purge: {},
   theme: {
     colors: {
-      gray: colors.fuchsia,
+      gray: colors.grey,
+      transparent: 'transparent',
       blue: colors.lightBlue,
       red: colors.rose,
       pink: colors.fuchsia,
