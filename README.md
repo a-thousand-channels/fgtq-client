@@ -1,4 +1,4 @@
-# A thousand channels: Map client 123
+# A thousand channels: Map client
 
 A prototype of a map frontend for the A thousand channels project w/Nuxt.js v2
 
