@@ -323,6 +323,7 @@
            <client-only>
                 <l-map :zoom="this.mapzoom" :minZoom=2 :maxZoom=19 :center="this.mapcenter" ref="map" @ready="onMapReady">
                   <l-control-layers position="topright"></l-control-layers>
+
                   <l-layer-group
                       v-for="(layer,lindex) in this.data.layer"
                       :key="layer.id"
@@ -347,8 +348,11 @@
                         <l-tooltip :content="place.title" :options="{ permanent: 'true', direction: 'top' }" />
                       </l-circle-marker>
                   </l-layer-group>
-
-
+                  <div class="leaflet-bottom leaflet-left">
+                    <div class="leaflet-control">
+                      <button class="" v-on:click="centerMap()"><svg width="9.8265mm" height="9.8265mm" version="1.1" viewBox="0 0 9.8265 9.8265" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-154.92 -71.428)"><rect x="154.92" y="71.428" width="9.8265" height="9.8265" fill="#fff"/><g transform="matrix(.90179 0 0 .90179 170.41 131.3)"><path d="m-13.24-60.949-1.6667 1.6667-0.33329-0.33329 1.3334-1.3334-1.3334-1.3334 0.33329-0.33306z"/><path d="m-10.208-60.949 1.6667-1.6667 0.33329 0.33329-1.3334 1.3334 1.3334 1.3334-0.33329 0.33306z"/><circle cx="-11.724" cy="-60.949" r=".75"/></g></g></svg></button>
+                    </div>
+                  </div>
                </l-map>
            </client-only>
           </div>
@@ -566,8 +570,10 @@ export default {
             console.log("onMapReady: NO fitBounds w/"+this.places.length)
           }
 
+
           const controlelements = document.getElementsByClassName('leaflet-top leaflet-right');
           var elements = controlelements[0].getElementsByClassName('leaflet-control-layers');
+          // remove content layers
           controlelements[0].removeChild(elements[0]);
 
           var openstreetmap_layer = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', { attribution: 'Openstreemap + Contributors' })
@@ -713,6 +719,12 @@ export default {
       var midpointX = (r2 * Math.cos(theta2)) + point1[1],
                 midpointY = (r2 * Math.sin(theta2)) + point1[0];
       return [midpointY, midpointX];
+    },
+    centerMap() {
+      console.log("centerMap")
+      console.log(this.mapcenter)
+      console.log(this.mapzoom)
+      this.$refs.map.mapObject.flyTo(this.mapcenter,this.mapzoom);
     },
     recenterMap(lat,lon) {
       // this.$refs.map.mapObject.panTo(lat,lon);
