@@ -40,6 +40,11 @@
     "url":"https://orte.link/public/maps/from-gay-to-queer/layers/thomas-and-nils.json"
   },
   "8": {
+    "id":"59",
+    "title":"Ulf",
+    "url":"https://orte.link/public/maps/from-gay-to-queer/layers/ulf.json"
+  },
+  "9": {
     "id":"68",
     "title":"Marcio Vortragsreise",
     "url":"https://orte.link/public/maps/from-gay-to-queer/layers/68.json"
