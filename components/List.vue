@@ -22,7 +22,7 @@
         to learn more about this map :)
       </li>
       <li v-else class="bg-a100c-white px-4 py-2 rounded shadow mt-4 ">
-        <h2 class="font-semibold pl-0 sm:pl-4 md:pl-16"><span v-if="data.title != data.layer[parseInt(layerindex)].title">{{data.title}}</span><span v-else><nuxt-link :to="{ path: '/'}">From Gay To Queer</nuxt-link></span> <span v-if="data.layer[parseInt(layerindex)]">— {{ data.layer[parseInt(layerindex)].title}}</span></h2>
+        <h2 class="font-semibold pl-0 sm:pl-4 md:pl-16"><span v-if="data.title != data.layer[parseInt(layerindex)].title">{{data.title}}</span><span v-else><nuxt-link :to="{ path: '/'}">From Gay To Queer</nuxt-link></span> <span v-if="data.layer[parseInt(layerindex)]">— <span class="text-a100c-1">{{ data.layer[parseInt(layerindex)].title}}</span></span></h2>
       </li>
 
       <li v-for="(place,index) in places" :id="'list-place-'+place.id" class="bg-a100c-white px-4 py-2 rounded shadow mt-4">

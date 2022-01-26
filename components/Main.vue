@@ -447,7 +447,7 @@ export default {
     } else  {
       this.custom_data_url = localStorage.getItem('layer')
     }
-    console.log('start to fetch...')
+    console.log('Start to fetch...')
     console.log(this.dataobj)
 
     if ( this.custom_data_url.length > 0 ) {
@@ -463,7 +463,7 @@ export default {
     this.dataobj = await axios.get(this.data_url).then(response =>
       response.data
     )
-    console.log('fetch... success')
+    console.log('... fetch success')
 
 
     // check if its a map
@@ -546,8 +546,7 @@ export default {
     onLayerVisible(id) {
       this.id = id;
       console.log("onLayerVisible");
-
-      console.log(id)
+      // console.log(id)
     },
     onTileLayerVisible(basemap) {
       console.log("onTileLayerVisible");
