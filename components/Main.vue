@@ -229,13 +229,11 @@
       background-color: transparent;
    }
    .leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar {
-     background-clip: padding-box;
-    border-radius: 0;
-    background-color: transparent;
-    border: 2px solid white;
-    line-height: 0;
-
-
+      background-clip: padding-box;
+      border-radius: 0;
+      background-color: transparent;
+      border: 2px solid white;
+      line-height: 0;
     }
     .leaflet-control-zoom-in, .leaflet-control-zoom-out {
       background-color: transparent;
