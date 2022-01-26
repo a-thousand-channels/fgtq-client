@@ -55,13 +55,19 @@
 
           <div v-if="rwr.relations[0].from.id == place.id">
             <div v-if="rwr.relations.length > 0" class="pb-0 px-8 sm:px-16">
-              <p v-if="rwr.relations.length == 1">Jump to next:</p>
-              <p v-else>See also:</p>
-              <p v-if="relation.to.title && relation.from.layer_id == relation.to.layer_id" v-for="(relation,rindex) in rwr.relations" class="">
-                  <a @click="scrollToEntry(relation.to.id)" class="text-link" >
-                    {{ relation.to.title }}
-                  </a>
-              </p>
+              <div v-for="(relation,rindex) in rwr.relations" class="">
+                <div v-if="rindex == 0" class="mb-2">
+                  <p v-if="rwr.relations.length == 1">Jump to:</p>
+                  <p v-else>See also:</p>
+                </div>
+                <div v-if="relation.to.title && relation.from.layer_id == relation.to.layer_id">
+                  <p class="leading-tight mb-4">
+                    <a @click="scrollToEntry(relation.to.id)" class="text-link" >
+                      {{ relation.to.title }}
+                    </a>
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

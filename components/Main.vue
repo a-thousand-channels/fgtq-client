@@ -83,6 +83,7 @@
       background-repeat: no-repeat;
       background-size: 100% 0.4em;
       background-position: 0 100%;
+      cursor: pointer;
     }
 
     body {
