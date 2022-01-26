@@ -54,25 +54,28 @@
         <div v-if="places_with_relations" v-for="(rwr,rwrindex) in places_with_relations">
 
           <div v-if="rwr.relations[0].from.id == place.id">
-            <ul v-if="rwr.relations.length > 0" class="pb-0 sm:px-8">
-              <li class="mt-0 mb-0 px-8 py-3 lg:max-w-3xl">See also:</li>
-              <li v-for="(relation,rindex) in rwr.relations" class="bg-a100c-2 rounded shadow mt-2 mb-3 px-4 py-3 lg:max-w-3xl">
-                <p v-if="relation.to.title" class="px-4">
-                  <button @click="scrollToEntry(relation.to.id)" class="text-link" >
+            <div v-if="rwr.relations.length > 0" class="pb-0 px-8 sm:px-16">
+              <p v-if="rwr.relations.length == 1">Jump to next:</p>
+              <p v-else>See also:</p>
+              <p v-if="relation.to.title && relation.from.layer_id == relation.to.layer_id" v-for="(relation,rindex) in rwr.relations" class="">
+                  <a @click="scrollToEntry(relation.to.id)" class="text-link" >
                     {{ relation.to.title }}
-                  </button>
-                </p>
-              </li>
-            </ul>
+                  </a>
+              </p>
+            </div>
           </div>
         </div>
-        <footer class="flex pb-4 lg:max-w-3xl pl-4 md:pl-16 lg:pl-16 pr-4 md:pr-12 lg:pr-4">
+        <footer class="flex pt-8 pb-4 lg:max-w-3xl pl-4 md:pl-16 lg:pl-14 pr-4 md:pr-12 lg:pr-4">
           <p class="flex-auto text-gray-500 px-0 py-2">
-            <button @click="recenterMap(place.lat,place.lon,index)" class="text-link">Show on the map</button>
+            <button @click="recenterMap(place.lat,place.lon,index)" class="text-link2">
+              <svg class="inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path class="text-red-300 fill-current"  d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z"/></svg>
+              Show on the map
+            </button>
           </p>
           <p class="flex-auto text-gray-500 text-right x-0 py-2">
-            <button @click="scrollToTop" class="text-link">
-             To top
+            <button @click="scrollToTop" class="text-link2">
+              <svg class="inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path class="text-red-300 fill-current" d="M12 10.828l-4.95 4.95-1.414-1.414L12 8l6.364 6.364-1.414 1.414z"/></svg>
+              To top
             </button>
           </p>
         </footer>

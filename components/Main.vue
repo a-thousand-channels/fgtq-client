@@ -615,11 +615,11 @@ export default {
               if ( layer.places_with_relations ) {
                 layer.places_with_relations.forEach ((place, key) => {
 
-                  console.log("places_with_relations: "+place.relations.length);
+                  // console.log("places_with_relations: "+place.relations.length);
 
                   place.relations.forEach ((relation, kkey) => {
 
-                    console.log("Relation_from ID:  "+relation.from.id);
+                    // console.log("Relation_from ID:  "+relation.from.id);
                     var point1 = [Number(relation.from.lat), Number(relation.from.lon)];
                     var point2 = [Number(relation.to.lat), Number(relation.to.lon)];
                     // console.log(point1);
