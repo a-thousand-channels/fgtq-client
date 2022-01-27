@@ -1,51 +1,61 @@
 {
   "0": {
     "id":"57",
+    "slug":"manu",
     "title":"Manu",
     "url":"https://orte.link/public/maps/from-gay-to-queer/layers/manu.json"
   },
   "1": {
     "id":"60",
+    "slug":"thomas-b",
     "title":"Thomas B",
     "url":"https://orte.link/public/maps/from-gay-to-queer/layers/thomas.json"
   },
   "2": {
     "id":"61",
+    "slug":"arno",
     "title":"Arno",
     "url":"https://orte.link/public/maps/from-gay-to-queer/layers/arno.json"
   },
   "3": {
     "id":"62",
+    "slug":"marcio",
     "title":"Marcio",
     "url":"https://orte.link/public/maps/from-gay-to-queer/layers/marcio.json"
   },
   "4": {
     "id":"63",
+    "slug":"tunten-terror-tour-93",
     "title":"Tunten Terror Tour '93",
     "url":"https://orte.link/public/maps/from-gay-to-queer/layers/tunte-terror-tour-93.json"
   },
   "5": {
     "id":"64",
+    "slug":"annette",
     "title":"Annette",
     "url":"https://orte.link/public/maps/from-gay-to-queer/layers/anette.json"
   },
   "6": {
     "id":"65",
+    "slug":"unsere-traeume",
     "title":"Unsere Träume",
     "url":"https://orte.link/public/maps/from-gay-to-queer/layers/65.json"
   },
   "7": {
     "id":"67",
+    "slug":"thomas-and-nils",
     "title":"Thomas and Nils",
     "url":"https://orte.link/public/maps/from-gay-to-queer/layers/thomas-and-nils.json"
   },
   "8": {
     "id":"59",
+    "slug":"ulf",
     "title":"Ulf",
     "url":"https://orte.link/public/maps/from-gay-to-queer/layers/ulf.json"
   },
   "9": {
     "id":"68",
+    "slug":"vortragsreihe-500-jahre-unterdrueckung-und-widerstand",
     "title":"Vortragsreihe 500 Jahre Unterdrückung und Widerstand",
     "url":"https://orte.link/public/maps/from-gay-to-queer/layers/68.json"
   }
