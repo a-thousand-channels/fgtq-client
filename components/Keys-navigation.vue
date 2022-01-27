@@ -48,7 +48,7 @@ export default {
         to = '#map'
       }
       if (to) {
-        this.$router.push({ name: '/layer/' + this.slug, hash: to })
+        // this.$router.push({ name: '/layer/' + this.slug, hash: to })
         location.hash = to;
       }
     },
@@ -61,7 +61,7 @@ export default {
         to = '#map'
       }
       if (to) {
-        this.$router.push({ name: '/layer/' + this.slug, hash: to })
+        // this.$router.push({ name: '/layer/' + this.slug, hash: to })
         location.hash = to;
       }
     }
