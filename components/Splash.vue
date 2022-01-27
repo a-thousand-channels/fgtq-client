@@ -88,6 +88,9 @@
       background: rgb(255,0,249);
       background: linear-gradient(90deg, rgba(255,0,249,0.65) 0%, rgba(255,117,0,0.6) 50%, rgba(255,0,35,0.65) 100%);
    }
+   .bg-a100c-white {
+      background-color: rgba(255,255,255,0.8);
+   }
    .text-a100c-1 {
       color: #ff6d6d;
       background: -webkit-linear-gradient(120deg,rgba(255,0,35,.65),rgba(255,117,0,.65) 50%,rgba(255,0,249,.65));
@@ -140,19 +143,18 @@
 <template>
 <div id="page">
   <div class="relative flex overflow-x-auto items-top justify-center min-h-screen bg-pink-100 bg-a100c-1-splash sm:items-center sm:pt-0">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
     <div class="max-w-4xl mx-auto sm:px-6 lg:px-12">
       <div class="flex justify-center sm:mt-8 sm:pt-0">
       </div>
-      <div class="mt-4 overflow-hidden bg-white shadow sm:rounded-lg  md:px-4 lg:px-8 p-2">
+      <div class="mt-4 overflow-hidden bg-a100c-white shadow sm:rounded-lg  md:px-4 lg:px-8 p-2">
         <h2 class="text-3xl beta">
           <span class="text-a100c-1  font-semibold">"From Gay To Queer"</span> — A project by Queer narratives, mapped</span>
         </h2>
       </div>
-      <div class="mt-2 md:mx-24 lg:mx-36 bg-transparent overflow-hidden sm:rounded-lg p-2">
+      <div class="mt-2 md:mx-24 lg:mx-24 bg-transparent overflow-hidden sm:rounded-lg p-2">
 
         <div class="mt-2 pt-2 text-gray-800 text-center">
-          <select id="layer-selector" v-on:change="onChange($event)" class="border bg-white rounded text-lg  px-3 py-2 outline-none">
+          <select id="layer-selector" v-on:change="onChange($event)" class="border bg-a100c-white rounded text-lg  px-3 py-2 outline-none max-w-xs md:max-w-md lg:max-w-lg">
             <option>
               Select a map ...
             </option>
@@ -165,12 +167,12 @@
           <nuxt-link :to="{ path: '/layer/' + this.slug }" tag="button" :disabled="this.disabled" class="bg-white bg-a100c-1-hover text-white text-bold drop-shadow text-center px-4 py-2 rounded-lg">View map</nuxt-link>
         </p>
       </div>
-      <div class="mt-4 mb-4 bg-white overflow-hidden shadow sm:rounded-lg md:px-4 lg:px-8 py-4 p-2">
+      <div class="mt-4 mb-4 bg-a100c-white overflow-hidden shadow sm:rounded-lg md:px-4 lg:px-8 py-4 p-2">
         <p class="text-gray-600">
           In a process of research, interviewing, mapping and contextualization, we have tried to understand how queer (sub)cultures have developed from its seperated LGBTI niches, with the focus on Bremen and the second half of the 1990s. This is a spotlight, they are so many other voices, narrations and traces, that hopefully will be collected and documented too.
         </p>
       </div>
-      <div class="mt-4 mb-4 bg-white overflow-hidden shadow sm:rounded-lg md:px-4 lg:px-8 py-4 p-2">
+      <div class="mt-4 mb-4 bg-a100c-white overflow-hidden shadow sm:rounded-lg md:px-4 lg:px-8 py-4 p-2">
         <p class="text-gray-600">
           This map is part of <a href="https://citydataexplosion.tumblr.com/intersections-and-constellations" target="_blank" class="text-link">Intersections + Constellations: „From gay to queer“</a>, 2021
         </p>

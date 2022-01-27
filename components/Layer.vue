@@ -786,7 +786,7 @@ export default {
       // this.$refs.map.mapObject.panTo(lat,lon);
       this.$nextTick(() => {
         console.log("recenter map to "+ lat +"/"+lon);
-        this.$router.push({ name: 'main', hash: '#map' });
+        this.$router.push({ path: '/layer/' + this.slug, hash: '#map' });
         this.$refs.map.mapObject.flyTo([lat,lon],16);
       })
     },
@@ -794,10 +794,10 @@ export default {
       console.log("jumpToMap " + this.$route.hash )
 
       if ( ( this.$route.hash === '#list' ) ||  ( this.$route.hash === '#info' ) )  {
-        this.$router.push({ name: 'main', hash: this.$route.hash })
+        this.$router.push({ path: '/layer/' + this.slug, hash: this.$route.hash })
         location.hash = this.$route.hash;
       } else {
-        this.$router.push({ name: 'main', hash: '#map' })
+        this.$router.push({ path: '/layer/' + this.slug, hash: '#map' })
         location.hash = '#map';
       }
     },
@@ -836,7 +836,7 @@ export default {
       }
       if (to) {
         // TODO: fix scrolling down in sections
-        // this.$router.push({ name: 'main', hash: to })
+        // this.$router.push({ name: 'layer/' + this.slug, hash: to })
         // location.hash = to;
       }
     },
@@ -853,7 +853,7 @@ export default {
         to = '#map'
       }
       if (to) {
-        this.$router.push({ name: 'main', hash: to })
+        this.$router.push({ path: '/layer/' + this.slug, hash: to })
         location.hash = to;
       }
     },
@@ -866,7 +866,7 @@ export default {
         to = '#map'
       }
       if (to) {
-        this.$router.push({ name: 'main', hash: to })
+        this.$router.push({ path: '/layer/' + this.slug, hash: to })
         location.hash = to;
       }
     },

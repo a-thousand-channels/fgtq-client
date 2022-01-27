@@ -38,6 +38,10 @@ export default {
         {
           name: 'og:site_name',
           content: this.title
+        },
+        {
+          name: 'og:image',
+          content: 'https://a-thousand-channels.github.io/fgtq-client/fromgaytoqueer_sharepic1.png'
         }
       ]
     }
