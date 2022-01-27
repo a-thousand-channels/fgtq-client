@@ -15,6 +15,7 @@ export default {
  data() {
     return {
       title: 'From Gay To Queer — A mapping by Queer narratives, mapped',
+      description: 'Mapping of the stories and material collected during the Intersections & Constellations: How to map queer narratives? project.'
     }
   },
   head() {
@@ -22,9 +23,21 @@ export default {
       title: this.title,
       meta: [
         {
-          hid: 'From Gay To Queer — A mapping by Queer narratives, mapped',
-          name: 'From Gay To Queer — A mapping by Queer narratives, mapped',
-          content: 'Mapping of the stories and material collected during the Intersections & Constellations: How to map queer narratives? project. This is Work-in-progress'
+          name: 'og:title',
+          content: this.title
+        },
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.description
+        },
+        {
+          name: 'og:description',
+          content: this.description
+        },
+        {
+          name: 'og:site_name',
+          content: this.title
         }
       ]
     }

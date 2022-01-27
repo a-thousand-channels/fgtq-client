@@ -301,7 +301,7 @@
         </div>
       </div>
       <div class="nav flex items-center content-center justify-center">
-        <nuxt-link :to="{ path: '/main', hash:'map'}" class="flex h-full w-full items-center justify-center text-white font-bold">
+        <nuxt-link :to="{ path: '/layer/' + this.slug, hash:'map'}" class="flex h-full w-full items-center justify-center text-white font-bold">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"/></svg>
         </nuxt-link>
       </div>
@@ -309,7 +309,7 @@
 
     <section ref="map" id="map" class="flex min-h-screen max-h-screen bg-a100c-2">
       <div class="nav flex flex-col content-center">
-        <nuxt-link :to="{ path: '/main', hash:'info'}" class="flex h-full self-center items-center justify-center text-white font-bold">
+        <nuxt-link :to="{ path: '/layer/' + this.slug, hash:'info'}" class="flex h-full self-center items-center justify-center text-white font-bold">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z"/></svg>
         </nuxt-link>
       </div>
@@ -323,7 +323,7 @@
             <p id="map_header_content" class="text-sm text-red-300">
               <nuxt-link :to="{ path: '/'}" class="text-red-300">From Gay To Queer</nuxt-link>
               —
-              <nuxt-link :to="{ path: '/main', hash: 'info'}">{{ this.data.title }}</nuxt-link>
+              <nuxt-link :to="{ path: '/layer/' + this.slug, hash: 'info'}">{{ this.data.title }}</nuxt-link>
             </p>
           </div>
           <p>
@@ -385,7 +385,7 @@
       </div>
 
       <div class="nav flex flex-col  items-center content-center justify-center">
-        <nuxt-link :to="{ path: '/main', hash:'list'}" class="flex h-full self-center items-center justify-center text-white font-bold">
+        <nuxt-link :to="{ path: '/layer/' + this.slug, hash:'list'}" class="flex h-full self-center items-center justify-center text-white font-bold">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"/></svg>
         </nuxt-link>
       </div>
@@ -393,7 +393,7 @@
 
     <section ref="list"  id="list" class="flex min-h-screen max-h-screen bg-a100c-3 sm:pt-0">
       <div class="nav flex items-center content-center justify-center">
-        <nuxt-link :to="{ path: '/main', hash:'map'}" class="flex h-full w-full items-center justify-center text-white font-bold">
+        <nuxt-link :to="{ path: '/layer/' + this.slug, hash:'map'}" class="flex h-full w-full items-center justify-center text-white font-bold">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z"/></svg>
         </nuxt-link>
       </div>
@@ -441,8 +441,16 @@ export default {
         title: this.data.title + " — From Gay To Queer",
         meta: [
           {
-            hid: 'From Gay To Queer — A mapping by Queer narratives, mapped',
-            name: 'From Gay To Queer — A mapping by Queer narratives, mapped',
+            name: 'og:title',
+            content: this.data.title + " — From Gay To Queer",
+          },
+          {
+            hid: 'description',
+            name: 'description',
+            content: this.data.subtitle
+          },
+          {
+            name: 'og:description',
             content: this.data.subtitle
           }
         ]
@@ -468,7 +476,7 @@ export default {
         list_content_layer_title: '',
         list_content_layer_index: 0,
         tooltip: {},
-        slug: this.$route.params.slug,
+        slug: this.$route.params.slug || 'thomas-b',
         data_url: '',
         default_data_url: '',
         custom_data_url: '',

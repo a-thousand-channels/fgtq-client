@@ -1,5 +1,5 @@
 <template>
-  <Main :layers="layers" />
+  <Layer :layers="layers" />
 </template>
 
 <script>

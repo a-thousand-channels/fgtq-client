@@ -153,17 +153,16 @@
 
         <div class="mt-2 pt-2 text-gray-800 text-center">
           <select id="layer-selector" v-on:change="onChange($event)" class="border bg-white rounded text-lg  px-3 py-2 outline-none">
-          {{layers}}
             <option>
               Select a map ...
             </option>
-            <option v-for="layer in layers" :value="layer.url" class="text-lg py-1">
+            <option v-for="layer in layers" :value="layer.slug" class="text-lg py-1">
                 {{layer.title}}
             </option>
           </select>
         </div>
         <p class="mt-2 pt-2 text-gray-800 text-center">
-          <nuxt-link :to="{ path: '/main', hash:'map', query: { layer: this.custom_data_url }}" tag="button" :disabled="this.disabled" class="bg-white bg-a100c-1-hover text-white text-bold drop-shadow text-center px-4 py-2 rounded-lg">View map</nuxt-link>
+          <nuxt-link :to="{ path: '/layer/' + this.slug }" tag="button" :disabled="this.disabled" class="bg-white bg-a100c-1-hover text-white text-bold drop-shadow text-center px-4 py-2 rounded-lg">View map</nuxt-link>
         </p>
       </div>
       <div class="mt-4 mb-4 bg-white overflow-hidden shadow sm:rounded-lg md:px-4 lg:px-8 py-4 p-2">
@@ -199,6 +198,7 @@ export default {
  data() {
     return {
       custom_data_url: '',
+      slug: '',
       layers_json_url: '',
       disabled: true
     }
@@ -216,8 +216,8 @@ export default {
   methods: {
     onChange(event) {
       if ( event.target.value != "Select a map") {
-        this.custom_data_url = event.target.value;
-        console.log(this.custom_data_url)
+        this.slug = event.target.value;
+        console.log(this.slug)
         this.disabled = false;
       } else {
         this.disabled = true;

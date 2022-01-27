@@ -89,6 +89,8 @@ export default {
     scrollBehavior: async (to, from, savedPosition) => {
       console.log("scrollBehavior")
       if (savedPosition) {
+        console.log("savedPosition");
+        console.log(savedPosition);
         return savedPosition
       }
 
