@@ -49,7 +49,7 @@
             </div>
             <div class="modal-header pt-1 sm:pt-2 px-4">
               <p class="text-sm sm:text-md my-0 sm:my-4"><span v-if="data.title != layer.title">{{data.title}} :: </span><span v-else><nuxt-link :to="{ path: '/'}">From Gay To Queer</nuxt-link></span> <span v-if="data.layer[parseInt(lindex)]">— {{ data.layer[parseInt(lindex)].title}}</span></p>
-              <h2 class="text-sm sm:text-md"><strong>{{place.title}}</strong> ({{place.id}})</h2>
+              <h2 class="text-sm sm:text-md"><strong>{{place.title}}</strong></h2>
             </div>
             <div class="modal-content">
               <div v-if="place.teaser" class="text-sm sm:text-md  text-gray-500 px-4" :inner-html.prop="place.teaser | truncate(200, '...')"></div>
@@ -90,6 +90,11 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+      slug: this.$route.params.slug || 'thomas-b',
+    }
+  },
   components: {
     // AudioPlayer
   },
@@ -103,14 +108,8 @@ export default {
         this.data.state = !this.data.state
         place.state = !place.state;
         console.log("show place "+ place.id +" in list");
-        this.$router.push({ name: 'main', hash: '#list', query: { place_id: "list-place-"+place.id }});
+        this.$router.push({ path: '/layer/' + this.slug, hash: '#list', query: { place_id: "list-place-"+place.id }});
       })
-    }
-  },
-  data() {
-    return {
-
-
     }
   },
   computed: {
