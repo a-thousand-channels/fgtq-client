@@ -41,7 +41,7 @@ export default {
         },
         {
           name: 'og:image',
-          content: 'https://a-thousand-channels.github.io/fgtq-client/fromgaytoqueer_sharepic1.png'
+          content: 'https://from-gay-to-queer.net/fromgaytoqueer_sharepic1.png'
         }
       ]
     }

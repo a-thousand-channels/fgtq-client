@@ -1,6 +1,12 @@
+import layers from './static/layers.json'
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
+
+  static: {
+    prefix: true
+  },
 
   publicPath: process.env.PUBLIC_PATH || '/',
 
@@ -73,6 +79,14 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // proxy: true
+  },
+
+  generate: {
+    routes() {
+      return Object.keys(layers).map(function(index ) {
+          return '/layer/' + layers[index].slug
+      })
+    }
   },
 
 

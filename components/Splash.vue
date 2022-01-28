@@ -153,7 +153,6 @@ export default {
       console.log(this.disabled)
     }
     console.log(this.$route.query);
-
   },
   methods: {
     onChange(event) {

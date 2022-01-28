@@ -377,11 +377,11 @@ export default {
   },
   head() {
       return {
-        title: this.data.title + " — From Gay To Queer",
+        title: this.title + "From Gay To Queer",
         meta: [
           {
             name: 'og:title',
-            content: this.data.title + " — From Gay To Queer",
+            content: this.title + "From Gay To Queer",
           },
           {
             hid: 'description',
@@ -416,6 +416,7 @@ export default {
         list_content_layer_index: 0,
         tooltip: {},
         slug: this.$route.params.slug || 'thomas-b',
+        title: '',
         data_url: '',
         default_data_url: '',
         custom_data_url: '',
@@ -519,6 +520,7 @@ export default {
     }
 
     if ( (this.data) && (this.places) && (this.$refs.map) ) {
+      this.title = this.data.title + " — "
       if ( this.places.length > 0 ) {
         // console.log("afterFetch: fitBounds w/"+this.places.length)
         // this.$refs.map.mapObject.fitBounds(this.places.map(m => { return [m.lat, m.lon] }))
