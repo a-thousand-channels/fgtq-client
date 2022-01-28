@@ -56,7 +56,7 @@
           <div v-if="rwr.relations[0].from.id == place.id">
             <div v-if="rwr.relations.length > 0" class="pb-0 px-8 sm:px-16">
               <div v-for="(relation,rindex) in rwr.relations" class="">
-                <div v-if="rindex == 0" class="mb-2">
+                <div v-if="rindex == 0 && relation.from.layer_id == relation.to.layer_id" class="mb-2">
                   <p v-if="rwr.relations.length == 1">Jump to:</p>
                   <p v-else>See also:</p>
                 </div>

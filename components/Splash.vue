@@ -13,6 +13,9 @@
       a {
 
       }
+      .border-grey {
+        border-color: #666;
+      }
     }
 
     body {
@@ -94,7 +97,7 @@
       <div class="mt-2 md:mx-24 lg:mx-24 bg-transparent overflow-hidden sm:rounded-lg p-2">
 
         <div class="mt-2 pt-2 text-gray-800 text-center">
-          <select id="layer-selector" v-on:change="onChange($event)" class="border bg-a100c-white rounded text-lg  px-3 py-2 outline-none max-w-xs md:max-w-md lg:max-w-lg">
+          <select id="layer-selector" v-on:change="onChange($event)" class="border border-grey bg-a100c-white rounded text-lg shadow px-3 py-2 outline-none max-w-xs md:max-w-md lg:max-w-lg">
             <option>
               Select a map ...
             </option>

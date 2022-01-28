@@ -391,6 +391,14 @@ export default {
           {
             name: 'og:description',
             content: this.data.subtitle
+          },
+          {
+            name: 'og:site_name',
+            content: this.title
+          },
+          {
+            name: 'og:image',
+            content: 'https://from-gay-to-queer.net/fromgaytoqueer_sharepic1.png'
           }
         ]
       }
