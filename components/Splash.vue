@@ -146,19 +146,15 @@ export default {
     }
   },
   mounted: function() {
-    console.log(this.$route.query.layer)
     if (this.$route.query.layer ) {
       this.custom_data_url = this.$route.query.layer
       this.disabled = false;
-      console.log(this.disabled)
     }
-    console.log(this.$route.query);
   },
   methods: {
     onChange(event) {
       if ( event.target.value != "Select a map") {
         this.slug = event.target.value;
-        console.log(this.slug)
         this.disabled = false;
       } else {
         this.disabled = true;

@@ -93,7 +93,9 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: 'en'
+      name: 'From Gay To Queer',
+      lang: 'en',
+      useWebmanifestExtension: false
     }
   },
 
@@ -106,10 +108,7 @@ export default {
   router: {
     base: process.env.PUBLIC_PATH || '/',
     scrollBehavior: async (to, from, savedPosition) => {
-      console.log("scrollBehavior")
       if (savedPosition) {
-        console.log("savedPosition");
-        console.log(savedPosition);
         return savedPosition
       }
 
@@ -123,18 +122,13 @@ export default {
           })
       }
 
-      console.log(from)
-      console.log(to)
 
       if (to.hash) {
-        console.log("Section: "+to.hash)
         let el = await findEl(to.hash)
         if (el) {
           if ('scrollBehavior' in document.documentElement.style) {
-            console.log('Scroll smooth to '+el.offsetTop+'/'+el.offsetLeft)
             document.getElementById('page_inner').scrollTo({ top: el.offsetTop, left: el.offsetLeft, behavior: 'smooth' })
           } else {
-            console.log('Scroll non smooth to '+el.offsetTop+'/'+el.offsetLeft)
             document.getElementById('page_inner').scrollTo({ top: el.offsetTop, left: el.offsetLeft })
           }
         }

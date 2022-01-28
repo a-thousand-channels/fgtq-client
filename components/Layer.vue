@@ -228,7 +228,7 @@
 
 <template>
 <div id="page">
-  <div id="page_inner" class="flex a1000c-horizontal" ref="scroll_container" @wheelX="scrollX">
+  <div id="page_inner" class="flex a1000c-horizontal" ref="scroll_container">
     <section ref="info" id="info" class="flex items-stretch min-h-screen max-h-screen bg-a100c-1 sm:pt-0 sm:pb-8">
       <div class="content flex items-top overflow-x-auto">
         <div id="info_inner" class="bg-red-100 bg-opacity-30 my-4 mx-5">
@@ -398,8 +398,6 @@ export default {
   mounted: function() {
     console.log("Mounted****")
     if (this.$route.query.layer ) {
-      console.log(this.$route.query);
-      console.log(this.$route.query.layer)
       this.custom_data_url = this.$route.query.layer
     }
     this.jumpToMap()
@@ -439,7 +437,6 @@ export default {
       if ( this.layer.url ) {
         this.custom_data_url = this.layer.url
         localStorage.setItem('layer', this.custom_data_url)
-        console.log("slug'ed: "+this.layer.url)
       }
     }
     /* first case: layer is defined via URL like ?layer=URL */
@@ -470,7 +467,6 @@ export default {
     // check if its a map
     if ( this.dataobj.map ) {
       this.data = this.dataobj.map
-      console.log("Data for a map ")
       console.log("Data for a map with " + this.data.layer.length + " accessible layers")
       this.data.layer.forEach ((layer, key) => {
         this.places.push(...layer.places);
@@ -541,14 +537,12 @@ export default {
   methods: {
     onLayerReady(mapObject) {
       this.mapobj = mapObject;
-      console.log("onLayerReady");
       console.log(this.mapobj)
 
     },
     onLayerVisible(id) {
       this.id = id;
       console.log("onLayerVisible");
-      // console.log(id)
     },
     onTileLayerVisible(basemap) {
       console.log("onTileLayerVisible");
@@ -590,7 +584,6 @@ export default {
 
           L.control.layers(baseMaps).addTo(this.$refs.map.mapObject);
 
-          console.log(this.mapobj)
           this.mapobj.on('baselayerchange', function(e) {
             console.log('Changed to ' + e.name);
             var m = document.getElementById("map_map");
@@ -719,8 +712,6 @@ export default {
     },
     centerMap() {
       console.log("centerMap")
-      console.log(this.mapcenter)
-      console.log(this.mapzoom)
       this.$refs.map.mapObject.flyTo(this.mapcenter,this.mapzoom);
     },
     recenterMap(lat,lon) {
@@ -740,45 +731,6 @@ export default {
       } else {
         this.$router.push({ path: '/layer/' + this.slug, hash: '#map' })
         location.hash = '#map';
-      }
-    },
-    scrollX(e) {
-      console.log('scrollx: '+e.deltaY)
-      var section = this.$route.hash.replace('#', '')
-      console.log( "at section "+section)
-      var top = this.$refs.list.getBoundingClientRect().top
-      console.log( "pixel from top "+top)
-      var top = this.$refs.list.getBoundingClientRect().top
-      console.log( "pixel from top "+top)
-      console.log( "pixel from ...")
-      console.log(this.$refs[section].scrollTop)
-      this.$nextTick(()=>{
-        console.log( "pixel (w/nextTick) from ...")
-        console.log(this.$refs[section].scrollTop)
-      })
-      console.log( "--------");
-
-      let to = '';
-      if ( e.deltaY < 0 ) {
-        console.log( "to right")
-        if ( this.$route.hash == '#map' ) {
-          to = '#list'
-        } else if ( this.$route.hash == '#info' ) {
-          to = '#map'
-        }
-
-      } else {
-        console.log( "to left")
-        if ( this.$route.hash == '#map' ) {
-          to = '#info'
-        } else if ( this.$route.hash == '#list' ) {
-          to = '#map'
-        }
-      }
-      if (to) {
-        // TODO: fix scrolling down in sections
-        // this.$router.push({ name: 'layer/' + this.slug, hash: to })
-        // location.hash = to;
       }
     },
     navigate_top() {

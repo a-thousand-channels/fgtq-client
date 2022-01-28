@@ -1,5 +1,5 @@
 {
-  "name": "a1000c-map-client",
+  "name": "from-gay-to-queer",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@elfalem/leaflet-curve": "^0.9.1",
-    "@nuxt/content": "^1.15.1",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/pwa": "^3.3.5",
     "core-js": "^3.20.3",
