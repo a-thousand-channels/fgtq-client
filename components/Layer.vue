@@ -112,8 +112,11 @@
     #list #list_inner {
       width: 97%;
     }
+    #list #list_inner .teaser-block p {
+      @apply mb-4
+    }
     #list #list_inner .annotation-text-block p {
-      @apply md:text-lg
+      @apply md:text-lg mb-4
     }
    .bg-a100c-1 {
       background: rgb(255,0,249);

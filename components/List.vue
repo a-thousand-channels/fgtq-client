@@ -42,7 +42,7 @@
           <div class="swiper-pagination"></div>
         </div>
         <h3 class="font-semibold text-lg px-4 py-2 sm:px-16 sm:pt-6">{{ place.title }}</h3>
-        <div class="text-gray-800 px-4 md:text-lg sm:px-16 sm:py-3  lg:max-w-3xl" v-html="place.teaser"></div>
+        <div class="text-gray-800 px-4 md:text-lg sm:px-16 sm:py-3 lg:max-w-3xl teaser-block" v-html="place.teaser"></div>
         <div :id="'list-audio-'+place.id" class="player-wrapper px-4 sm:px-16 sm:py-3" v-if="place.audiolink" v-html="place.audiolink">
         </div>
         <ul v-if="place.annotations.length > 0" class="pb-0 sm:px-8">
@@ -56,8 +56,8 @@
           <div v-if="rwr.relations[0].from.id == place.id">
             <div v-if="rwr.relations.length > 0" class="pb-0 px-8 sm:px-16">
               <div v-for="(relation,rindex) in rwr.relations" class="">
-                <div v-if="rindex == 0 && relation.from.layer_id == relation.to.layer_id" class="mb-2">
-                  <p v-if="rwr.relations.length == 1">Jump to:</p>
+                <div v-if="rindex == 0" class="mb-2">
+                  <p v-if="rwr.relations.length == 1 && relation.from.layer_id == relation.to.layer_id">Jump to:</p>
                   <p v-else>See also:</p>
                 </div>
                 <div v-if="relation.to.title && relation.from.layer_id == relation.to.layer_id">
