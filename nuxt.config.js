@@ -15,15 +15,15 @@ export default {
       { hid: 'og:title', name: 'og:title', content: 'From Gay To Queer — A mapping by Queer narratives, mapped' },
       { hid: 'description', name: 'description', content: 'Mapping of the stories and material collected during the Intersections & Constellations: How to map queer narratives? project. This is Work-in-progress' },
       { id: 'og:description', name: 'og:description', content: 'Mapping of the stories and material collected during the Intersections & Constellations: How to map queer narratives? project. This is Work-in-progress' },
-      { name: 'og:image', content: 'https://a-thousand-channels.github.io/fgtq-client/fromgaytoqueer_sharepic1.png'
+      { name: 'og:image', content: 'https://from-gay-to-queer.net/assets/fromgaytoqueer_sharepic1.png'
       },
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/fgtq-client/favicon.ico' },
-      { rel: 'apple-touch-icon', sizes: '120x120', href: '/fgtq-client/apple-touch-icon.png' },
-      { rel: 'icon', type: 'image/png', sizes: "32x32", href: '/fgtq-client/favicon-32x32.png' },
-      { rel: 'icon', type: 'image/png', sizes: "16x16", href: '/fgtq-client/favicon-16x16.png' },
+      { rel: 'icon', type: 'image/x-icon', href: '~/assets/favicon.ico' },
+      { rel: 'apple-touch-icon', sizes: '120x120', href: '~/assets/apple-touch-icon.png' },
+      { rel: 'icon', type: 'image/png', sizes: "32x32", href: '~/assets/favicon-32x32.png' },
+      { rel: 'icon', type: 'image/png', sizes: "16x16", href: '~/assets/favicon-16x16.png' },
 
 /*
 <link rel="manifest" href="/site.webmanifest">
