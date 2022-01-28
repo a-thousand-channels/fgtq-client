@@ -2,7 +2,7 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
-  publicPath: '/fgtq-client/',
+  publicPath: process.env.PUBLIC_PATH || '/',
 
 
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -90,7 +90,7 @@ export default {
   build: {
   },
   router: {
-    base: '/fgtq-client/',
+    base: process.env.PUBLIC_PATH || '/',
     scrollBehavior: async (to, from, savedPosition) => {
       console.log("scrollBehavior")
       if (savedPosition) {
