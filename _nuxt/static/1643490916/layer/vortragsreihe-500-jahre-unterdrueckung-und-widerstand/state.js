@@ -1,0 +1,1 @@
+window.__NUXT__=(function(a){return {staticAssetsBase:"\u002Ffgtq-client\u002F_nuxt\u002Fstatic\u002F1643490916",layout:"default",error:a,serverRendered:true,routePath:"\u002Flayer\u002Fvortragsreihe-500-jahre-unterdrueckung-und-widerstand",config:{_app:{basePath:"\u002Ffgtq-client\u002F",assetsPath:"\u002Ffgtq-client\u002F_nuxt\u002F",cdnURL:a}}}}(null));
