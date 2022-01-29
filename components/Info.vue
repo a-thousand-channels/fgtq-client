@@ -35,13 +35,13 @@
         About this project:
     </h3>
     <p class="text-gray-800 px-4 py-1 lg:px-8">
-          In a process of research, interviewing, mapping and contextualization, we have tried to understand how queer (sub)cultures have developed from its seperated LGBTI niches, with the focus on Bremen and the second half of the 1990s. This is a spotlight, they are so many other voices, narrations and traces, that hopefully will be collected and documented too.
+          In a process of research, interviewing, mapping and contextualization, we have tried to understand how queer (sub)cultures have developed from its seperated LGBTI* niches, with the focus on Bremen and the 1990s. This is a spotlight, they are so many other voices, narrations and traces, that hopefully will be collected and documented too.
     </p>
     <p class="text-gray-800 px-4 py-1 lg:px-8">
           More about this project <a href="https://citydataexplosion.tumblr.com/intersections-and-constellations" target="_blank" class="text-link">Intersections + Constellations: „From gay to queer“. A queer mapping project</a>, E-Mail <a href="mailto:queer-narratives-mapped@citydataexplosion.de" class="text-link">queer-narratives-mapped@citydataexplosion.de</a>
     </p>
     <p class="text-gray-800 px-4 py-1 lg:px-8">
-      For all texts and images: All rights reserved by the authors. No Redistribution, no copying and re-publishing of texts and visual material without explicit consent. If would like to use quotes or other excerpts, please contact us.
+      For all texts and images: All rights reserved by the creators. No redistribution, no copying and re-publishing of texts and visual material without explicit consent. If you would like to use material of this map, please contact us.
     </p>
   </div>
   <div class="block bg-a100c-white rounded shadow  py-2 px-2 sm:px-10 lg:px-10 lg:py-8 mt-4">
@@ -53,44 +53,37 @@
 
         Thomas Böker, Dafne Jaramillo, Kyan Mitwollen, Brunn Morais, Laura Franziska Reyes Pollak and Ulf Treger.
         <br />
-        With editorial support by Jimena Stephanie Alvarez
+        With editorial support by Jimena Stephanie Alvarez.
     </p>
     <p class="text-gray-800 px-4 py-1 lg:px-8">
           Many thanks to the interviewees, for sharing your thoughts and impressions: Annette, Arno, Manu, Marcio, Nils, Thomas B, Thomas M, Ulf
     </p>
     <p class="text-gray-800 px-4 py-1 lg:px-8">
-          Thanks and big shout to the other members of "Queer narratives, mapped" working group. Thanks also to all the participants of our workshops!
+          Thanks and big shout to the other members of "Queer narratives, mapped" working group. Thanks to Alp Savran and Linus Wirth for facilitating of the queer youth workshops. Thanks also to the participants of all our workshops!
     </p>
     <p class="text-gray-800 px-4 py-1 lg:px-8">
-          Thanks also to our cooperation partner and funding bodies!
-    </p>
-    <p class="text-gray-800 px-4 py-1 lg:px-8">
-          Thanks to <a href="https://www.a-thousand-channels.xyz/" target="_blank" class="text-link">A thousand channels a queer mapping platform</a> for allow us to use the their mapping client.
-    </p>
-    <p class="text-gray-600 text-sm px-4 py-1 lg:px-8">
-        For questions about design and technique of this map please send an e-mail to <a href="mailto:hello@a-thousand-channels.xyz" class="text-link">hello@a-thousand-channels.xyz</a>.
+          Thanks to <a href="https://www.a-thousand-channels.xyz/" target="_blank" class="text-link">A thousand channels — a queer mapping platform</a> for allow us to use their mapping client. Thanks for the contribution to our presnetation by art decolonized, a project by Queeraspora.
     </p>
     <p class="text-gray-400 px-4 py-1 text-sm lg:px-8">
-        Map design by Ulf Treger. Map data by <a href="https://www.openstreetmap.org/copyright" target="_blank" class="text-link">Openstreetmap and its contributors</a> with a Creative Commons (CC BY-SA 2.0) licence
+        Map design by Ulf Treger. Map data by <a href="https://www.openstreetmap.org/copyright" target="_blank" class="text-link">Openstreetmap and its contributors</a> with a Creative Commons (CC BY-SA 2.0) licence.
     </p>
   </div>
   <div class="block bg-a100c-white rounded shadow  py-2 px-2 sm:px-10 lg:px-10 lg:py-8 mt-4">
     <p class="text-gray-800 px-4 py-1 lg:px-8">
         Published by
         <a href="https://spedition-bremen.com/" target="_blank" class="text-link">
-          kunst- und kulturverein Spedition e.V., Bremen
+          kunst- und kulturverein spedition e.V., Bremen
         </a> with
-        <a href="https://citydataexplosion.tumblr.com/" target="_blank" class="text-link">city/data/explosion</a>
+        <a href="https://citydataexplosion.tumblr.com/" target="_blank" class="text-link">city/data/explosion</a>.
     </p>
     <p class="text-gray-800 px-4 py-1 lg:px-8">
-        Das Projekt wird gefördert vom Fonds Soziokultur im Rahmen des Programms "Neustart Kultur".
+        The project is supported by the Fonds Soziokultur within the program "Neustart Kultur".
         <img src="neustart_kultur.png" alt="Logos des Fonds Soziokultur, des Programms Neustart Kultur und der Beauftragten der Bundesregierung für Kultur und Medien">
     </p>
-    <p class="text-gray-800 px-4 py-1 lg:px-8">
-
+    <p class="text-gray-800 px-4 py-1 lg:px-8 pb-4">
+        The project has received support by our cooperation partner, the Rosa-Luxemburg-Initiative Bremen and funding by Hannchen-Mehrzweck-Stiftung and by the Senate of Culture of Bremen.
+        <img src="intersections-and-constellations-logoleiste2.png" alt="Logos of Rosa-Luxemburg-Initiative Bremen, spedition, city/data/explosion and  Hannchen-Mehrzweck-Stiftung">
     </p>
-
-
   </div>
 </div>
 </template>

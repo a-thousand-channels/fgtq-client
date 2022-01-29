@@ -121,7 +121,7 @@
    .bg-a100c-1 {
       background: rgb(255,0,249);
       background: linear-gradient(90deg, rgba(255,0,249,0.15) 0%, rgba(255,117,0,0.15) 50%, rgba(255,0,35,0.15) 100%);
-      background: linear-gradient(90deg, rgba(255,0,249,0.25) 0%, rgba(255,117,0,0.35) 50%, rgba(255,0,35,0.25) 100%);
+      background: linear-gradient(90deg, rgba(255,0,249,0.20) 0%, rgba(255,117,0,0.30) 50%, rgba(255,0,35,0.20) 100%);
    }
    .bg-a100c-2 {
       background: rgb(255,0,249);
@@ -135,7 +135,7 @@
    .bg-a100c-3 {
       background: rgb(255,0,249);
       background: linear-gradient(90deg, rgba(255,117,0,0.15) 0%, rgba(255,0,35,0.15) 50%, rgba(255,0,249,0.15) 100% );
-      background: linear-gradient(90deg, rgba(255,117,0,0.35) 0%, rgba(255,0,35,0.25) 50%, rgba(255,0,249,0.25) 100% );
+      background: linear-gradient(90deg, rgba(255,117,0,0.30) 0%, rgba(255,0,35,0.20) 50%, rgba(255,0,249,0.20) 100% );
    }
    .bg-a100c-3-text {
       background: rgb(255,0,249);
@@ -253,7 +253,7 @@
   <div id="page_inner" class="flex a1000c-horizontal" ref="scroll_container">
     <section ref="info" id="info" class="flex items-stretch min-h-screen max-h-screen bg-a100c-1 sm:pt-0 sm:pb-8">
       <div class="content flex items-top overflow-x-auto">
-        <div id="info_inner" class="bg-red-100 bg-opacity-30 my-4 mx-5">
+        <div id="info_inner" class="bg-opacity-30 my-4 mx-5">
           <p v-if="$fetchState.pending" class="text-sm text-red-300">Loading...</p>
           <p v-else-if="$fetchState.error" class="text-sm text-red-300">Please wait ...</p>
           <div v-else>
@@ -624,9 +624,6 @@ export default {
 
             }
           });
-
-
-
           if ( this.data.layer ) {
             console.log("Check for data.layer w/"+this.data.layer.length+ " layer(s)")
             // this.drawCurves();
@@ -688,14 +685,14 @@ export default {
                         popupAnchor : [0, -28]
                       });
                       if ( relation.from.layer_id != relation.to.layer_id) {
-                        var endpoint2_marker = L.marker(point2, {icon: divIcon}).bindTooltip(relation.to.title, {
+
+                        // TODO: add @click="handleMapClick"
+                         var endpoint2_marker = L.marker(point2, {icon: divIcon}).bindTooltip(relation.to.title, {
                           permanent: 'true',
                           direction: 'top'
                         }).addTo(curves_layer);
 
                       }
-
-
                   });
                 });
               }

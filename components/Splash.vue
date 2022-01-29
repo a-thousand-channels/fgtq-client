@@ -107,7 +107,7 @@
       </div>
       <div class="mt-4 mb-4 bg-a100c-white overflow-hidden shadow sm:rounded-lg md:px-4 lg:px-8 py-4 p-2">
         <p class="text-gray-600">
-          In a process of research, interviewing, mapping and contextualization, we have tried to understand how queer (sub)cultures have developed from its seperated LGBTI niches, with the focus on Bremen and the second half of the 1990s. This is a spotlight, they are so many other voices, narrations and traces, that hopefully will be collected and documented too.
+          In a process of research, interviewing, mapping and contextualization, we have tried to understand how queer (sub)cultures have developed from its seperated LGBTI niches, with the focus on Bremen in the 1990s. This is a spotlight, they are so many other voices, narrations and traces, that hopefully will be collected and documented too.
         </p>
       </div>
       <div class="mt-4 mb-4 bg-a100c-white overflow-hidden shadow sm:rounded-lg md:px-4 lg:px-8 py-4 p-2">
@@ -116,7 +116,7 @@
           The content is mixed english and german.
         </p>
         <p class="mt-2 text-sm text-gray-600">
-          We would be very happy about feedback and contributions.
+          We would be very excited about feedback and contributions.
           If you have questions or remarks please contact us via <a href="mailto:queer-narratives-mapped@citydataexplosion.de" class="text-link">queer-narratives-mapped@citydataexplosion.de</a>.
         </p>
 
