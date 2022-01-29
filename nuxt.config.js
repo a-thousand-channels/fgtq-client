@@ -21,7 +21,7 @@ export default {
       { hid: 'og:title', name: 'og:title', content: 'From Gay To Queer — A mapping by Queer narratives, mapped' },
       { hid: 'description', name: 'description', content: 'Mapping of the stories and material collected during the Intersections & Constellations: How to map queer narratives? project. This is Work-in-progress' },
       { id: 'og:description', name: 'og:description', content: 'Mapping of the stories and material collected during the Intersections & Constellations: How to map queer narratives? project. This is Work-in-progress' },
-      { name: 'og:image', content: 'https://from-gay-to-queer.net/assets/fromgaytoqueer_sharepic1.png'
+      { name: 'og:image', content: 'https://from-gay-to-queer.net/fromgaytoqueer_sharepic1.png'
       },
       { name: 'format-detection', content: 'telephone=no' }
     ],
