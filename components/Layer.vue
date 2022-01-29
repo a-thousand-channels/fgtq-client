@@ -428,11 +428,11 @@ export default {
           {
             hid: 'description',
             name: 'description',
-            content: this.data.subtitle
+            content: this.subtitle
           },
           {
             name: 'og:description',
-            content: this.data.subtitle
+            content: this.subtitle
           },
           {
             name: 'og:site_name',
@@ -465,6 +465,7 @@ export default {
         tooltip: {},
         slug: this.$route.params.slug || 'thomas-b',
         title: '',
+        subtitle: '',
         data_url: '',
         default_data_url: '',
         custom_data_url: '',
@@ -567,6 +568,7 @@ export default {
 
     if ( (this.data) && (this.places) && (this.$refs.map) ) {
       this.title = this.data.title + " — "
+      this.subtitle = this.data.subtitle || ''
       if ( this.places.length > 0 ) {
         // console.log("afterFetch: fitBounds w/"+this.places.length)
         // this.$refs.map.mapObject.fitBounds(this.places.map(m => { return [m.lat, m.lon] }))
