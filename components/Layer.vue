@@ -121,12 +121,23 @@
    .bg-a100c-1 {
       background: rgb(255,0,249);
       background: linear-gradient(90deg, rgba(255,0,249,0.15) 0%, rgba(255,117,0,0.15) 50%, rgba(255,0,35,0.15) 100%);
+      background: linear-gradient(90deg, rgba(255,0,249,0.25) 0%, rgba(255,117,0,0.35) 50%, rgba(255,0,35,0.25) 100%);
    }
    .bg-a100c-2 {
       background: rgb(255,0,249);
       background: linear-gradient(90deg, rgba(255,0,35,0.15) 0%, rgba(255,0,249,0.15) 50%, rgba(255,117,0,0.15) 100% );
+      background: linear-gradient(90deg, rgba(255,0,35,0.20) 0%, rgba(255,0,249,0.20) 50%, rgba(255,117,0,0.30) 100% );
+   }
+   .bg-a100c-img {
+      background-image: url(~/assets/client-splash-background-light.jpg);
+      background-size: cover;
    }
    .bg-a100c-3 {
+      background: rgb(255,0,249);
+      background: linear-gradient(90deg, rgba(255,117,0,0.15) 0%, rgba(255,0,35,0.15) 50%, rgba(255,0,249,0.15) 100% );
+      background: linear-gradient(90deg, rgba(255,117,0,0.35) 0%, rgba(255,0,35,0.25) 50%, rgba(255,0,249,0.25) 100% );
+   }
+   .bg-a100c-3-text {
       background: rgb(255,0,249);
       background: linear-gradient(90deg, rgba(255,117,0,0.15) 0%, rgba(255,0,35,0.15) 50%, rgba(255,0,249,0.15) 100% );
    }
@@ -222,6 +233,14 @@
         box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
 
+    .leaflet-pane > svg path.leaflet-interactive {
+      filter: drop-shadow( 0 0 1px rgba(0,0,0,.2));
+    }
+    .leaflet-data-outside-marker svg circle {
+        fill: rgb(186, 185, 185);
+        opacity: 1;
+    }
+
     /* hotfix for display error #40 */
     div#page_inner {
       @apply border-solid border-2 border-transparent
@@ -280,8 +299,8 @@
             </button>
           </p>
         </div>
-        <div id="map_inner" class="h-full bg-red-0 bg-opacity-0 my-1 mx-1">
-          <div id="map_map" class="h-full w-full border-solid border-2 border-white shadow z-40">
+        <div id="map_inner" class="h-full bg-red-0 bg-opacity-0 my-1 mx-1 bg-a100c-white-100">
+          <div id="map_map" class="h-full w-full border-solid border-2 border-white shadow z-40  bg-a100c-2">
            <client-only>
                 <l-map :zoom="this.mapzoom" :minZoom=2 :maxZoom=19 :center="this.mapcenter" ref="map" @ready="onMapReady">
                   <l-control-layers position="topright"></l-control-layers>

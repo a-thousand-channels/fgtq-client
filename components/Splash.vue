@@ -23,13 +23,16 @@
     }
    .bg-a100c-1-splash {
       background: rgb(255,0,249);
-      background: linear-gradient(90deg, rgba(255,0,249,0.15) 0%, rgba(255,117,0,0.15) 50%, rgba(255,0,35,0.15) 100%);
+      background: linear-gradient(90deg, rgba(255,0,249,0.25) 0%, rgba(255,117,0,0.35) 50%, rgba(255,0,35,0.25) 100%);
       background-image: url(~/assets/client-splash-background-light.jpg);
       background-size: cover;
    }
    .bg-a100c-1-hover {
       background: rgb(255,0,249);
       background: linear-gradient(90deg, rgba(255,0,249,0.65) 0%, rgba(255,117,0,0.6) 50%, rgba(255,0,35,0.65) 100%);
+   }
+   .bg-a100c-white-100 {
+      background-color: rgba(255,255,255,1);
    }
    .bg-a100c-white {
       background-color: rgba(255,255,255,0.8);
@@ -40,14 +43,6 @@
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
-   }
-   .bg-a100c-2 {
-      background: rgb(255,0,249);
-      background: linear-gradient(90deg, rgba(255,117,0,0.15) 0%, rgba(255,0,35,0.15) 50%, rgba(255,0,249,0.15) 100% );
-   }
-   .bg-a100c-3 {
-      background: rgb(255,0,249);
-      background: linear-gradient(90deg, rgba(255,0,35,0.15) 0%, rgba(255,0,249,0.15) 50%, rgba(255,117,0,0.15) 100% );
    }
    h2.beta::after {
       content: "(Beta)";

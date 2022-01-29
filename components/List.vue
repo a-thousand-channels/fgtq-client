@@ -46,7 +46,7 @@
         <div :id="'list-audio-'+place.id" class="player-wrapper px-4 sm:px-16 sm:py-3" v-if="place.audiolink" v-html="place.audiolink">
         </div>
         <ul v-if="place.annotations.length > 0" class="pb-0 sm:px-8">
-          <li v-for="(annotation,aindex) in place.annotations" class="bg-a100c-3 rounded shadow mt-4 mb-6 px-4 py-3 sm:px-4 sm:py-6 lg:max-w-3xl">
+          <li v-for="(annotation,aindex) in place.annotations" class="bg-a100c-3-text rounded shadow mt-4 mb-6 px-4 py-3 sm:px-4 sm:py-6 lg:max-w-3xl">
             <h4 v-if="annotation.title" class="font-semibold md:text-lg px-4 py-2">{{ annotation.title }}</h4>
             <div class="text-gray-800 px-4 annotation-text-block" v-html="annotation.text"></div>
           </li>
