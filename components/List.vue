@@ -60,11 +60,23 @@
                   <p v-if="rwr.relations.length == 1 && relation.from.layer_id == relation.to.layer_id">Jump to:</p>
                   <p v-else>See also:</p>
                 </div>
-                <div v-if="relation.to.title && relation.from.layer_id == relation.to.layer_id">
+
+                <div v-if="relation.to.title && place.layer_id == relation.from.layer_id">
                   <p class="leading-tight mb-4">
-                    <a @click="scrollToEntry(relation.to.id)" class="text-link" >
-                      {{ relation.to.title }}
-                    </a>
+                    <span v-if="relation.from.layer_id == relation.to.layer_id">
+                      <a @click="scrollToEntry(relation.to.id)" class="text-link" >
+                        {{ relation.to.title }}
+                      </a>
+                    </span>
+                    <span v-else>
+                      <a @click="jumpToLayerAndEntry(relation.to.id, returnLayerSlug(relation.to.layer_id))" class="text-link" >
+                        {{ relation.to.title }}
+                      </a>
+                      (<nuxt-link :to="{ path: '/layer/' + returnLayerSlug(relation.to.layer_id), hash: 'map'}" class="text-link">
+                        {{ returnLayerTitle(relation.to.layer_id) }}
+                      </nuxt-link>)
+
+                    </span>
                   </p>
                 </div>
               </div>
@@ -112,6 +124,10 @@ export default {
       type: Number,
       required: false
     },
+    layers: {
+      type: Object,
+      required: true
+    },
     map: {
       type: Object,
       required: false
@@ -135,6 +151,29 @@ export default {
       console.log('list-place-'+id)
       let el = document.getElementById('list-place-'+id)
       document.getElementById('list_content').scrollTo({ top: el.offsetTop, behavior: 'smooth' })
+    },
+    jumpToLayerAndEntry(id,slug) {
+      console.log('list-place-'+id)
+      console.log(slug)
+      this.$router.push({ path: '/layer/' + slug, hash: '#list', query: { place_id: "list-place-"+id }});
+    },
+    returnLayerTitle(layer_id) {
+      console.log(layer_id)
+      var layers = this.layers
+      var title = ''
+      Object.keys(layers).forEach(function(index ) {
+          if ( layers[index].id == layer_id ) { title = layers[index].title }
+      })
+      return title
+    },
+    returnLayerSlug(layer_id) {
+      console.log(layer_id)
+      var layers = this.layers
+      var slug = ''
+      Object.keys(layers).forEach(function(index ) {
+          if ( layers[index].id == layer_id ) { slug = layers[index].slug }
+      })
+      return slug
     }
   },
   data() {

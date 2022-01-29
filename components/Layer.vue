@@ -383,7 +383,7 @@
             <p v-if="$fetchState.pending" class="text-sm text-red-300">Loading...</p>
             <p v-else-if="$fetchState.error" class="text-sm text-red-300">An error occurred :(</p>
             <div v-else>
-              <list :places="this.list_content" :places_with_relations="this.places_with_relations" :layerindex="this.list_content_layer_index" :data="this.data" :map="this.mapobj"></list>
+              <list :places="this.list_content" :places_with_relations="this.places_with_relations" :layerindex="this.list_content_layer_index" :data="this.data" :map="this.mapobj" :layers="layers"></list>
             </div>
         </div>
       </div>
