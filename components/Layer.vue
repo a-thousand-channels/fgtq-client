@@ -662,56 +662,56 @@ export default {
 
                   place.relations.forEach ((relation, kkey) => {
 
-                    // console.log("Relation_from ID:  "+relation.from.id);
-                    var point1 = [Number(relation.from.lat), Number(relation.from.lon)];
-                    var point2 = [Number(relation.to.lat), Number(relation.to.lon)];
-                    // console.log(point1);
-                    // console.log(point2);
+                    if ( relation.from.layer_id == relation.to.layer_id) {
+
+                      var point1 = [Number(relation.from.lat), Number(relation.from.lon)];
+                      var point2 = [Number(relation.to.lat), Number(relation.to.lon)];
 
 
-                    var color = "hsl(" + Math.random() * 360 + ", 100%, 85%)";
-                    // var color = clustercolor;
-                    if ( layer.color ) {
-                      color = layer.color
-                    }
-                    var pathOptions = {
+                      var color = "hsl(" + Math.random() * 360 + ", 100%, 85%)";
+                      // var color = clustercolor;
+                      if ( layer.color ) {
+                        color = layer.color
+                      }
+                      var pathOptions = {
+                              color: color,
+                              weight: 5,
+                              opacity: 0.75,
+                              className: 'curve_normal curve_',
+                              animate: false
+                      }
+                      var controlpoint = this.calcControlPoint(point1,point2,5)
+
+                      var curvedPath = L.curve(
+                        [
+                          'M', point1,
+                          'Q', controlpoint,
+                             point2
+                        ], pathOptions).addTo(curves_layer)
+
+                      // draw endpoint, if it resides on an different layer
+                        var iconSettings = {
+                            mapIconUrl: "<svg height='{radius}' width='{radius}' xmlns='http://www.w3.org/2000/svg'><circle cx='15' cy='15' r='15' fill='{color}' fill-opacity='{opacity}' shape-rendering='geometricPrecision'></circle></svg>",
                             color: color,
-                            weight: 5,
-                            opacity: 0.75,
-                            className: 'curve_normal curve_',
-                            animate: false
-                    }
-                    var controlpoint = this.calcControlPoint(point1,point2,5)
+                            opacity: 0.7,
+                            radius: 30
+                        };
+                        var divIcon = L.divIcon({
+                          className: "leaflet-data-outside-marker",
+                          html: L.Util.template(iconSettings.mapIconUrl, iconSettings), //.replace('#','%23'),
+                          iconAnchor  : [15, 15],
+                          iconSize    : [30, 30],
+                          popupAnchor : [0, -28]
+                        });
+                        if ( relation.from.layer_id != relation.to.layer_id) {
 
-                    var curvedPath = L.curve(
-                      [
-                        'M', point1,
-                        'Q', controlpoint,
-                           point2
-                      ], pathOptions).addTo(curves_layer)
+                          // TODO: add @click="handleMapClick"
+                           var endpoint2_marker = L.marker(point2, {icon: divIcon}).bindTooltip(relation.to.title, {
+                            permanent: 'true',
+                            direction: 'top'
+                          }).addTo(curves_layer);
 
-                    // draw endpoint, if it resides on an different layer
-                      var iconSettings = {
-                          mapIconUrl: "<svg height='{radius}' width='{radius}' xmlns='http://www.w3.org/2000/svg'><circle cx='15' cy='15' r='15' fill='{color}' fill-opacity='{opacity}' shape-rendering='geometricPrecision'></circle></svg>",
-                          color: color,
-                          opacity: 0.7,
-                          radius: 30
-                      };
-                      var divIcon = L.divIcon({
-                        className: "leaflet-data-outside-marker",
-                        html: L.Util.template(iconSettings.mapIconUrl, iconSettings), //.replace('#','%23'),
-                        iconAnchor  : [15, 15],
-                        iconSize    : [30, 30],
-                        popupAnchor : [0, -28]
-                      });
-                      if ( relation.from.layer_id != relation.to.layer_id) {
-
-                        // TODO: add @click="handleMapClick"
-                         var endpoint2_marker = L.marker(point2, {icon: divIcon}).bindTooltip(relation.to.title, {
-                          permanent: 'true',
-                          direction: 'top'
-                        }).addTo(curves_layer);
-
+                        }
                       }
                   });
                 });
