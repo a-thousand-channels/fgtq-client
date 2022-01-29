@@ -6,4 +6,4 @@ import 'swiper/swiper-bundle.css'
 
 
 
-Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
+Vue.use(VueAwesomeSwiper )

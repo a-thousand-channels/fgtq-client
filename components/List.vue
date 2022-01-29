@@ -26,7 +26,7 @@
       </li>
 
       <li v-for="(place,index) in places" :id="'list-place-'+place.id" class="bg-a100c-white px-4 py-2 rounded shadow mt-4">
-        <div v-swiper:[index]="swiperOptions" class="md:px-12">
+        <div v-swiper:[index]="swiperOptions" class="md:px-12 swiper">
           <div class="swiper-wrapper" v-if="place.images">
             <div v-for="(image,iindex) in place.images" :key="iindex" class="swiper-slide px-0 pb-4 pt-2 sm:px-4 sm:pt-4">
               <p v-if="place.images.length > 1" class="text-sm text-gray max-w-60 text-left">{{iindex+1}}/{{place.images.length}}</p>
@@ -39,7 +39,7 @@
               </span>
             </div>
           </div>
-          <div class="swiper-pagination"></div>
+          <div class="swiper-pagination"  slot="pagination"></div>
         </div>
         <h3 class="font-semibold text-lg px-4 py-2 sm:px-16 sm:pt-6">{{ place.title }}</h3>
         <div class="text-gray-800 px-4 md:text-lg sm:px-16 sm:py-3 lg:max-w-3xl teaser-block" v-html="place.teaser"></div>
@@ -181,11 +181,13 @@ export default {
       slug: this.$route.params.slug || 'thomas-b',
       swiperOptions: {
           width: null,
+          loop: true,
           slidesPerView: 1,
           spaceBetween: 10,
           pagination: {
             el: '.swiper-pagination',
-            clickable: true
+            clickable: true,
+            type: 'bullets'
           },
           paginationClickable: true,
           spaceBetween: 50
@@ -193,7 +195,7 @@ export default {
     }
   },
   computed: {
-  },
+   },
   mounted() {
   }
 }
