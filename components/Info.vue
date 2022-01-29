@@ -35,7 +35,7 @@
         About this project:
     </h3>
     <p class="text-gray-800 px-4 py-1 lg:px-8">
-          In a process of research, interviewing, mapping and contextualization, we have tried to understand how queer (sub)cultures have developed from its seperated LGBTI* niches, with the focus on Bremen and the 1990s. This is a spotlight, they are so many other voices, narrations and traces, that hopefully will be collected and documented too.
+          In a process of research, interviewing, mapping and contextualization, we have tried to understand how queer (sub)cultures have developed from its separated LGBTI* niches, with the focus on Bremen and the 1990s. This is a spotlight, they are so many other voices, narrations and traces, that hopefully will be collected and documented too.
     </p>
     <p class="text-gray-800 px-4 py-1 lg:px-8">
           More about this project <a href="https://citydataexplosion.tumblr.com/intersections-and-constellations" target="_blank" class="text-link">Intersections + Constellations: „From gay to queer“. A queer mapping project</a>, E-Mail <a href="mailto:queer-narratives-mapped@citydataexplosion.de" class="text-link">queer-narratives-mapped@citydataexplosion.de</a>
