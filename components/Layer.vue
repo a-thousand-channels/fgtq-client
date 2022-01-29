@@ -96,6 +96,13 @@
       width: 97%;
       height: 90%;
     }
+    #map_title {
+      float: left;
+      margin-top: 200px;
+      margin-top: 20px;
+      margin-left: 20px;
+      display: none;
+    }
     #map #map_map {
       background-color: transparent;
     }
@@ -187,6 +194,10 @@
       background-color: transparent;
       border: 2px solid white;
       line-height: 0;
+      /* display:  none; */
+    }
+    .leaflet-touch .leaflet-control-attribution {
+      display:  none;
     }
     .leaflet-control-zoom-in, .leaflet-control-zoom-out {
       background-color: transparent;
@@ -299,8 +310,17 @@
             </button>
           </p>
         </div>
-        <div id="map_inner" class="h-full bg-red-0 bg-opacity-0 my-1 mx-1 bg-a100c-white-100">
-          <div id="map_map" class="h-full w-full border-solid border-2 border-white shadow z-40  bg-a100c-2">
+        <div id="map_title" class="inline-block bg-a100c-white rounded shadow py-2 px-2 sm:px-2 lg:px-4 lg:py-4">
+           <h2 class="block font-semibold text-1xl px-4 py-1 lg:px-8">
+              <nuxt-link :to="{ path: '/'}" class="">From Gay To Queer</nuxt-link>
+              —
+            <nuxt-link :to="{ path: '/'}" class="text-a100c-1">
+              {{ data.title }}
+            </nuxt-link>
+          </h2>
+        </div>
+        <div id="map_inner" class="h-full bg-opacity-0 my-1 mx-1">
+          <div id="map_map" class="h-full w-full border-solid border-2 border-white shadow z-40">
            <client-only>
                 <l-map :zoom="this.mapzoom" :minZoom=2 :maxZoom=19 :center="this.mapcenter" ref="map" @ready="onMapReady">
                   <l-control-layers position="topright"></l-control-layers>
