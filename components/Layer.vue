@@ -346,7 +346,7 @@
                         :id="index"
                         :options="{ title: 'marker-' + place.id, id: place.id, place_index: index, layer_index: lindex, layer_title: layer.title}"
                       >
-                        <l-tooltip :content="place.title" :options="{ permanent: 'true', direction: 'top' }" />
+                        <l-tooltip :content="place.title" :options="{ permanent: 'true', interactive: 'true', direction: 'top' }" />
                       </l-circle-marker>
                   </l-layer-group>
                   <div class="leaflet-bottom leaflet-left">
