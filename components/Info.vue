@@ -35,10 +35,10 @@
         About this project:
     </h3>
     <p class="text-gray-800 px-4 py-1 lg:px-8">
-          In a process of research, interviewing, mapping and contextualization, we have tried to understand how queer (sub)cultures have developed from its separated LGBTI* niches, with the focus on Bremen and the 1990s. This is a spotlight, they are so many other voices, narrations and traces, that hopefully will be collected and documented too.
+        In a process of research, interviewing, mapping and contextualization, we have tried to understand how queer (sub)cultures have developed from their separated LGBTI* niches, with the focus on Bremen in the 1990s. This is a spotlight, there are so many other voices, narrations and traces that hopefully will be collected and documented, too.
     </p>
     <p class="text-gray-800 px-4 py-1 lg:px-8">
-          More about this project <a href="https://citydataexplosion.tumblr.com/intersections-and-constellations" target="_blank" class="text-link">Intersections + Constellations: „From gay to queer“. A queer mapping project</a>, E-Mail <a href="mailto:queer-narratives-mapped@citydataexplosion.de" class="text-link">queer-narratives-mapped@citydataexplosion.de</a>
+          More about this project <a href="https://citydataexplosion.tumblr.com/intersections-and-constellations" target="_blank" class="text-link">„Intersections + Constellations: From gay to queer“. A queer mapping project</a>, E-Mail <a href="mailto:queer-narratives-mapped@citydataexplosion.de" class="text-link">queer-narratives-mapped@citydataexplosion.de</a>
     </p>
     <p class="text-gray-800 px-4 py-1 lg:px-8">
       For all texts and images: All rights reserved by the creators. No redistribution, no copying and re-publishing of texts and visual material without explicit consent. If you would like to use material of this map, please contact us.
@@ -59,10 +59,10 @@
           Many thanks to the interviewees, for sharing your thoughts and impressions: Annette, Arno, Manu, Marcio, Nils, Thomas B, Thomas M, Ulf
     </p>
     <p class="text-gray-800 px-4 py-1 lg:px-8">
-          Thanks and big shout to the other members of "Queer narratives, mapped" working group. Thanks to Alp Savran and Linus Wirth for facilitating of the queer youth workshops. Thanks also to the participants of all our workshops!
+          Thanks and big shout to the other members of "Queer narratives, mapped" working group. Thanks to Alp Savran and Linus Wirth for facilitating of the queer youth workshops. Thanks also to the participants of our workshops!
     </p>
     <p class="text-gray-800 px-4 py-1 lg:px-8">
-          Thanks to <a href="https://www.a-thousand-channels.xyz/" target="_blank" class="text-link">A thousand channels — a queer mapping platform</a> for allow us to use their mapping client. Thanks for the contribution to our presnetation by art decolonized, a project by Queeraspora.
+          Thanks to <a href="https://www.a-thousand-channels.xyz/" target="_blank" class="text-link">A thousand channels — a queer mapping platform</a> for allow us to use their mapping client. Thanks for the contribution to our presentation by art decolonized, a project by Queeraspora.
     </p>
     <p class="text-gray-400 px-4 py-1 text-sm lg:px-8">
         Map design by Ulf Treger. Map data by <a href="https://www.openstreetmap.org/copyright" target="_blank" class="text-link">Openstreetmap and its contributors</a> with a Creative Commons (CC BY-SA 2.0) licence.
