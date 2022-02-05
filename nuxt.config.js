@@ -23,8 +23,8 @@ export default {
       { id: 'og:description', name: 'og:description', content: 'Mapping of the stories and material collected during the Intersections & Constellations: How to map queer narratives? project. This is Work-in-progress' },
       { name: 'og:image', content: 'https://from-gay-to-queer.net/fromgaytoqueer_sharepic1.png'
       },
-      { name: 'format-detection', content: 'telephone=no' }
-      { name: 'theme-color', content: '#ffffff' }
+      { name: 'format-detection', content: 'telephone=no' },
+      { name: 'theme-color', content: '#ffffff' },
       { name: 'msapplication-TileColor', content: '#ffffff' }
     ],
     link: [
@@ -32,14 +32,7 @@ export default {
       { rel: 'apple-touch-icon', sizes: '120x120', href: '/apple-touch-icon.png' },
       { rel: 'icon', type: 'image/png', sizes: "32x32", href: '/favicon-32x32.png' },
       { rel: 'icon', type: 'image/png', sizes: "16x16", href: '/favicon-16x16.png' },
-      { rel: 'manifest', href: '/site.webmanifest' },
-
-/*
-<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-*/
-
-
-
+      { rel: 'manifest', href: '/site.webmanifest' }
     ]
   },
 
