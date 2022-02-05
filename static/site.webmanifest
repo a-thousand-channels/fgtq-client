@@ -1,6 +1,9 @@
 {
     "name": "From Gay To Queer — A mapping by Queer narratives, mapped",
     "short_name": "From Gay To Queer",
+    "start_url": "https://from-gay-to-queer.net",
+    "display": "standalone",
+    "orientation": "portrait-primary",
     "icons": [
         {
             "src": "/android-chrome-96x96.png",
