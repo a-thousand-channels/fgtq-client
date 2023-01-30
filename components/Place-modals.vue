@@ -64,7 +64,7 @@
             </div>
             <footer>
               <p class="text-sm sm:text-md text-gray-500 px-4 py-1 sm:px-4 sm:py-4">
-                <button @click="showPlaceInList(place)" class="text-link">Show details</button>
+                <button @click="showPlaceInList(place)" class="text-link">Zeige Details</button>
               </p>
             </footer>
           </div>

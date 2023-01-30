@@ -96,6 +96,9 @@
             <option>
               Select a map ...
             </option>
+            <option value="" class="text-lg py-1">
+              Alle Layer
+            </option>
             <option v-for="layer in layers" :value="layer.slug" class="text-lg py-1">
                 {{layer.title}}
             </option>
@@ -157,7 +160,6 @@ export default {
         this.disabled = false;
       } else {
         this.disabled = true;
-
       }
     },
   }
