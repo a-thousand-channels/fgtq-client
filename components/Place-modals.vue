@@ -32,8 +32,8 @@
 
 <template>
   <div class="places-list sm:relative z-50">
-    <div v-for='(layer,lindex) in layers' class="">
-      <div v-for='(place,index) in layer.places'>
+    <div v-for='(llayer,lindex) in layer' class="">
+      <div v-for='(place,index) in llayer.places'>
         <div class="modal" :class="{ 'is-active' : place.state }" v-bind:id="'place-' + place.id">
           <div class="modal-background"></div>
           <div class="modal-content absolute inset-4 p-4 pt-2 m-1 z-50 sm:relative sm:inset-0 sm:mt-7 sm:mr-10 md:mt-8 md:mr-18 bg-white bg-a100c-white overflow-hiddenX overflow-x-auto shadow min-w-none sm:min-w-min sm:max-w-md">
@@ -48,7 +48,7 @@
               </div>
             </div>
             <div class="modal-header pt-1 sm:pt-2 px-4">
-              <p class="text-sm sm:text-md my-0 sm:my-4"><span v-if="data.title != layer.title">{{data.title}} :: </span><span v-else><nuxt-link :to="{ path: '/'}">From Gay To Queer</nuxt-link></span> <span v-if="data.layer[parseInt(lindex)]">— {{ data.layer[parseInt(lindex)].title}}</span></p>
+              <p class="text-sm sm:text-md my-0 sm:my-4"><span v-if="data.title != llayer.title">{{data.title}} </span><span v-else><nuxt-link :to="{ path: '/'}">From Gay To Queer</nuxt-link></span> <span v-if="data.layer[parseInt(lindex)]">:: {{ data.layer[parseInt(lindex)].title}}</span></p>
               <h2 class="text-sm sm:text-md"><strong>{{place.title}}</strong></h2>
             </div>
             <div class="modal-content">
@@ -64,7 +64,7 @@
             </div>
             <footer>
               <p class="text-sm sm:text-md text-gray-500 px-4 py-1 sm:px-4 sm:py-4">
-                <button @click="showPlaceInList(place)" class="text-link">Show details</button>
+                <button @click="showPlaceInList(place,layers[parseInt(lindex)].slug)" class="text-link">Show details @ {{ layers[parseInt(lindex)].title}}</button>
               </p>
             </footer>
           </div>
@@ -77,6 +77,7 @@
 
 <script>
 // import AudioPlayer from '~/components/Audio-player.vue';
+import layers from '~/static/layers.json'
 
 
 export default {
@@ -85,10 +86,14 @@ export default {
       type: Object,
       required: true
     },
-    layers: {
+    layer: {
       type: Array,
       required: true
-    }
+    },
+    layers: {
+      type: Object,
+      required: true
+    },
   },
   data() {
     return {
@@ -103,12 +108,13 @@ export default {
       this.data.state = false
       place.state = false
      },
-    showPlaceInList(place) {
+    showPlaceInList(place,slug) {
       this.$nextTick(() => {
         this.data.state = !this.data.state
         place.state = !place.state;
         console.log("show place "+ place.id +" in list");
-        this.$router.push({ path: '/layer/' + this.slug, hash: '#list', query: { place_id: "list-place-"+place.id }});
+        console.log("with slug "+ slug +"");
+        this.$router.push({ path: '/layer/' + slug, hash: '#list', query: { place_id: "list-place-"+place.id }});
       })
     }
   },

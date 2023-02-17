@@ -346,7 +346,7 @@
                         :id="index"
                         :options="{ title: 'marker-' + place.id, id: place.id, place_index: index, layer_index: lindex, layer_title: layer.title}"
                       >
-                        <l-tooltip :content="place.title" :options="{ permanent: 'true', interactive: 'true', direction: 'top' }" />
+                        <l-tooltip :content="place.title" :options="{ permanent: false, sticky: false, direction: 'top' }" />
                       </l-circle-marker>
                   </l-layer-group>
                   <div class="leaflet-bottom leaflet-left">
@@ -362,7 +362,7 @@
       <p v-if="$fetchState.pending" class="text-sm text-red-300">...</p>
       <p v-else-if="$fetchState.error" class="text-sm text-red-300">...</p>
       <div v-else id="modals_wrapper" class="sm:absolute sm:top-4 sm:right-4" :class="{ 'is-active' : this.data.state }">
-        <place-modals :layers="this.data.layer" :data="this.data"></place-modals>
+        <place-modals :layers="this.layers" :layer="this.data.layer" :data="this.data"></place-modals>
       </div>
 
       <div class="nav flex flex-col  items-center content-center justify-center">
@@ -463,11 +463,11 @@ export default {
         list_content_layer_title: '',
         list_content_layer_index: 0,
         tooltip: {},
-        slug: this.$route.params.slug || 'thomas-b',
+        slug: this.$route.params.slug,
         title: '',
         subtitle: '',
         data_url: '',
-        default_data_url: '',
+        default_data_url: 'https://orte.link/public/maps/from-gay-to-queer.json',
         custom_data_url: '',
         mapcenter: [53.075878, 8.807311],
         mapzoom: 12,
@@ -484,20 +484,35 @@ export default {
 
     /* first case: layer is defined via URL like /layer/slug */
     if ( this.slug ) {
-      this.layer = Object.values(this.layers).find(layer => layer.slug === this.slug);
-      if ( this.layer.url ) {
-        this.custom_data_url = this.layer.url
-        localStorage.setItem('layer', this.custom_data_url)
+      if ( this.slug !== 'undefined' ) {
+        console.log("Select data via Slug "+this.slug)
+        this.layer = Object.values(this.layers).find(layer => layer.slug === this.slug);
+        if ( this.layer.url ) {
+          this.custom_data_url = this.layer.url
+          localStorage.setItem('layer', this.custom_data_url)
+        }
+      } else {
+        console.log("Dont select data by slug undefined")
+        this.slug = ''
+        localStorage.setItem('layer', '')
+        // this.$router.push({ path: '/layer/', hash: '#map' })
       }
     }
     /* first case: layer is defined via URL like ?layer=URL */
     if (this.$route.query.layer ) {
+      console.log("Select data via URL param")
       this.custom_data_url = this.$route.query.layer
       localStorage.setItem('layer', this.$route.query.layer)
-    } else  {
+    } else if ( localStorage.getItem('layer')) {
+      console.log("Select data via Localstorage")
       this.custom_data_url = localStorage.getItem('layer')
+    } else {
+      console.log("Select fallback or fail")
+      this.custom_data_url = this.default_data_url
+
     }
     console.log('Start to fetch...')
+    console.log(this.custom_data_url)
     console.log(this.dataobj)
 
     if ( this.custom_data_url.length > 0 ) {
@@ -505,7 +520,7 @@ export default {
     } else if ( this.default_data_url.length > 0 ) {
       this.data_url = this.default_data_url
     } else {
-      window.location = "/"
+      // window.location = "/"
     }
     console.log(this.data_url)
 
@@ -709,7 +724,7 @@ export default {
 
                           // TODO: add @click="handleMapClick"
                            var endpoint2_marker = L.marker(point2, {icon: divIcon}).bindTooltip(relation.to.title, {
-                            permanent: 'true',
+                            permanent: 'false',
                             direction: 'top'
                           }).addTo(curves_layer);
 
