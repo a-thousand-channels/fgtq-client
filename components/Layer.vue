@@ -362,7 +362,7 @@
       <p v-if="$fetchState.pending" class="text-sm text-red-300">...</p>
       <p v-else-if="$fetchState.error" class="text-sm text-red-300">...</p>
       <div v-else id="modals_wrapper" class="sm:absolute sm:top-4 sm:right-4" :class="{ 'is-active' : this.data.state }">
-        <place-modals :layers="this.layers" :layer="this.data.layer" :data="this.data"></place-modals>
+        <place-modals :layers="this.layers" :layer="this.data.layer" :data="this.data" :metalevel="this.metalevel"></place-modals>
       </div>
 
       <div class="nav flex flex-col  items-center content-center justify-center">
@@ -464,6 +464,7 @@ export default {
         list_content_layer_index: 0,
         tooltip: {},
         slug: this.$route.params.slug,
+        metalevel: false,
         title: '',
         subtitle: '',
         data_url: '',
@@ -484,7 +485,7 @@ export default {
 
     /* first case: layer is defined via URL like /layer/slug */
     if ( this.slug ) {
-      if ( this.slug !== 'undefined' ) {
+      if (( this.slug !== 'undefined' ))  {
         console.log("Select data via Slug "+this.slug)
         this.layer = Object.values(this.layers).find(layer => layer.slug === this.slug);
         if ( this.layer.url ) {
@@ -493,10 +494,13 @@ export default {
         }
       } else {
         console.log("Dont select data by slug undefined")
+        this.metalevel = true
         this.slug = ''
         localStorage.setItem('layer', '')
         // this.$router.push({ path: '/layer/', hash: '#map' })
       }
+    } else  {
+      this.metalevel = true
     }
     /* first case: layer is defined via URL like ?layer=URL */
     if (this.$route.query.layer ) {
@@ -590,7 +594,7 @@ export default {
       } else {
         console.log("afterFetch: NO fitBounds w/"+this.places.length)
       }
-      if ( this.data.layer ) {
+      if ( this.data.layer && !this.metalevel ) {
         console.log("Check for data.layer w/"+this.data.layer.length+ " layer(s)")
         this.drawCurves();
       }

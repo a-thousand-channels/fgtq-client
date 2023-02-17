@@ -64,7 +64,9 @@
             </div>
             <footer>
               <p class="text-sm sm:text-md text-gray-500 px-4 py-1 sm:px-4 sm:py-4">
-                <button @click="showPlaceInList(place,layers[parseInt(lindex)].slug)" class="text-link">Show details @ {{ layers[parseInt(lindex)].title}}</button>
+                <button v-if="metalevel" @click="showPlaceInList(place,layers[parseInt(lindex)].slug)" class="text-link">Show details @ {{ layers[parseInt(lindex)].title}}</button>
+                <button v-else @click="showPlaceInList(place,'')" class="text-link">Show details</button>
+
               </p>
             </footer>
           </div>
@@ -94,6 +96,10 @@ export default {
       type: Object,
       required: true
     },
+    metalevel: {
+      type: Boolean,
+      required: true
+    }
   },
   data() {
     return {
@@ -112,6 +118,8 @@ export default {
       this.$nextTick(() => {
         this.data.state = !this.data.state
         place.state = !place.state;
+        console.log("global slug "+this.slug);
+        slug =  slug || this.$route.params.slug;
         console.log("show place "+ place.id +" in list");
         console.log("with slug "+ slug +"");
         this.$router.push({ path: '/layer/' + slug, hash: '#list', query: { place_id: "list-place-"+place.id }});
