@@ -47,6 +47,7 @@ export default {
     { src: '@/plugins/vue-shortkey.js', mode: 'client' },
     { src: '@/plugins/vue-awesome-swiper.js', mode: 'client' },
     { src: '@/plugins/leaflet-curve.js', mode: 'client' },
+    { src: '@/plugins/vue2-leaflet-markercluster.js', mode: 'client' },
     { src: '@/plugins/filters.js', mode: 'client' }
   ],
 
@@ -111,7 +112,7 @@ export default {
       }
 
 
-      if (to.hash) {
+      if (to.hash && ( to.hash !== '#undefined')) {
         let el = await findEl(to.hash)
         if (el) {
           if ('scrollBehavior' in document.documentElement.style) {

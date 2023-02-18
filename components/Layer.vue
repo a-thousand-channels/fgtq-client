@@ -116,6 +116,12 @@
     #map #modals_wrapper.is-active {
       display: block;
     }
+    #map .marker-cluster-small {
+      background-color: rgba(200,100,100,0.5)
+    }
+    #map .marker-cluster-small div {
+      background-color: rgba(170,100,100,0.5)
+    }
     #list #list_inner {
       width: 97%;
     }
@@ -322,18 +328,17 @@
         <div id="map_inner" class="h-full bg-opacity-0 my-1 mx-1">
           <div id="map_map" class="h-full w-full border-solid border-2 border-white shadow z-40">
            <client-only>
-                <l-map :zoom="this.mapzoom" :minZoom=2 :maxZoom=19 :center="this.mapcenter" ref="map" @ready="onMapReady">
+                <l-map :zoom="this.mapzoom" :minZoom=2 :maxZoom=20 :center="this.mapcenter" ref="map" @ready="onMapReady">
                   <l-control-layers position="topright"></l-control-layers>
 
-                  <l-layer-group
+                  <l-marker-cluster
                       v-for="(layer,lindex) in this.data.layer"
                       :key="layer.id"
                       :name="layer.title"
                       :ref="layer.title"
-                      layer-type="overlay"
-                      @update:visible="onLayerVisible(layer.id)"
-                    >
-                       <l-circle-marker
+                      :options="clusterOptions"
+                  >
+                      <l-circle-marker
                         v-for="(place, index) in layer.places"
                         :key="'marker-' + index"
                         :lat-lng="[place.lat,place.lon]"
@@ -348,7 +353,9 @@
                       >
                         <l-tooltip :content="place.title" :options="{ permanent: false, sticky: false, direction: 'top' }" />
                       </l-circle-marker>
-                  </l-layer-group>
+
+                  </l-marker-cluster>
+
                   <div class="leaflet-bottom leaflet-left">
                     <div class="leaflet-control leaflet-control-layers">
                       <button class="" v-on:click="centerMap()"><svg width="9.8265mm" height="9.8265mm" version="1.1" viewBox="0 0 9.8265 9.8265" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-154.92 -71.428)"><rect x="154.92" y="71.428" width="9.8265" height="9.8265" fill="transparent"/><g transform="matrix(.90179 0 0 .90179 170.41 131.3)"><path d="m-13.24-60.949-1.6667 1.6667-0.33329-0.33329 1.3334-1.3334-1.3334-1.3334 0.33329-0.33306z"/><path d="m-10.208-60.949 1.6667-1.6667 0.33329 0.33329-1.3334 1.3334 1.3334 1.3334-0.33329 0.33306z"/><circle cx="-11.724" cy="-60.949" r=".75"/></g></g></svg></button>
@@ -477,6 +484,22 @@ export default {
           color: 'transparent',
           fillcolor: 'rgba(242, 71, 38, 1)',
           fillopacity: 0.95
+        },
+        clusterOptions: {
+          maxClusterRadius: 20,
+          spiderfyOnMaxZoom: true,
+          showCoverageOnHover: false,
+          spiderLegPolylineOptions: { weight: 0, color: '#efefef', opacity: 0.5 },
+          spiderfyDistanceMultiplier: 0.1,
+          iconCreateFunction: function(cluster) {
+              return L.divIcon({
+                html: '<div class=\'marker-cluster marker-cluster-small marker-cluster-layer-1\'><div></div></div>',
+                className: 'leaflet-data-markercluster',
+                iconAnchor  : [15, 15],
+                iconSize    : [30, 30],
+                popupAnchor : [0, -28]
+              });
+            },
         }
       }
   },
@@ -797,7 +820,11 @@ export default {
         this.$router.push({ path: '/layer/' + this.slug, hash: this.$route.hash })
         location.hash = this.$route.hash;
       } else {
-        this.$router.push({ path: '/layer/' + this.slug, hash: '#map' })
+        console.log(this.slug)
+        if ( this.slug && ( this.slug !== 'undefined')) {
+          console.log('slug seems valid')
+          // this.$router.push({ path: '/layer/' + this.slug, hash: '#map' })
+        }
         location.hash = '#map';
       }
     },
