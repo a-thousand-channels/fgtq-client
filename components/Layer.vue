@@ -396,7 +396,7 @@
 
                   <div class="leaflet-bottom leaflet-left">
                     <div class="leaflet-control leaflet-control-layers">
-                      <button class="" v-on:click="centerMap()"><svg width="9.8265mm" height="9.8265mm" version="1.1" viewBox="0 0 9.8265 9.8265" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-154.92 -71.428)"><rect x="154.92" y="71.428" width="9.8265" height="9.8265" fill="transparent"/><g transform="matrix(.90179 0 0 .90179 170.41 131.3)"><path d="m-13.24-60.949-1.6667 1.6667-0.33329-0.33329 1.3334-1.3334-1.3334-1.3334 0.33329-0.33306z"/><path d="m-10.208-60.949 1.6667-1.6667 0.33329 0.33329-1.3334 1.3334 1.3334 1.3334-0.33329 0.33306z"/><circle cx="-11.724" cy="-60.949" r=".75"/></g></g></svg></button>
+                      <button class="" v-on:click="centerMap()" title="Center map"><svg width="9.8265mm" height="9.8265mm" version="1.1" viewBox="0 0 9.8265 9.8265" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-154.92 -71.428)"><rect x="154.92" y="71.428" width="9.8265" height="9.8265" fill="transparent"/><g transform="matrix(.90179 0 0 .90179 170.41 131.3)"><path d="m-13.24-60.949-1.6667 1.6667-0.33329-0.33329 1.3334-1.3334-1.3334-1.3334 0.33329-0.33306z"/><path d="m-10.208-60.949 1.6667-1.6667 0.33329 0.33329-1.3334 1.3334 1.3334 1.3334-0.33329 0.33306z"/><circle cx="-11.724" cy="-60.949" r=".75"/></g></g></svg></button>
                     </div>
                   </div>
                </l-map>
@@ -710,12 +710,11 @@ export default {
           */
           var baseMaps = {
               "Basemap": simple_basemap_pop_grey_layer,
-              "Basemap (dark)": simple_basemap_pop_yellow_layer,
-              "OpenStreetMap": openstreetmap_layer
+              "Basemap (dark)": simple_basemap_pop_yellow_layer
           };
 
 
-          L.control.layers(baseMaps).addTo(this.$refs.map.mapObject);
+          /* L.control.layers(baseMaps).addTo(this.$refs.map.mapObject); */
 
           this.mapobj.on('baselayerchange', function(e) {
             console.log('Changed to ' + e.name);

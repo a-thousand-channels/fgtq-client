@@ -45,7 +45,7 @@
         <h2 class="font-semibold pl-0 sm:pl-4 md:pl-16"><span v-if="data.title != data.layer[parseInt(layerindex)].title">{{data.title}}</span><span v-else><nuxt-link :to="{ path: '/'}">From Gay To Queer</nuxt-link></span> <span v-if="data.layer[parseInt(layerindex)]">— <span class="text-a100c-1">{{ data.layer[parseInt(layerindex)].title}}</span></span></h2>
       </li>
 
-      <li v-for="(place,index) in places" :id="'list-place-'+place.id" class="bg-a100c-white px-4 py-2 rounded shadow mt-4">
+      <li v-for="(place,index) in places" :id="'list-place-'+place.id" class="list-place bg-a100c-white px-4 py-2 rounded shadow mt-4 pt-4">
         <div v-swiper:[index]="getSwiperOptions(index)" class="md:px-12">
           <div class="swiper-wrapper" v-if="place.images">
             <div v-for="(image,iindex) in place.images" :key="iindex" class="swiper-slide px-0 pb-4 pt-2 sm:px-4 sm:pt-4">
