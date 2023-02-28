@@ -10,7 +10,7 @@
         Navigate with arrow keys:
         <button @click="navigate_left()" class="whitespace-nowrap rounded-lg pl-1 pr-2">
           <svg class="inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path class="text-red-300 fill-current"  d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z"/></svg>
-          Back
+          Left
         </button> |
         <button @click="navigate_top()" class="whitespace-nowrap rounded-lg pl-1 pr-2">
           <svg class="inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path class="text-red-300 fill-current" d="M12 10.828l-4.95 4.95-1.414-1.414L12 8l6.364 6.364-1.414 1.414z"/></svg>
@@ -18,7 +18,7 @@
         </button> |
         <button @click="navigate_right()" class="whitespace-nowrap rounded-lg pl-1 pr-2">
           <svg class="inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path class="text-red-300 fill-current"  d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"/></svg>
-          Forward
+          Right
         </button>
       </p>
     </div>
@@ -64,10 +64,13 @@ export default {
         // this.$router.push({ name: '/layer/' + this.slug, hash: to })
         location.hash = to;
       }
-    }
+    },
   },
   data() {
-    return {}
+    return {
+    }
+  },
+  created() {
   },
   computed: {
   },

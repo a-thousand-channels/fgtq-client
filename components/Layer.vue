@@ -396,7 +396,7 @@
       </div>
     </section>
 
-    <keys-navigation></keys-navigation>
+    <keys-navigation v-show="key_navigation_visible" ></keys-navigation>
   </div>
 </div>
 </template>
@@ -500,7 +500,8 @@ export default {
                 popupAnchor : [0, -28]
               });
             },
-        }
+        },
+        key_navigation_visible: true
       }
   },
   fetchOnServer: false,
@@ -861,6 +862,7 @@ export default {
     handleMapClick(e) {
       // toggleModal
       console.log("onclick");
+      this.key_navigation_visible = false;
       console.log(e.target.options.id);
       console.log(e.target.options.title);
       console.log(this.data);
