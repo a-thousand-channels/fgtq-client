@@ -105,6 +105,11 @@
     }
     #map #map_map {
       background-color: transparent;
+      box-shadow: 0 0 0 white;
+      border-color: rgba(255,255,255,0.2);
+    }
+    #map #map_map:hover {
+      border-color: rgba(255,255,255,0.6);
     }
     #map #map_map.dark {
       background-color: rgba(68, 68, 68,0.9);
@@ -199,18 +204,49 @@
       border-radius: 0;
       background-color: transparent;
       border: 2px solid white;
+      border-color: rgba(255,255,255,0);
+      transition: 1s all;
+
       line-height: 0;
       /* display:  none; */
+    }
+    #map_map:hover .leaflet-touch .leaflet-control-layers,
+    #map_map:hover .leaflet-touch .leaflet-bar {
+      border-color: rgba(255,255,255,0.65);
+      transition: 1s all;
+      color: #444;
+
     }
     #map_map .leaflet-touch .leaflet-control-attribution {
       display:  none;
     }
     #map_map .leaflet-control-zoom-in, .leaflet-control-zoom-out {
       background-color: transparent;
+      border: none;
     }
-    #map_map  .leaflet-bar a, #map_map  .leaflet-bar a:hover {
+    #map_map  .leaflet-bar a, #map_map .leaflet-bar a:hover {
       background-color: transparent;
-      border-bottom: 2px solid #fff;
+      color: rgba(250,250,250,0.45);
+      transition: 1s all;
+    }
+    #map_map:hover .leaflet-bar a, #map_map:hover .leaflet-bar a:hover {
+      background-color: transparent;
+      color: rgba(250,250,250,0.75);
+      transition: 1s all;
+    }
+    #map_map  .leaflet-control button svg path, #map_map .leaflet-control button:hover svg path,
+    #map_map  .leaflet-control button svg circle, #map_map .leaflet-control button:hover svg circle
+    {
+      background-color: transparent;
+      fill: rgba(250,250,250,0.45);
+      transition: 1s all;
+    }
+    #map_map:hover .leaflet-control button svg path, #map_map:hover .leaflet-control button:hover svg path,
+    #map_map:hover .leaflet-control button svg circle, #map_map:hover .leaflet-control button:hover svg circle
+    {
+      background-color: transparent;
+      fill: rgba(250,250,250,0.75);
+      transition: 1s all;
     }
     .leaflet-touch .leaflet-control-layers-toggle {
 
@@ -242,6 +278,8 @@
         position: absolute;
         padding: 3px 8px;
         background-color: rgba(252, 164, 148, 0.75);
+        background-color: rgba(252, 84, 128, 0.55);
+        background: linear-gradient(90deg, rgba(255,117,0,0.55) 0%, rgba(255,0,35,0.55) 50%, rgba(255,0,249,0.55) 100% );
         border: 0px solid #fff;
         border-radius: 0;
         color: #fff;
