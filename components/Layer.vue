@@ -122,9 +122,16 @@
       display: block;
     }
     #map .marker-cluster-small {
+      width: 35px;
+      height: 35px;
+      padding-top: 5px;
       background-color: rgba(200,100,100,0.5)
     }
-    #map .marker-cluster-small div {
+    #map .marker-cluster-small div.marker-cluster-inner {
+      width: 25px;
+      height: 25px;
+      margin-left: 5px;
+      margin-top: 0;
       background-color: rgba(170,100,100,0.5)
     }
     #list #list_inner {
@@ -370,24 +377,20 @@
                   <l-control-layers position="topright"></l-control-layers>
 
                   <l-marker-cluster
-                      v-for="(layer,lindex) in this.data.layer"
-                      :key="layer.id"
-                      :name="layer.title"
-                      :ref="layer.title"
                       :options="clusterOptions"
                   >
                       <l-circle-marker
-                        v-for="(place, index) in layer.places"
+                        v-for="(place, index) in this.places"
                         :key="'marker-' + index"
                         :lat-lng="[place.lat,place.lon]"
                         :radius="circle.radius"
                         :color="circle.color"
                         :stroke="circle.stroke"
-                        :fillColor="layer.color"
+                        :fillColor="place.color"
                         :fillOpacity="circle.fillopacity"
                         @click="handleMapClick"
                         :id="index"
-                        :options="{ title: 'marker-' + place.id, id: place.id, place_index: index, layer_index: lindex, layer_title: layer.title}"
+                        :options="{ title: 'marker-' + place.id, id: place.id, place_index: place.place_index, layer_index: place.layer_index, layer_title: place.layer_title}"
                       >
                         <l-tooltip :content="place.title" :options="{ permanent: false, sticky: false, direction: 'top' }" />
                       </l-circle-marker>
@@ -503,6 +506,7 @@ export default {
         dataobj: {},
         data: {},
         places: [],
+        all_places: [],
         places_with_relations: [],
         list_content: [],
         list_content_layer_title: '',
@@ -524,14 +528,15 @@ export default {
           fillopacity: 0.95
         },
         clusterOptions: {
-          maxClusterRadius: 20,
+          maxClusterRadius: 5,
+          zoomToBoundsOnClick: true,
           spiderfyOnMaxZoom: true,
           showCoverageOnHover: false,
-          spiderLegPolylineOptions: { weight: 0, color: '#efefef', opacity: 0.5 },
-          spiderfyDistanceMultiplier: 0.1,
+          spiderLegPolylineOptions: { weight: 5, color: '#c67d87', opacity: 0.7 },
+          spiderfyDistanceMultiplier: 0.05,
           iconCreateFunction: function(cluster) {
               return L.divIcon({
-                html: '<div class=\'marker-cluster marker-cluster-small marker-cluster-layer-1\'><div></div></div>',
+                html: '<div class=\'marker-cluster marker-cluster-small marker-cluster-layer-1\'><div class=\'marker-cluster-inner\'></div></div>',
                 className: 'leaflet-data-markercluster',
                 iconAnchor  : [15, 15],
                 iconSize    : [30, 30],
@@ -605,6 +610,7 @@ export default {
         this.places_with_relations.push(...layer.places_with_relations);
       });
       console.log("Map with "+this.places.length+" places")
+      console.log("and with "+this.data.layer.length+" layers")
 
       // TODO add state value to all places
       // add state value to all places
@@ -615,6 +621,10 @@ export default {
           } else {
             this.$set(layer.places[i], 'state', false)
           }
+          this.$set(layer.places[i], 'layer_id', layer.id)
+          this.$set(layer.places[i], 'layer_index', lkey)
+          this.$set(layer.places[i], 'place_index', i)
+          this.$set(layer.places[i], 'color', layer.color)
         }
       })
 
