@@ -765,6 +765,9 @@ export default {
                       var point1 = [Number(relation.from.lat), Number(relation.from.lon)];
                       var point2 = [Number(relation.to.lat), Number(relation.to.lon)];
 
+                      var length = this.$refs.map.mapObject.distance(point1, point2)/1000;
+                      console.log("length:: "+length)
+
 
                       var color = "hsl(" + Math.random() * 360 + ", 100%, 85%)";
                       // var color = clustercolor;
@@ -778,7 +781,7 @@ export default {
                               className: 'curve_normal curve_',
                               animate: false
                       }
-                      var controlpoint = this.calcControlPoint(point1,point2,5)
+                      var controlpoint = this.calcControlPoint(point1,point2,length)
 
                       var curvedPath = L.curve(
                         [
@@ -822,13 +825,13 @@ export default {
       var d = 2;
       // if transcontinental
       if ( distance_in_kms > 5000 ) {
-        d = 7
+        d = 3
       // if continental
       } else if ( distance_in_kms > 1000 ) {
-        d = 7
+        d = 5
       // if regional
       } else if ( distance_in_kms > 100 ) {
-        d = 7
+        d = 5
       // if local
       } else if ( distance_in_kms > 10 ) {
         d = 10
