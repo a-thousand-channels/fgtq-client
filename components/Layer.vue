@@ -132,7 +132,9 @@
       height: 25px;
       margin-left: 5px;
       margin-top: 0;
-      background-color: rgba(170,100,100,0.5)
+      background-color: rgb(255,0,249);
+      background-color: rgba(170,100,100,1);
+      /* background: linear-gradient(120deg,rgba(255,0,249,.95),rgba(255,117,0,.95) 50%,rgba(255,0,35,.95)); */
     }
     #list #list_inner {
       width: 97%;
@@ -654,6 +656,10 @@ export default {
         } else {
           this.$set(this.data.places[i], 'state', false)
         }
+        this.$set(this.data.places[i], 'layer_id', this.data.layer.id)
+        this.$set(this.data.places[i], 'layer_index', 0)
+        this.$set(this.data.places[i], 'place_index', i)
+        this.$set(this.data.places[i], 'color', this.data.color)
       }
     }
 
