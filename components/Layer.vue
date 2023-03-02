@@ -396,10 +396,11 @@
                         :stroke="circle.stroke"
                         :fillColor="place.color"
                         :fillOpacity="circle.fillopacity"
+                        :bubblingMouseEvents=false
                         @click="handleMarkerClick"
                         @mouseover="handleMarkerHover"
                         :id="index"
-                        :options="{ title: 'marker-' + place.id, id: place.id, place_index: place.place_index, layer_index: place.layer_index, layer_title: place.layer_title}"
+                        :options="{ title: 'marker-' + place.id, id: place.id, place_index: place.place_index, layer_index: place.layer_index, layer_title: place.layer_title }"
                       >
                         <l-tooltip :content="place.title" :options="{ permanent: false, sticky: false, direction: 'top' }" />
                       </l-circle-marker>
@@ -521,7 +522,7 @@ export default {
         list_content_layer_title: '',
         list_content_layer_index: 0,
         tooltip: {},
-        slug: this.$route.params.slug,
+        slug: this.$route.params.slug || '',
         metalevel: false,
         title: '',
         subtitle: '',
@@ -543,7 +544,7 @@ export default {
           spiderfyOnMaxZoom: true,
           showCoverageOnHover: false,
           spiderLegPolylineOptions: { weight: 5, color: '#c67d87', opacity: 0.7 },
-          spiderfyDistanceMultiplier: 0.05,
+          spiderfyDistanceMultiplier: 1,
           iconCreateFunction: function(cluster) {
               return L.divIcon({
                 html: '<div class=\'marker-cluster marker-cluster-small marker-cluster-layer-1\'><div class=\'marker-cluster-inner\'></div></div>',
@@ -665,7 +666,8 @@ export default {
         } else {
           this.$set(this.data.places[i], 'state', false)
         }
-        this.$set(this.data.places[i], 'layer_id', this.data.layer.id)
+        // disabled, since it destroys the see also function at list.vue, t.b.c.
+        // this.$set(this.data.places[i], 'layer_id', this.data.layer.id)
         this.$set(this.data.places[i], 'layer_index', 0)
         this.$set(this.data.places[i], 'place_index', i)
         this.$set(this.data.places[i], 'color', this.data.color)
@@ -685,11 +687,9 @@ export default {
         console.log("Check for data.layer w/"+this.data.layer.length+ " layer(s)")
         if ( this.metalevel ) {
 
-          // this.drawCurves();
-          // set markerclustercolor
+          this.drawCurves();
         } else {
           this.drawCurves();
-
           // set divicon cluster color per layer color
           this.markerClusterInnerColor = this.data.color
         }
@@ -792,8 +792,8 @@ export default {
                       }
                       var pathOptions = {
                               color: color,
-                              weight: 5,
-                              opacity: 0.75,
+                              weight: 6,
+                              opacity: 0.25,
                               className: 'curve_normal curve_',
                               animate: false
                       }
@@ -953,11 +953,8 @@ export default {
         var clicked_place = this.places.find( place => place.id === e.target.options.id )
         var clicked_place_index = this.places.findIndex( place => place.id === e.target.options.id )
 
-        console.log("Clicked place: "+clicked_place.title)
-        console.log("Clicked place ID: "+clicked_place.id)
-        console.log("Clicked place index: "+e.target.options.place_index)
-        console.log("Clicked layer title: "+e.target.options.layer_title)
-        console.log("Clicked layer index: "+e.target.options.layer_index)
+        console.log("Clicked place: "+clicked_place.title+" :: place ID: "+clicked_place.id+" :: index: "+e.target.options.place_index)
+        console.log("Clicked layer title: "+e.target.options.layer_title+" :: index (via target.options): "+e.target.options.layer_index)
         // show modal
         this.places[clicked_place_index].state = !this.places[clicked_place_index].state;
         this.data.state = true;
@@ -969,7 +966,7 @@ export default {
         this.list_content.push(this.places[clicked_place_index])
         this.list_content_layer_title = e.target.options.layer_title
         this.list_content_layer_index = parseInt(e.target.options.layer_index)
-        console.log("Clicked layer index: "+this.list_content_layer_index)
+        console.log("Clicked layer index (via list): "+this.list_content_layer_index)
 
 
       }
