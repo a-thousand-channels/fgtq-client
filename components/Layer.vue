@@ -125,7 +125,8 @@
       width: 35px;
       height: 35px;
       padding-top: 5px;
-      background-color: rgba(200,100,100,0.5)
+      background-color: rgba(200,100,100,0.5);
+      background-color: rgba(100,100,100,0)
     }
     #map .marker-cluster-small div.marker-cluster-inner {
       width: 25px;
@@ -134,7 +135,7 @@
       margin-top: 0;
       background-color: rgb(255,0,249);
       background-color: rgba(170,100,100,1);
-      /* background: linear-gradient(120deg,rgba(255,0,249,.95),rgba(255,117,0,.95) 50%,rgba(255,0,35,.95)); */
+      background-color: var(--markercluster-inner-color)
     }
     #list #list_inner {
       width: 97%;
@@ -314,6 +315,11 @@
 
 <template>
 <div id="page">
+   <style>
+    :root {
+      --markercluster-inner-color: {{ markerClusterInnerColor }};
+    }
+  </style>
   <div id="page_inner" class="flex a1000c-horizontal" ref="scroll_container">
     <section ref="info" id="info" class="flex items-stretch min-h-screen max-h-screen bg-a100c-1 sm:pt-0 sm:pb-8">
       <div class="content flex items-top overflow-x-auto">
@@ -390,7 +396,8 @@
                         :stroke="circle.stroke"
                         :fillColor="place.color"
                         :fillOpacity="circle.fillopacity"
-                        @click="handleMapClick"
+                        @click="handleMarkerClick"
+                        @mouseover="handleMarkerHover"
                         :id="index"
                         :options="{ title: 'marker-' + place.id, id: place.id, place_index: place.place_index, layer_index: place.layer_index, layer_title: place.layer_title}"
                       >
@@ -529,6 +536,7 @@ export default {
           fillcolor: 'rgba(242, 71, 38, 1)',
           fillopacity: 0.95
         },
+        markerClusterInnerColor: '#cc0000',
         clusterOptions: {
           maxClusterRadius: 5,
           zoomToBoundsOnClick: true,
@@ -672,11 +680,21 @@ export default {
       } else {
         console.log("afterFetch: NO fitBounds w/"+this.places.length)
       }
-      if ( this.data.layer && !this.metalevel ) {
+      if ( this.data.layer ) {
         console.log("Check for data.layer w/"+this.data.layer.length+ " layer(s)")
-        this.drawCurves();
+        if ( this.metalevel ) {
+
+          // this.drawCurves();
+          // set markerclustercolor
+        } else {
+          this.drawCurves();
+
+          // set divicon cluster color per layer color
+          this.markerClusterInnerColor = this.data.color
+        }
       }
     }
+
 
     this.$set(this.data, 'state', false)
 
