@@ -578,6 +578,7 @@ export default {
       }
     } else  {
       this.metalevel = true
+      localStorage.setItem('layer', '')
     }
     /* first case: layer is defined via URL like ?layer=URL */
     if (this.$route.query.layer ) {
@@ -608,7 +609,7 @@ export default {
     this.dataobj = await axios.get(this.data_url).then(response =>
       response.data
     )
-    console.log('... fetch success')
+    console.log('Fetch success ...')
 
 
     // check if its a map
@@ -722,7 +723,7 @@ export default {
         if ( (this.data) && (this.places) && (this.$refs.map) ) {
           if ( this.places.length > 0 ) {
             // use bremen as center for ever :)
-            // console.log("onMapReady: fitBounds w/"+this.places.length)
+            console.log("onMapReady: fitBounds w/"+this.places.length)
             // this.$refs.map.mapObject.fitBounds(this.places.map(m => { return [m.lat, m.lon] }))
           } else {
             console.log("onMapReady: NO fitBounds w/"+this.places.length)
@@ -761,7 +762,7 @@ export default {
             }
           });
           if ( this.data.layer ) {
-            console.log("Check for data.layer w/"+this.data.layer.length+ " layer(s)")
+            // console.log("Check for data.layer w/"+this.data.layer.length+ " layer(s)")
             // this.drawCurves();
           }
 
@@ -784,9 +785,6 @@ export default {
                       var point2 = [Number(relation.to.lat), Number(relation.to.lon)];
 
                       var length = this.$refs.map.mapObject.distance(point1, point2)/1000;
-                      console.log("length:: "+length)
-
-
                       var color = "hsl(" + Math.random() * 360 + ", 100%, 85%)";
                       // var color = clustercolor;
                       if ( layer.color ) {
@@ -824,7 +822,7 @@ export default {
                         });
                         if ( relation.from.layer_id != relation.to.layer_id) {
 
-                          // TODO: add @click="handleMapClick"
+                          // TODO: add @click="handleMarkerClick"
                            var endpoint2_marker = L.marker(point2, {icon: divIcon}).bindTooltip(relation.to.title, {
                             permanent: 'false',
                             direction: 'top'
@@ -895,9 +893,8 @@ export default {
         this.$router.push({ path: '/layer/' + this.slug, hash: this.$route.hash })
         location.hash = this.$route.hash;
       } else {
-        console.log(this.slug)
         if ( this.slug && ( this.slug !== 'undefined')) {
-          console.log('slug seems valid')
+          console.log('Slug '+this.slug+' seems known')
           // this.$router.push({ path: '/layer/' + this.slug, hash: '#map' })
         }
         location.hash = '#map';
@@ -933,7 +930,13 @@ export default {
         location.hash = to;
       }
     },
-    handleMapClick(e) {
+    handleMarkerHover(e) {
+      console.log("onmouseover");
+      console.log(e.target.options.id);
+      console.log(e.target.options.title);
+      console.log(this.data);
+    },
+    handleMarkerClick(e) {
       // toggleModal
       console.log("onclick");
       this.key_navigation_visible = false;
@@ -957,7 +960,6 @@ export default {
         console.log("Clicked layer index: "+e.target.options.layer_index)
         // show modal
         this.places[clicked_place_index].state = !this.places[clicked_place_index].state;
-        console.log("this.data.state: "+this.data.state)
         this.data.state = true;
 
 
