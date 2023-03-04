@@ -857,11 +857,8 @@ export default {
       } else if ( distance_in_kms > 1 ) {
         d = 120
       } else if ( distance_in_kms <= 1 ) {
-        d = 1600 // sic!
-      } else if ( distance_in_kms < 0.1 ) {
-        // none;
+        d = 8000 // sic!
       }
-
 
       var offsetX = point2[1] - point1[1],
       offsetY = point2[0] - point1[0];

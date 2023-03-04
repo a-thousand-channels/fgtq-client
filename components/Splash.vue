@@ -97,7 +97,7 @@
               Select a map ...
             </option>
             <option value="" class="text-lg py-1">
-              Alle Layer
+              All layers combined
             </option>
             <option v-for="layer in layers" :value="layer.slug" class="text-lg py-1">
                 {{layer.title}}
