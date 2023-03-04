@@ -64,7 +64,7 @@
             <div tabindex="1" :class="`swiper-button-next swiper-button-next${index}`" role="button"></div>
           </div>
         </div>
-        <h3 class="font-semibold text-lg px-4 py-2 sm:px-16 sm:pt-6">{{ place.title }}</h3>
+        <h3 class="font-semibold text-lg px-4 py-2 mt-4 sm:mt-4 ml-4 sm:ml-8 sm:px-16 sm:pt-6 rounded">{{ place.title }}</h3>
         <div class="text-gray-800 px-4 md:text-lg sm:px-16 sm:py-3 lg:max-w-3xl teaser-block" v-html="place.teaser"></div>
         <div :id="'list-audio-'+place.id" class="player-wrapper px-4 sm:px-16 sm:py-3" v-if="place.audiolink" v-html="place.audiolink">
         </div>

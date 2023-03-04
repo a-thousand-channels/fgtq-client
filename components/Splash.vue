@@ -144,7 +144,7 @@ export default {
       custom_data_url: '',
       slug: '',
       layers_json_url: '',
-      disabled: true
+      disabled: false
     }
   },
   mounted: function() {
