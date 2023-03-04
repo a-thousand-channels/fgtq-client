@@ -109,7 +109,7 @@
         </div>
         <footer class="flex pt-8 pb-4 lg:max-w-3xl pl-4 md:pl-16 lg:pl-14 pr-4 md:pr-12 lg:pr-4">
           <p class="flex-auto text-gray-500 px-0 py-2">
-            <button @click="recenterMap(place.lat,place.lon,index)" class="text-link2">
+            <button @click="recenterMap(place.id,place.lat,place.lon)" class="text-link2">
               <svg class="inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path class="text-red-300 fill-current"  d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z"/></svg>
               Show on the map
             </button>
@@ -160,11 +160,25 @@ export default {
   components: {
   },
   methods: {
-    recenterMap(lat,lon,index) {
+    recenterMap(id,lat,lon) {
       this.$nextTick(() => {
-        console.log("recenter map to "+ lat +"/"+lon);
+        console.log("Recenter map to "+ lat +"/"+lon);
         this.$router.push({ path: '/layer/' + this.slug, hash: '#map' });
         this.map.flyTo([lat,lon],17);
+        /* nice, but with this, the tooltip remains permanent :( */
+        /*
+        this.map.eachLayer(function(l) {
+          if (l.getTooltip()) {
+            console.log(l.options.id)
+            if ( l.options.id === id ) {
+              var tooltip = l.getTooltip();
+              l.unbindTooltip().bindTooltip(tooltip, {
+                  permanent: false
+              })
+            }
+          }
+        });
+        */
       })
     },
     scrollToTop() {
