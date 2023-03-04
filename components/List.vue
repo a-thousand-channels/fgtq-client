@@ -182,7 +182,6 @@ export default {
       this.$router.push({ path: '/layer/' + slug, hash: '#list', query: { place_id: "list-place-"+id }});
     },
     returnLayerTitle(layer_id) {
-      console.log(layer_id)
       var layers = this.layers
       var title = ''
       Object.keys(layers).forEach(function(index ) {
@@ -191,7 +190,6 @@ export default {
       return title
     },
     returnLayerSlug(layer_id) {
-      console.log(layer_id)
       var layers = this.layers
       var slug = ''
       Object.keys(layers).forEach(function(index ) {

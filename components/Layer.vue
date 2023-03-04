@@ -527,7 +527,7 @@ export default {
         title: '',
         subtitle: '',
         data_url: '',
-        default_data_url: 'https://orte.link/public/maps/from-gay-to-queer.json',
+        default_data_url: 'https://orte-backend.a-thousand-channels.xyz/public/maps/from-gay-to-queer.json',
         custom_data_url: '',
         mapcenter: [53.075878, 8.807311],
         mapzoom: 12,
@@ -621,8 +621,7 @@ export default {
         this.places.push(...layer.places);
         this.places_with_relations.push(...layer.places_with_relations);
       });
-      console.log("Map with "+this.places.length+" places")
-      console.log("and with "+this.data.layer.length+" layers")
+      console.log("Map with "+this.places.length+" places and "+this.data.layer.length+" layers")
 
       // TODO add state value to all places
       // add state value to all places
@@ -684,7 +683,7 @@ export default {
         console.log("afterFetch: NO fitBounds w/"+this.places.length)
       }
       if ( this.data.layer ) {
-        console.log("Check for data.layer w/"+this.data.layer.length+ " layer(s)")
+        console.log("Check for data.layer w/"+this.data.layer.length+ " layer(s). Call drawCurves")
         if ( this.metalevel ) {
 
           this.drawCurves();
@@ -698,6 +697,7 @@ export default {
 
 
     this.$set(this.data, 'state', false)
+    console.log('Fetch ready...')
 
     // exposes $fetchState with .pending and .error
     // TODO: For static hosting , the fetch hook is only called during page generation!!
@@ -967,8 +967,6 @@ export default {
         this.list_content_layer_title = e.target.options.layer_title
         this.list_content_layer_index = parseInt(e.target.options.layer_index)
         console.log("Clicked layer index (via list): "+this.list_content_layer_index)
-
-
       }
     }
   },
