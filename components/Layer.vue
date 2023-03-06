@@ -320,12 +320,18 @@
       --markercluster-inner-color: {{ markerClusterInnerColor }};
     }
   </style>
+
+  <div v-if="$fetchState.pending" class="z-50 flex h-screen w-screen absolute items-center justify-center flex-col text-sm text-red-300">
+    <p class="block">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path fill="rgba(253, 164, 175, 1)" d="M12 2a1 1 0 0 1 1 1v3a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm0 15a1 1 0 0 1 1 1v3a1 1 0 0 1-2 0v-3a1 1 0 0 1 1-1zm10-5a1 1 0 0 1-1 1h-3a1 1 0 0 1 0-2h3a1 1 0 0 1 1 1zM7 12a1 1 0 0 1-1 1H3a1 1 0 0 1 0-2h3a1 1 0 0 1 1 1zm12.071 7.071a1 1 0 0 1-1.414 0l-2.121-2.121a1 1 0 0 1 1.414-1.414l2.121 2.12a1 1 0 0 1 0 1.415zM8.464 8.464a1 1 0 0 1-1.414 0L4.93 6.344a1 1 0 0 1 1.414-1.415L8.464 7.05a1 1 0 0 1 0 1.414zM4.93 19.071a1 1 0 0 1 0-1.414l2.121-2.121a1 1 0 1 1 1.414 1.414l-2.12 2.121a1 1 0 0 1-1.415 0zM15.536 8.464a1 1 0 0 1 0-1.414l2.12-2.121a1 1 0 0 1 1.415 1.414L16.95 8.464a1 1 0 0 1-1.414 0z"/></svg></p>
+    <p>Loading places …</p>
+  </div>
   <div id="page_inner" class="flex a1000c-horizontal" ref="scroll_container">
     <section ref="info" id="info" class="flex items-stretch min-h-screen max-h-screen bg-a100c-1 sm:pt-0 sm:pb-8">
       <div class="content flex items-top overflow-x-auto">
         <div id="info_inner" class="bg-opacity-30 my-4 mx-5">
-          <p v-if="$fetchState.pending" class="text-sm text-red-300">Loading...</p>
-          <p v-else-if="$fetchState.error" class="text-sm text-red-300">Please wait ...</p>
+          <p v-if="$fetchState.pending" class="text-sm text-red-300">Loading …</p>
+          <p v-else-if="$fetchState.error" class="text-sm text-red-300">Please wait …</p>
           <div v-else>
             <info :data="this.data"></info>
           </div>
@@ -348,8 +354,8 @@
 
       <div class="content items-center justify-center">
         <div id="map_header" class="block">
-          <p v-if="$fetchState.pending" class="text-sm text-red-300">Fetching places...</p>
-          <p v-else-if="$fetchState.error" class="text-sm text-red-300">Please wait ...</p>
+          <p v-if="$fetchState.pending" class="text-sm text-red-300">Loading places …</p>
+          <p v-else-if="$fetchState.error" class="text-sm text-red-300">Please wait …</p>
           <div v-else>
             <p id="map_header_content" class="text-sm text-red-300">
               <nuxt-link :to="{ path: '/'}" class="text-red-300">From Gay To Queer</nuxt-link>
@@ -438,8 +444,8 @@
       </div>
       <div id="list_content" class="content flex items-top overflow-x-auto pb-10">
           <div id="list_inner" class="bg-opacity-30 my-0 mx-0 mr-6 sm:my-4 sm:mx-5">
-            <p v-if="$fetchState.pending" class="text-sm text-red-300">Loading...</p>
-            <p v-else-if="$fetchState.error" class="text-sm text-red-300">An error occurred :(</p>
+            <p v-if="$fetchState.pending" class="text-sm text-red-300">Loading …</p>
+            <p v-else-if="$fetchState.error" class="text-sm text-red-300">Please wait</p>
             <div v-else>
               <list :places="this.list_content" :places_with_relations="this.places_with_relations" :layerindex="this.list_content_layer_index" :data="this.data" :map="this.mapobj" :layers="layers"></list>
             </div>

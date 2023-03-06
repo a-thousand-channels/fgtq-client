@@ -79,7 +79,7 @@ export default {
   created() {
     this.$nextTick(() => {
       /* not called (yet). tbc */
-      console.log('updated :: Check label and label display w/'+this.$route.hash)
+      // console.log('updated :: Check label and label display w/'+this.$route.hash)
       if ( this.$route.hash == '#map' ) {
           this.label_right = 'Listing'
           this.label_left = 'Info'
