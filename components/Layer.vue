@@ -411,6 +411,25 @@
                         <l-tooltip :content="place.title" :options="{ permanent: false, sticky: false, direction: 'top' }" />
                       </l-circle-marker>
 
+                      <span v-for="(place, index) in this.places_with_relations">
+                        <l-circle-marker
+                          v-for="(relation, iindex) in place.relations"
+                          v-if="relation.to.lat && ( relation.to.layer_id != relation.from.layer_id )"
+                          :key="'marker-relation-' + index + '-' + iindex"
+                          :lat-lng="[relation.to.lat,relation.to.lon]"
+                          :radius="circle.radius"
+                          :color="circle.color"
+                          :stroke="circle.stroke"
+                          :fillColor="outsideMarkerColor"
+                          :fillOpacity="circle.fillopacity"
+                          :bubblingMouseEvents=false
+                          :id="iindex"
+                          :options="{ title: 'marker-relation' + relation.to.id, id: relation.to.id, place_index: relation.to.place_index, layer_index: relation.to.layer_index, layer_title: relation.to.layer_title }"
+                        >
+                          <l-tooltip :content="relation.to.title" :options="{ permanent: false, sticky: false, direction: 'top' }" />
+                        </l-circle-marker>
+                      </span>
+
                   </l-marker-cluster>
 
                   <div class="leaflet-bottom leaflet-left">
@@ -543,6 +562,7 @@ export default {
           fillcolor: 'rgba(242, 71, 38, 1)',
           fillopacity: 0.95
         },
+        outsideMarkerColor: "rgb(186, 185, 185)",
         markerClusterInnerColor: '#cc0000',
         clusterOptions: {
           maxClusterRadius: 5,
@@ -661,6 +681,7 @@ export default {
       console.log("Data for a map with " + this.data.layer.length + " accessible layer")
       this.places = this.data.places
       this.places_with_relations = this.data.places_with_relations
+      console.log(this.places_with_relations)
       this.list_content = this.data.places
       console.log("Layer Map with "+this.places.length+" places and "+this.places_with_relations.length+" Relations")
 
@@ -785,7 +806,7 @@ export default {
 
                   place.relations.forEach ((relation, kkey) => {
 
-                    if ( relation.from.layer_id == relation.to.layer_id) {
+                    // if ( relation.from.layer_id == relation.to.layer_id) {
 
                       var point1 = [Number(relation.from.lat), Number(relation.from.lon)];
                       var point2 = [Number(relation.to.lat), Number(relation.to.lon)];
@@ -830,12 +851,13 @@ export default {
 
                           // TODO: add @click="handleMarkerClick"
                            var endpoint2_marker = L.marker(point2, {icon: divIcon}).bindTooltip(relation.to.title, {
-                            permanent: 'false',
+                            permanent: false,
                             direction: 'top'
-                          }).addTo(curves_layer);
+                          }); //.on('click', this.handleMarkerClick).addTo(curves_layer);
+                           /* this is not reactive... handle endpoint marker in l-map object */
 
                         }
-                      }
+                      // }
                   });
                 });
               }
@@ -937,7 +959,7 @@ export default {
       console.log("onmouseover");
       console.log(e.target.options.id);
       console.log(e.target.options.title);
-      console.log(this.data);
+      // console.log(this.data);
     },
     handleMarkerClick(e) {
       // toggleModal
@@ -945,7 +967,7 @@ export default {
       this.key_navigation_visible = false;
       console.log(e.target.options.id);
       console.log(e.target.options.title);
-      console.log(this.data);
+      // console.log(this.data);
 
       if ( e.target.options.title ) {
 
@@ -954,22 +976,32 @@ export default {
             this.$set(this.places[i], 'state', false)
         }
         var clicked_place = this.places.find( place => place.id === e.target.options.id )
-        var clicked_place_index = this.places.findIndex( place => place.id === e.target.options.id )
 
-        console.log("Clicked place: "+clicked_place.title+" :: place ID: "+clicked_place.id+" :: index: "+e.target.options.place_index)
-        console.log("Clicked layer title: "+e.target.options.layer_title+" :: index (via target.options): "+e.target.options.layer_index)
-        // show modal
-        this.places[clicked_place_index].state = !this.places[clicked_place_index].state;
-        this.data.state = true;
+        if ( clicked_place ) {
+
+          var clicked_place_index = this.places.findIndex( place => place.id === e.target.options.id )
+
+          console.log("Clicked place: "+clicked_place.title+" :: place ID: "+clicked_place.id+" :: index: "+e.target.options.place_index)
+          console.log("Clicked layer title: "+e.target.options.layer_title+" :: index (via target.options): "+e.target.options.layer_index)
+          // show modal
+          this.places[clicked_place_index].state = !this.places[clicked_place_index].state;
+          this.data.state = true;
 
 
-        this.data.layer[parseInt(e.target.options.layer_index)].places[parseInt(e.target.options.place_index)].state = !this.data.layer[parseInt(e.target.options.layer_index)].places[parseInt(e.target.options.place_index)].state.state;
-        // if in map mode: show place content in the list view!
-        this.list_content = []
-        this.list_content.push(this.places[clicked_place_index])
-        this.list_content_layer_title = e.target.options.layer_title
-        this.list_content_layer_index = parseInt(e.target.options.layer_index)
-        console.log("Clicked layer index (via list): "+this.list_content_layer_index)
+          this.data.layer[parseInt(e.target.options.layer_index)].places[parseInt(e.target.options.place_index)].state = !this.data.layer[parseInt(e.target.options.layer_index)].places[parseInt(e.target.options.place_index)].state.state;
+          // if in map mode: show place content in the list view!
+          this.list_content = []
+          this.list_content.push(this.places[clicked_place_index])
+          this.list_content_layer_title = e.target.options.layer_title
+          this.list_content_layer_index = parseInt(e.target.options.layer_index)
+          console.log("Clicked layer index (via list): "+this.list_content_layer_index)
+        } else {
+          console.log('Place from a different layer');
+          // to proceed, we'd need more other_layer infos, like title...
+          // for tooltip: Layer.title + Place.title
+          // for linking, call modal: modal must be generated OR
+          // deep link to other layer and focus on this place!
+        }
       }
     }
   },
