@@ -137,6 +137,17 @@
       background-color: rgba(170,100,100,1);
       background-color: var(--markercluster-inner-color)
     }
+    #map .curve_normal {
+      stroke-width: 3;
+      stroke-opacity: 0.25;
+      transition: 0.25s all;
+    }
+    #map .curve_normal_active {
+      stroke-width: 4 !important;
+      stroke-opacity: 1;
+      stroke: 'red';
+      transition: 0.25s all;
+    }
     #list #list_inner {
       width: 97%;
     }
@@ -821,7 +832,7 @@ export default {
                               color: color,
                               weight: 6,
                               opacity: 0.25,
-                              className: 'curve_normal curve_',
+                              className: 'curve_normal curve_'+relation.from.id+' curve_'+relation.to.id,
                               animate: false
                       }
                       var controlpoint = this.calcControlPoint(point1,point2,length)
@@ -959,7 +970,20 @@ export default {
       console.log("onmouseover");
       console.log(e.target.options.id);
       console.log(e.target.options.title);
-      // console.log(this.data);
+      let all_curves = document.getElementsByClassName('curve_normal');
+      Array.prototype.forEach.call(all_curves, function(element) {
+        element.classList.remove('curve_normal_active');
+        element.style.strokeWidth = 3;
+        element.style.strokeOpacity = 0.25;
+      });
+      let el = document.getElementsByClassName('curve_'+e.target.options.id);
+      console.log(el);
+      if ( el.length > 0 ) {
+        el[0].classList.add('curve_normal_active');
+        el[0].style.strokeWidth = 4;
+        el[0].style.strokeOpacity = 0.75;
+      }
+
     },
     handleMarkerClick(e) {
       // toggleModal
