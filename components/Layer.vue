@@ -161,11 +161,13 @@
       background: rgb(255,0,249);
       background: linear-gradient(90deg, rgba(255,0,249,0.15) 0%, rgba(255,117,0,0.15) 50%, rgba(255,0,35,0.15) 100%);
       background: linear-gradient(90deg, rgba(255,0,249,0.20) 0%, rgba(255,117,0,0.30) 50%, rgba(255,0,35,0.20) 100%);
+      background: linear-gradient(90deg, rgba(92,62,43,0.9) 0%, rgba(92,57,84,0.9) 50%, rgba(92,56,62,0.95) 100%);
    }
    .bg-a100c-2 {
       background: rgb(255,0,249);
       background: linear-gradient(90deg, rgba(255,0,35,0.15) 0%, rgba(255,0,249,0.15) 50%, rgba(255,117,0,0.15) 100% );
       background: linear-gradient(90deg, rgba(255,0,35,0.20) 0%, rgba(255,0,249,0.20) 50%, rgba(255,117,0,0.30) 100% );
+      background: linear-gradient(90deg, rgba(92,56,62,0.95) 0%, rgba(92,57,84,0.9) 50%, rgba(92,62,43,0.9) 100%);
    }
    .bg-a100c-img {
       background-image: url(~/assets/client-splash-background-light.jpg);
@@ -175,6 +177,7 @@
       background: rgb(255,0,249);
       background: linear-gradient(90deg, rgba(255,117,0,0.15) 0%, rgba(255,0,35,0.15) 50%, rgba(255,0,249,0.15) 100% );
       background: linear-gradient(90deg, rgba(255,117,0,0.30) 0%, rgba(255,0,35,0.20) 50%, rgba(255,0,249,0.20) 100% );
+      background: linear-gradient(90deg, rgba(92,62,43,0.9) 0%, rgba(92,57,84,0.9) 50%, rgba(92,56,62,0.95) 100%);
    }
    .bg-a100c-3-text {
       background: rgb(255,0,249);
@@ -322,10 +325,21 @@
       @apply border-solid border-2 border-transparent
     }
 
+    /* darkmode */
+    #page.darkmode h3, #page.darkmode h4, #page.darkmode p, #page.darkmode button, #page.darkmode a,
+    #page.darkmode .text-gray-800 {
+      color: rgba(255,255,255,0.9);
+    }
+    #page.darkmode .bg-red-100 {
+      background-color: rgba(55, 55, 55, 0.3);
+   }    #map #map_map:hover {
+      border-color: rgba(255,255,255,0.6);
+    }
+
 </style>
 
 <template>
-<div id="page">
+<div id="page" class="darkmode">
    <style>
     :root {
       --markercluster-inner-color: {{ markerClusterInnerColor }};

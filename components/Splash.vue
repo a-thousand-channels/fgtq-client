@@ -36,6 +36,20 @@
    }
    .bg-a100c-white {
       background-color: rgba(255,255,255,0.8);
+      background-color: rgba(55,55,55,0.4) ;
+   }
+       /* darkmode */
+    #page.darkmode .bg-a100c-1-splash {
+      background: rgb(255,0,249);
+      background: linear-gradient(90deg, rgba(255,0,249,0.25) 0%, rgba(255,117,0,0.35) 50%, rgba(255,0,35,0.25) 100%);
+      background-image: url(~/assets/client-splash-background-dark.jpg);
+      background-size: cover;
+   }
+    #page.darkmode .bg-a100c-white {
+      background-color: rgba(55,55,55,0.4) ;
+   }
+   #page.darkmode h2 {
+      color: rgba(255,255,255,0.8);
    }
    .text-a100c-1 {
       color: #ff6d6d;
@@ -79,7 +93,7 @@
 </style>
 
 <template>
-<div id="page">
+<div id="page" class="darkmode">
   <div class="relative flex overflow-x-auto items-top justify-center min-h-screen bg-pink-100 bg-a100c-1-splash sm:items-center sm:pt-0">
     <div class="max-w-4xl mx-auto sm:px-6 lg:px-12">
       <div class="flex justify-center sm:mt-8 sm:pt-0">
