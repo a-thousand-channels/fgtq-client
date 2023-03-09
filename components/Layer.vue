@@ -237,6 +237,7 @@
     #map_map:hover .leaflet-touch .leaflet-control-layers,
     #map_map:hover .leaflet-touch .leaflet-bar {
       border-color: rgba(255,255,255,0.65);
+      border-color: rgba(255,255,255,0.15);
       transition: 1s all;
       color: #444;
 
@@ -332,8 +333,9 @@
     }
     #page.darkmode .bg-red-100 {
       background-color: rgba(55, 55, 55, 0.3);
-   }    #map #map_map:hover {
-      border-color: rgba(255,255,255,0.6);
+   }
+   #page.darkmode #map_map:hover {
+      border-color: rgba(255,255,255,0.2);
     }
 
 </style>
@@ -384,8 +386,10 @@
           <div v-else>
             <p id="map_header_content" class="text-sm text-red-300">
               <nuxt-link :to="{ path: '/'}" class="text-red-300">From Gay To Queer</nuxt-link>
-              —
-              <nuxt-link :to="{ path: '/layer/' + this.slug, hash: 'info'}">{{ this.data.title }}</nuxt-link>
+              <span v-if="this.slug">
+                —
+                <nuxt-link :to="{ path: '/layer/' + this.slug, hash: 'info'}">{{ this.data.title }}</nuxt-link>
+              </span>
             </p>
           </div>
           <p>

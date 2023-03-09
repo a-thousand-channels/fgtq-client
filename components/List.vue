@@ -27,12 +27,14 @@
   <div class="">
     <ul class="pb-10">
       <li v-if="places.length == 0" class="bg-a100c-white px-4 py-2 rounded shadow mt-4">
-        <svg class="inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path fill="none" d="M0 0h24v24H0z"/><path d="M14.935 7.204l-6-3L4 6.319v12.648l5.065-2.17 6 3L20 17.68V5.033l-5.065 2.17zM2 5l7-3 6 3 6.303-2.701a.5.5 0 0 1 .697.46V19l-7 3-6-3-6.303 2.701a.5.5 0 0 1-.697-.46V5zm4 6h2v2H6v-2zm4 0h2v2h-2v-2zm5.998-.063L17.236 9.7l1.06 1.06-1.237 1.238 1.237 1.238-1.06 1.06-1.238-1.237-1.237 1.237-1.061-1.06 1.237-1.238-1.237-1.237L14.76 9.7l1.238 1.237z"/></svg>
-        Please go left to see
-        <nuxt-link :to="{ name: '/layer/' + this.slug, hash:'map'}" class="text-link">
-          our map
-        </nuxt-link>
-        and select a place or layer to see more details here.
+        <p>
+          <svg class="inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path fill="none" d="M0 0h24v24H0z"/><path d="M14.935 7.204l-6-3L4 6.319v12.648l5.065-2.17 6 3L20 17.68V5.033l-5.065 2.17zM2 5l7-3 6 3 6.303-2.701a.5.5 0 0 1 .697.46V19l-7 3-6-3-6.303 2.701a.5.5 0 0 1-.697-.46V5zm4 6h2v2H6v-2zm4 0h2v2h-2v-2zm5.998-.063L17.236 9.7l1.06 1.06-1.237 1.238 1.237 1.238-1.06 1.06-1.238-1.237-1.237 1.237-1.061-1.06 1.237-1.238-1.237-1.237L14.76 9.7l1.238 1.237z"/></svg>
+          Please go left to see
+          <nuxt-link :to="{ name: '/layer/' + this.slug, hash:'map'}" class="text-link">
+            our map
+          </nuxt-link>
+          and select a place or layer to see more details here.
+        </p>
       </li>
       <li v-if="!places" class="bg-a100c-white px-4 py-2 rounded shadow mt-4">
         <svg class="inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path fill="none" d="M0 0h24v24H0z"/><path d="M15 4H5v16h14V8h-4V4zM3 2.992C3 2.444 3.447 2 3.999 2H16l5 5v13.993A1 1 0 0 1 20.007 22H3.993A1 1 0 0 1 3 21.008V2.992zM11 11h2v6h-2v-6zm0-4h2v2h-2V7z"/></svg> Or check the
@@ -41,6 +43,7 @@
         </nuxt-link>
         to learn more about this map :)
       </li>
+      <li v-if="!this.slug"></li>
       <li v-else class="bg-a100c-white px-4 py-2 rounded shadow mt-4 ">
         <h2 class="font-semibold pl-0 sm:pl-4 md:pl-16"><span v-if="data.title != data.layer[parseInt(layerindex)].title">{{data.title}}</span><span v-else><nuxt-link :to="{ path: '/'}">From Gay To Queer</nuxt-link></span> <span v-if="data.layer[parseInt(layerindex)]">— <span class="text-a100c-1">{{ data.layer[parseInt(layerindex)].title}}</span></span></h2>
       </li>
@@ -231,7 +234,7 @@ export default {
   },
   data() {
     return {
-      slug: this.$route.params.slug || 'thomas-b'
+      slug: this.$route.params.slug || ''
     }
   },
   computed: {
