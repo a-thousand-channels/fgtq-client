@@ -168,6 +168,8 @@
       background: linear-gradient(90deg, rgba(255,0,35,0.15) 0%, rgba(255,0,249,0.15) 50%, rgba(255,117,0,0.15) 100% );
       background: linear-gradient(90deg, rgba(255,0,35,0.20) 0%, rgba(255,0,249,0.20) 50%, rgba(255,117,0,0.30) 100% );
       background: linear-gradient(90deg, rgba(92,56,62,0.95) 0%, rgba(92,57,84,0.9) 50%, rgba(92,62,43,0.9) 100%);
+      /* a bit darker */
+      background: linear-gradient(90deg, rgba(71,43,47,0.95) 0%, rgba(80,49,73,0.9) 50%, rgba(71,47,33,0.9) 100%)
    }
    .bg-a100c-img {
       background-image: url(~/assets/client-splash-background-light.jpg);
