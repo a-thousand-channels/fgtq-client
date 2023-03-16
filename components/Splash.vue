@@ -59,7 +59,7 @@
       -webkit-text-fill-color: transparent;
    }
    h2.beta::after {
-      content: "(Beta)";
+      content: "(v1)";
       padding: 3px 2px;
       margin-left: 4px;
       display: inline-block;
@@ -94,13 +94,11 @@
 
 <template>
 <div id="page" class="darkmode">
-  <div class="relative flex overflow-x-auto items-top justify-center min-h-screen bg-pink-100 bg-a100c-1-splash sm:items-center sm:pt-0">
+  <div class="relative flex overflow-x-auto items-top justify-center h-screen bg-pink-100 bg-a100c-1-splash sm:items-center sm:pt-16">
     <div class="max-w-4xl mx-auto sm:px-6 lg:px-12">
-      <div class="flex justify-center sm:mt-8 sm:pt-0">
-      </div>
-      <div class="mt-4 overflow-hidden bg-a100c-white shadow sm:rounded-lg  md:px-4 lg:px-8 p-2">
+      <div class="mt-4 overflow-hidden bg-a100c-white shadow sm:rounded-lg lg:mt-8 md:px-4 lg:px-8 p-2">
         <h2 class="text-3xl beta">
-          <span class="text-a100c-1  font-semibold">"From Gay To Queer"</span> — A project by Queer narratives, mapped</span>
+          <span class="text-a100c-1  font-semibold">"From Gay To Queer"</span> — A map of LGBTIQ+ subcultures in Bremen in the 90s</span>
         </h2>
       </div>
       <div class="mt-2 md:mx-24 lg:mx-24 bg-transparent overflow-hidden sm:rounded-lg p-2">
@@ -108,7 +106,7 @@
         <div class="mt-2 pt-2 text-gray-800 text-center">
           <select id="layer-selector" v-on:change="onChange($event)" class=" bg-a100c-white rounded text-lg shadow px-3 py-2 outline-none max-w-xs md:max-w-md lg:max-w-lg">
             <option>
-              Select a map ...
+              Select a layer ...
             </option>
             <option value="" class="text-lg py-1">
               All layers combined
@@ -130,7 +128,7 @@
       <div class="mt-4 mb-4 bg-a100c-white overflow-hidden shadow sm:rounded-lg md:px-4 lg:px-8 py-4 p-2">
         <p class="text-gray-600">
           This map is part of <a href="https://citydataexplosion.tumblr.com/intersections-and-constellations" target="_blank" class="text-link">„Intersections + Constellations: From gay to queer“</a>, 2021.<br />
-          The content is mixed english and german.
+          The content is mixed english and german. Content notice: A few quotes mention violence against LGBTIQ+.
         </p>
         <p class="mt-2 text-sm text-gray-600">
           We would be very excited about feedback and contributions.
