@@ -654,6 +654,7 @@ export default {
     console.log('Start to fetch...')
     console.log(this.custom_data_url)
     console.log(this.dataobj)
+    console.log(this.dataobj.map)
 
     if ( this.custom_data_url.length > 0 ) {
       this.data_url = this.custom_data_url
@@ -664,15 +665,20 @@ export default {
     }
     console.log(this.data_url)
 
-    this.dataobj = await axios.get(this.data_url).then(response =>
-      response.data
-    )
-    console.log('Fetch success ...')
+    if ( this.dataobj.map ) {
+      console.log('Fetching skipped ...')
+    } else {
+      this.dataobj = await axios.get(this.data_url).then(response =>
+        response.data
+      )
+      console.log('Fetch success ...')
+    }
 
 
     // check if its a map
     if ( this.dataobj.map ) {
       this.data = this.dataobj.map
+      this.places = []
       console.log("Data for a map with " + this.data.layer.length + " accessible layers")
       this.data.layer.forEach ((layer, key) => {
         this.places.push(...layer.places);
