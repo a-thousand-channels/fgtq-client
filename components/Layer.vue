@@ -454,6 +454,7 @@
                           :fillColor="outsideMarkerColor"
                           :fillOpacity="circle.fillopacity"
                           :bubblingMouseEvents=false
+                          @click="handleMarkerClick"
                           :id="iindex"
                           :options="{ title: 'marker-relation' + relation.to.id, id: relation.to.id, place_index: relation.to.place_index, layer_index: relation.to.layer_index, layer_title: relation.to.layer_title }"
                         >
@@ -476,7 +477,7 @@
       <p v-if="$fetchState.pending" class="text-sm text-red-300">...</p>
       <p v-else-if="$fetchState.error" class="text-sm text-red-300">...</p>
       <div v-else id="modals_wrapper" class="sm:absolute sm:top-4 sm:right-4" :class="{ 'is-active' : this.data.state }">
-        <place-modals :layers="this.layers" :layer="this.data.layer" :data="this.data" :metalevel="this.metalevel"></place-modals>
+        <place-modals :layers="this.layers" :layer="this.data.layer" :data="this.data" :metalevel="this.metalevel" :places_with_relations= "this.places_with_relations"></place-modals>
       </div>
 
       <div class="nav flex flex-col  items-center content-center justify-center">
@@ -1027,6 +1028,8 @@ export default {
             this.$set(this.places[i], 'state', false)
         }
         var clicked_place = this.places.find( place => place.id === e.target.options.id )
+        var clicked_place_index = this.places.findIndex( place => place.id === e.target.options.id )
+
 
         if ( clicked_place ) {
 
@@ -1052,6 +1055,23 @@ export default {
           // for tooltip: Layer.title + Place.title
           // for linking, call modal: modal must be generated OR
           // deep link to other layer and focus on this place!
+
+          console.log(this.places_with_relations)
+
+          this.places_with_relations.forEach ((pplace, kkey) => {
+
+            console.log(pplace.relations);
+            pplace.relations.forEach ((rr, kkkey) => {
+                if ( rr.to.id === e.target.options.id ) {
+                  clicked_place = rr
+                  clicked_place_index = kkkey
+                }
+            })
+            // clicked_place = pplace.relations.find( relation => relation.to.id === e.target.options.id )
+          })
+          console.log(clicked_place)
+          console.log(clicked_place.to.title)
+
         }
       }
     }
