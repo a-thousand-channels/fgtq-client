@@ -1,5 +1,20 @@
 <style>
+.toggle-bg:after {
+    content: '';
+    background-color: rgba(255,255,255,0.8);
+    background-color: #eee;
+    @apply absolute top-0.5 left-0.5 border rounded-full h-5 w-5 transition shadow-sm;
+}
 
+input:checked + .toggle-bg:after {
+    transform: translateX(100%);
+    border-color: rgba(255,255,255,0.8);
+    border-color: #ccc;
+}
+
+input:checked + .toggle-bg {
+    background-color: black;
+}
 
 </style>
 
@@ -29,6 +44,13 @@
       <nuxt-link :to="{ path: '/layer/' + this.slug, hash:'map'}" class="text-link">
         the map
       </nuxt-link>
+    </p>
+    <p class="mt-4">
+      <label for="toggle-example-checked" class="flex items-center cursor-pointer relative">
+        <input type="checkbox" id="toggle-example-checked" class="sr-only" checked @click="toggleMode">
+        <div class="toggle-bg bg-gray-200 border-2 border-gray-200 h-6 w-11 rounded-full"></div>
+        <span class="ml-3 text-gray-900 text-sm font-medium">{{ this.mode }}</span>
+      </label>
     </p>
   </div>
     <div class="block bg-a100c-white rounded shadow py-2 px-2 sm:px-10 lg:px-10 lg:py-8 mt-4">
@@ -104,10 +126,25 @@ export default {
   components: {
   },
   methods: {
+    toggleMode(e) {
+      var p = document.getElementById("page");
+      if ( this.mode == 'Dark mode' ) {
+        this.mode = 'Day mode';
+        p.classList.remove("dark");
+        p.classList.remove("darkmode");
+      } else {
+        this.mode = 'Dark mode';
+        p.classList.add("dark");
+        p.classList.add("darkmode");
+      }
+
+    }
+
   },
   data() {
     return {
       slug: this.$route.params.slug || 'thomas-b',
+      mode: 'Dark mode'
     }
   },
   computed: {
