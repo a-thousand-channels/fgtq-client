@@ -1,19 +1,30 @@
 <style>
 .toggle-bg:after {
     content: '';
-    background-color: rgba(255,255,255,0.8);
-    background-color: #eee;
-    @apply absolute top-0.5 left-0.5 border rounded-full h-5 w-5 transition shadow-sm;
+    background-color: #333;
+    @apply absolute top-0.5 left-0 border rounded-full h-5 w-5 transition shadow-sm;
 }
 
 input:checked + .toggle-bg:after {
-    transform: translateX(100%);
-    border-color: rgba(255,255,255,0.8);
-    border-color: #ccc;
+    transform: translateX(120%);
+    background-color: #eee;
 }
 
 input:checked + .toggle-bg {
-    background-color: black;
+    background-color: transparent;
+}
+
+span#toggle-viewmode-label:after {
+    content: '';
+    @apply inline-block absolute ml-1.5 mt-1.5 h-4 w-4 transition;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='12' height='12'%3E%3Cpath fill='none' d='M0 0h24v24H0z'/%3E%3Cpath d='M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12zm0-2a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM11 1h2v3h-2V1zm0 19h2v3h-2v-3zM3.515 4.929l1.414-1.414L7.05 5.636 5.636 7.05 3.515 4.93zM16.95 18.364l1.414-1.414 2.121 2.121-1.414 1.414-2.121-2.121zm2.121-14.85l1.414 1.415-2.121 2.121-1.414-1.414 2.121-2.121zM5.636 16.95l1.414 1.414-2.121 2.121-1.414-1.414 2.121-2.121zM23 11v2h-3v-2h3zM4 11v2H1v-2h3z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+}
+span#toggle-viewmode-label.darkmode:after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='12' height='12'%3E%3Cpath fill='none' d='M0 0h24v24H0z'/%3E%3Cpath fill='white' d='M10 7a7 7 0 0 0 12 4.9v.1c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2h.1A6.979 6.979 0 0 0 10 7zm-6 5a8 8 0 0 0 15.062 3.762A9 9 0 0 1 8.238 4.938 7.999 7.999 0 0 0 4 12z'/%3E%3C/svg%3E");
+}
+#page.darkmode svg path {
+  fill: #eee;
 }
 
 </style>
@@ -38,23 +49,23 @@ input:checked + .toggle-bg {
     </div>
   </div>
   <div class="block bg-a100c-white rounded shadow py-2 px-2 sm:px-10 lg:px-10 lg:py-8 mt-4">
-    <p>
-      <svg class="inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path fill="none" d="M0 0h24v24H0z"/><path d="M14.935 7.204l-6-3L4 6.319v12.648l5.065-2.17 6 3L20 17.68V5.033l-5.065 2.17zM2 5l7-3 6 3 6.303-2.701a.5.5 0 0 1 .697.46V19l-7 3-6-3-6.303 2.701a.5.5 0 0 1-.697-.46V5zm4 6h2v2H6v-2zm4 0h2v2h-2v-2zm5.998-.063L17.236 9.7l1.06 1.06-1.237 1.238 1.237 1.238-1.06 1.06-1.238-1.237-1.237 1.237-1.061-1.06 1.237-1.238-1.237-1.237L14.76 9.7l1.238 1.237z"/></svg>
+    <p class="px-4 py-1 lg:px-8">
+      <svg class="inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path class="" d="M14.935 7.204l-6-3L4 6.319v12.648l5.065-2.17 6 3L20 17.68V5.033l-5.065 2.17zM2 5l7-3 6 3 6.303-2.701a.5.5 0 0 1 .697.46V19l-7 3-6-3-6.303 2.701a.5.5 0 0 1-.697-.46V5zm4 6h2v2H6v-2zm4 0h2v2h-2v-2zm5.998-.063L17.236 9.7l1.06 1.06-1.237 1.238 1.237 1.238-1.06 1.06-1.238-1.237-1.237 1.237-1.061-1.06 1.237-1.238-1.237-1.237L14.76 9.7l1.238 1.237z"/></svg>
       Please go right to see
       <nuxt-link :to="{ path: '/layer/' + this.slug, hash:'map'}" class="text-link">
         the map
       </nuxt-link>
     </p>
-    <p class="mt-4">
-      <label for="toggle-example-checked" class="flex items-center cursor-pointer relative">
-        <input type="checkbox" id="toggle-example-checked" class="sr-only" checked @click="toggleMode">
-        <div class="toggle-bg bg-gray-200 border-2 border-gray-200 h-6 w-11 rounded-full"></div>
-        <span class="ml-3 text-gray-900 text-sm font-medium">{{ this.mode }}</span>
+    <p class="mt-4 px-4 py-1 lg:px-8">
+      <label for="toggle-viewmode" class="flex items-center cursor-pointer relative">
+        <input type="checkbox" id="toggle-viewmode" class="sr-only" checked @click="toggleMode">
+        <div class="toggle-bg bg-gray-200 border-2 border-gray-200 mt-1 h-3 w-11 rounded-full"></div>
+        <span id="toggle-viewmode-label" class="darkmode ml-3 text-gray-900 text-sm font-medium">{{ viewmode }}</span>
       </label>
     </p>
   </div>
     <div class="block bg-a100c-white rounded shadow py-2 px-2 sm:px-10 lg:px-10 lg:py-8 mt-4">
-    <h2 class="font-semibold text-gray-800 px-4 py-1 lg:px-8"><span class="text-a100c-1"><nuxt-link :to="{ path: '/'}">From Gay To Queer</nuxt-link></span> — A mapping by "Queer narratives, mapped"</h2>
+    <h2 class="font-semibold text-gray-800 px-4 py-1 lg:px-8"><span class="text-a100c-1"><nuxt-link :to="{ path: '/'}">From Gay To Queer</nuxt-link></span> — A map of LGBTIQ+ subcultures in Bremen in the 90s</h2>
     <h3 class="text-gray-800 px-4 py-1 lg:px-8">
         About this project:
     </h3>
@@ -127,15 +138,22 @@ export default {
   },
   methods: {
     toggleMode(e) {
+      console.log('toggleMode');
       var p = document.getElementById("page");
-      if ( this.mode == 'Dark mode' ) {
-        this.mode = 'Day mode';
+      var l = document.getElementById("toggle-viewmode-label");
+      if ( this.viewmode == 'Dark mode' ) {
+        this.viewmode = 'Day mode';
         p.classList.remove("dark");
         p.classList.remove("darkmode");
+        l.classList.remove("darkmode")
+        localStorage.setItem('viewmode', 'Day mode')
+
       } else {
-        this.mode = 'Dark mode';
+        this.viewmode = 'Dark mode';
         p.classList.add("dark");
         p.classList.add("darkmode");
+        l.classList.add("darkmode")
+        localStorage.setItem('viewmode', 'Dark mode')
       }
 
     }
@@ -144,12 +162,24 @@ export default {
   data() {
     return {
       slug: this.$route.params.slug || 'thomas-b',
-      mode: 'Dark mode'
+      viewmode: 'Dark mode'
     }
   },
   computed: {
   },
-  mounted() {
+  mounted: function() {
+     if ( localStorage.getItem('viewmode') ) {
+      this.viewmode = localStorage.getItem('viewmode');
+      if ( localStorage.getItem('viewmode') == 'Day mode') {
+        var p = document.getElementById("page");
+        p.classList.remove("darkmode");
+        var l = document.getElementById("toggle-viewmode-label");
+        l.classList.remove("darkmode")
+        var i = document.getElementById("toggle-viewmode");
+        i.checked = false;
+      }
+    }
+
   }
 }
 </script>

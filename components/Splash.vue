@@ -36,7 +36,6 @@
    }
    .bg-a100c-white {
       background-color: rgba(255,255,255,0.8);
-      background-color: rgba(55,55,55,0.75) ;
    }
        /* darkmode */
     #page.darkmode .bg-a100c-1-splash {
@@ -95,7 +94,7 @@
 </style>
 
 <template>
-<div id="page" class="darkmode">
+<div id="page" :class="viewmode == 'Dark mode' ? 'darkmode' : ''">
   <div class="relative flex overflow-x-auto justify-center h-screen bg-pink-100 bg-a100c-1-splash sm:items-center pt-8 sm:pt-4">
     <div class="max-w-4xl mx-auto sm:px-6 lg:px-12 pt-8 mt-16">
       <div class="mt-4 overflow-hidden bg-a100c-white shadow sm:rounded-lg lg:mt-8 md:px-4 lg:px-8 p-2">
@@ -158,10 +157,14 @@ export default {
       custom_data_url: '',
       slug: '',
       layers_json_url: '',
-      disabled: false
+      disabled: false,
+      viewmode: 'Dark mode'
     }
   },
   mounted: function() {
+    if ( localStorage.getItem('viewmode') ) {
+      this.viewmode = localStorage.getItem('viewmode')
+    }
     if (this.$route.query.layer ) {
       this.custom_data_url = this.$route.query.layer
       this.disabled = false;
