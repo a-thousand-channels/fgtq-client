@@ -369,12 +369,13 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="rgba(253, 164, 175, 1)" d="M12 2a1 1 0 0 1 1 1v3a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm0 15a1 1 0 0 1 1 1v3a1 1 0 0 1-2 0v-3a1 1 0 0 1 1-1zm10-5a1 1 0 0 1-1 1h-3a1 1 0 0 1 0-2h3a1 1 0 0 1 1 1zM7 12a1 1 0 0 1-1 1H3a1 1 0 0 1 0-2h3a1 1 0 0 1 1 1zm12.071 7.071a1 1 0 0 1-1.414 0l-2.121-2.121a1 1 0 0 1 1.414-1.414l2.121 2.12a1 1 0 0 1 0 1.415zM8.464 8.464a1 1 0 0 1-1.414 0L4.93 6.344a1 1 0 0 1 1.414-1.415L8.464 7.05a1 1 0 0 1 0 1.414zM4.93 19.071a1 1 0 0 1 0-1.414l2.121-2.121a1 1 0 1 1 1.414 1.414l-2.12 2.121a1 1 0 0 1-1.415 0zM15.536 8.464a1 1 0 0 1 0-1.414l2.12-2.121a1 1 0 0 1 1.415 1.414L16.95 8.464a1 1 0 0 1-1.414 0z"/></svg></p>
     <p>Loading places …</p>
   </div>
+  <div v-else-if="$fetchState.error" class="z-50 flex h-screen w-screen absolute items-center justify-center flex-col text-sm text-red-300">Please wait …</div>
   <div id="page_inner" class="flex a1000c-horizontal" ref="scroll_container">
     <section ref="info" id="info" class="flex items-stretch min-h-screen max-h-screen bg-a100c-1 sm:pt-0 sm:pb-8">
       <div class="content flex items-top overflow-x-auto">
         <div id="info_inner" class="bg-opacity-30 my-4 mx-5">
-          <p v-if="$fetchState.pending" class="text-sm text-red-300">Loading …</p>
-          <p v-else-if="$fetchState.error" class="text-sm text-red-300">Please wait …</p>
+          <p v-if="$fetchState.pending" class="text-sm text-red-300">…</p>
+          <p v-else-if="$fetchState.error" class="text-sm text-red-300">…</p>
           <div v-else>
             <info :data="this.data"></info>
           </div>
@@ -382,7 +383,7 @@
       </div>
       <div class="nav flex items-center content-center justify-center">
         <nuxt-link :to="{ path: '/layer/' + this.slug, hash:'map'}" class="flex h-full w-full items-center justify-center text-white font-bold">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"/></svg>
+          <svg class='icon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"/></svg>
         </nuxt-link>
       </div>
     </section>
@@ -390,15 +391,15 @@
     <section ref="map" id="map" class="flex min-h-screen max-h-screen bg-a100c-2">
       <div class="nav flex flex-col content-center">
         <nuxt-link :to="{ path: '/layer/' + this.slug, hash:'info'}" class="flex h-full self-center items-center justify-center text-white font-bold">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z"/></svg>
+          <svg class='icon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z"/></svg>
         </nuxt-link>
       </div>
 
 
       <div class="content items-center justify-center">
         <div id="map_header" class="block">
-          <p v-if="$fetchState.pending" class="text-sm text-red-300">Loading places …</p>
-          <p v-else-if="$fetchState.error" class="text-sm text-red-300">Please wait …</p>
+          <p v-if="$fetchState.pending" class="text-sm text-red-300">…</p>
+          <p v-else-if="$fetchState.error" class="text-sm text-red-300">…</p>
           <div v-else>
             <p id="map_header_content" class="text-sm text-red-300">
               <nuxt-link :to="{ path: '/'}" class="text-red-300">From Gay To Queer</nuxt-link>
@@ -410,13 +411,13 @@
           </div>
           <p>
             <button class="hidden" v-shortkey="['arrowup']" @shortkey="navigate_top()">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M12 11.828l-2.828 2.829-1.415-1.414L12 9l4.243 4.243-1.415 1.414L12 11.828z"/></svg>
+              <svg class='icon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M12 11.828l-2.828 2.829-1.415-1.414L12 9l4.243 4.243-1.415 1.414L12 11.828z"/></svg>
             </button>
             <button class="hidden" v-shortkey="['arrowleft']" @shortkey="navigate_left()">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M12.172 12L9.343 9.172l1.414-1.415L15 12l-4.243 4.243-1.414-1.415z"/></svg>
+              <svg class='icon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M12.172 12L9.343 9.172l1.414-1.415L15 12l-4.243 4.243-1.414-1.415z"/></svg>
             </button>
             <button class="hidden" v-shortkey="['arrowright']" @shortkey="navigate_right()">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z"/></svg>
+              <svg class='icon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z"/></svg>
             </button>
           </p>
         </div>
@@ -496,7 +497,7 @@
 
       <div class="nav flex flex-col  items-center content-center justify-center">
         <nuxt-link :to="{ path: '/layer/' + this.slug, hash:'list'}" class="flex h-full self-center items-center justify-center text-white font-bold">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"/></svg>
+          <svg class='icon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"/></svg>
         </nuxt-link>
       </div>
     </section>
@@ -504,13 +505,13 @@
     <section ref="list"  id="list" class="flex min-h-screen max-h-screen bg-a100c-3 sm:pt-0">
       <div class="nav flex items-center content-center justify-center">
         <nuxt-link :to="{ path: '/layer/' + this.slug, hash:'map'}" class="flex h-full w-full items-center justify-center text-white font-bold">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z"/></svg>
+          <svg class='icon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z"/></svg>
         </nuxt-link>
       </div>
       <div id="list_content" class="content flex items-top overflow-x-auto pb-10">
           <div id="list_inner" class="bg-opacity-30 my-0 mx-0 mr-6 sm:my-4 sm:mx-5">
-            <p v-if="$fetchState.pending" class="text-sm text-red-300">Loading …</p>
-            <p v-else-if="$fetchState.error" class="text-sm text-red-300">Please wait</p>
+            <p v-if="$fetchState.pending" class="text-sm text-red-300">…</p>
+            <p v-else-if="$fetchState.error" class="text-sm text-red-300">…</p>
             <div v-else>
               <list :places="this.list_content" :places_with_relations="this.places_with_relations" :layerindex="this.list_content_layer_index" :data="this.data" :map="this.mapobj" :layers="layers"></list>
             </div>

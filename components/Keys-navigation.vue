@@ -32,9 +32,9 @@
 export default {
   data() {
     return {
-      label_left: 'Info',
+      label_left: 'Left',
       label_center: 'Start',
-      label_right: 'Listing',
+      label_right: 'Right',
       show_label_left: true,
       show_label_center: true,
       show_label_right: true,
@@ -80,6 +80,7 @@ export default {
     this.$nextTick(() => {
       /* not called (yet). tbc */
       // console.log('updated :: Check label and label display w/'+this.$route.hash)
+      /*
       if ( this.$route.hash == '#map' ) {
           this.label_right = 'Listing'
           this.label_left = 'Info'
@@ -92,6 +93,7 @@ export default {
           this.label_left = 'Map'
           this.show_label_right = false;
       }
+      */
     })
   },
   computed: {
