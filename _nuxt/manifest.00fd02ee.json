@@ -1,6 +1,7 @@
 {
   "name": "From Gay To Queer",
   "short_name": "from-gay-to-queer",
+  "description": "A prototype of a map frontend for the A thousand channels project w/Nuxt.js v2",
   "icons": [
     {
       "src": "/fgtq-client/_nuxt/icons/icon_64x64.750168.png",
