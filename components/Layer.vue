@@ -492,7 +492,7 @@
       <p v-if="$fetchState.pending" class="text-sm text-red-300">...</p>
       <p v-else-if="$fetchState.error" class="text-sm text-red-300">...</p>
       <div v-else id="modals_wrapper" class="sm:absolute sm:top-4 sm:right-4" :class="{ 'is-active' : this.data.state }">
-        <place-modals :layers="this.layers" :layer="this.data.layer" :data="this.data" :metalevel="this.metalevel" :places_with_relations= "this.places_with_relations"></place-modals>
+        <place-modals :layers="this.layers" :layer="this.data.layer" :data="this.data" :metalevel="this.metalevel" :places_with_relations="this.places_with_relations"></place-modals>
       </div>
 
       <div class="nav flex flex-col  items-center content-center justify-center">
@@ -1090,6 +1090,14 @@ export default {
           })
           console.log(clicked_place)
           console.log(clicked_place.to.title)
+          console.log(clicked_place.to.id)
+          console.log(clicked_place_index)
+
+          // TODO
+          // a) make a flat array with alle relations, so index make sense
+          // b) trigger by place.id in relation.to.id
+          this.places[clicked_place_index].state = !this.places[clicked_place_index].state;
+          this.data.state = true;
 
         }
       }
