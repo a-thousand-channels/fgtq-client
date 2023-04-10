@@ -454,7 +454,7 @@
                         :id="index"
                         :options="{ title: 'marker-' + place.id, id: place.id, place_index: place.place_index, layer_index: place.layer_index, layer_title: place.layer_title }"
                       >
-                        <l-tooltip :content="place.title" :options="{ permanent: false, sticky: false, direction: 'top' }" />
+                        <l-tooltip :content="place.title + ' (' + place.id + ')'" :options="{ permanent: false, sticky: false, direction: 'top' }" />
                       </l-circle-marker>
 
                       <span v-for="(place, index) in this.places_with_relations">
@@ -473,7 +473,7 @@
                           :id="iindex"
                           :options="{ title: 'marker-relation' + relation.to.id, id: relation.to.id, place_index: relation.to.place_index, layer_index: relation.to.layer_index, layer_title: relation.to.layer_title }"
                         >
-                          <l-tooltip :content="relation.to.title" :options="{ permanent: false, sticky: false, direction: 'top' }" />
+                          <l-tooltip :content="relation.to.title + ' (' + relation.to.id + ')'" :options="{ permanent: false, sticky: false, direction: 'top' }" />
                         </l-circle-marker>
                       </span>
 
@@ -492,7 +492,7 @@
       <p v-if="$fetchState.pending" class="text-sm text-red-300">...</p>
       <p v-else-if="$fetchState.error" class="text-sm text-red-300">...</p>
       <div v-else id="modals_wrapper" class="sm:absolute sm:top-4 sm:right-4" :class="{ 'is-active' : this.data.state }">
-        <place-modals :layers="this.layers" :layer="this.data.layer" :data="this.data" :metalevel="this.metalevel" :places_with_relations="this.places_with_relations"></place-modals>
+        <place-modals :layers="this.layers" :layer="this.data.layer" :data="this.data" :metalevel="this.metalevel" :related_places_from_other_layers="this.related_places_from_other_layers"></place-modals>
       </div>
 
       <div class="nav flex flex-col  items-center content-center justify-center">
@@ -593,6 +593,7 @@ export default {
         places: [],
         all_places: [],
         places_with_relations: [],
+        related_places_from_other_layers: [],
         list_content: [],
         list_content_layer_title: '',
         list_content_layer_index: 0,
@@ -706,7 +707,6 @@ export default {
       });
       console.log("Map with "+this.places.length+" places and "+this.data.layer.length+" layers")
 
-      // TODO add state value to all places
       // add state value to all places
       this.data.layer.forEach ((layer, lkey) => {
         for (let i = 0; i < layer.places.length; i++) {
@@ -740,7 +740,7 @@ export default {
       this.places_with_relations = this.data.places_with_relations
       console.log(this.places_with_relations)
       this.list_content = this.data.places
-      console.log("Layer Map with "+this.places.length+" places and "+this.places_with_relations.length+" Relations")
+      console.log("Layer Map with "+this.places.length+" places and "+this.places_with_relations.length+" Relation sets")
 
       // add state value to all places
       for (let i = 0; i < this.data.places.length; i++) {
@@ -755,6 +755,16 @@ export default {
         this.$set(this.data.places[i], 'place_index', i)
         this.$set(this.data.places[i], 'color', this.data.color)
       }
+      for (let i = 0; i < this.data.places_with_relations.length; i++) {
+        for (let ii = 0; ii < this.data.places_with_relations[i].relations.length; ii++) {
+          let relation = this.data.places_with_relations[i].relations[ii];
+          if ( relation.to.layer_id != relation.from.layer_id ) {
+            this.$set(relation.to, 'state', false)
+            this.related_places_from_other_layers.push(relation.to)
+          }
+        }
+      }
+      console.log(this.related_places_from_other_layers)
     }
 
     if ( (this.data) && (this.places) && (this.$refs.map) ) {
@@ -1014,9 +1024,7 @@ export default {
       }
     },
     handleMarkerHover(e) {
-      console.log("onmouseover");
-      console.log(e.target.options.id);
-      console.log(e.target.options.title);
+      console.log("onMouseover for ID: " + e.target.options.id + " -- "+ e.target.options.title);
       let all_curves = document.getElementsByClassName('curve_normal');
       Array.prototype.forEach.call(all_curves, function(element) {
         element.classList.remove('curve_normal_active');
@@ -1024,7 +1032,7 @@ export default {
         element.style.strokeOpacity = 0.25;
       });
       let el = document.getElementsByClassName('curve_'+e.target.options.id);
-      console.log(el);
+      // console.log(el);
       if ( el.length > 0 ) {
         el[0].classList.add('curve_normal_active');
         el[0].style.strokeWidth = 4;
@@ -1034,10 +1042,8 @@ export default {
     },
     handleMarkerClick(e) {
       // toggleModal
-      console.log("onclick");
       this.key_navigation_visible = false;
-      console.log(e.target.options.id);
-      console.log(e.target.options.title);
+      console.log("onClick for ID " + e.target.options.id + " -- " + e.target.options.title);
       // console.log(this.data);
 
       if ( e.target.options.title ) {
@@ -1047,20 +1053,14 @@ export default {
             this.$set(this.places[i], 'state', false)
         }
         var clicked_place = this.places.find( place => place.id === e.target.options.id )
-        var clicked_place_index = this.places.findIndex( place => place.id === e.target.options.id )
-
 
         if ( clicked_place ) {
-
           var clicked_place_index = this.places.findIndex( place => place.id === e.target.options.id )
-
           console.log("Clicked place: "+clicked_place.title+" :: place ID: "+clicked_place.id+" :: index: "+e.target.options.place_index)
           console.log("Clicked layer title: "+e.target.options.layer_title+" :: index (via target.options): "+e.target.options.layer_index)
           // show modal
           this.places[clicked_place_index].state = !this.places[clicked_place_index].state;
           this.data.state = true;
-
-
           this.data.layer[parseInt(e.target.options.layer_index)].places[parseInt(e.target.options.place_index)].state = !this.data.layer[parseInt(e.target.options.layer_index)].places[parseInt(e.target.options.place_index)].state.state;
           // if in map mode: show place content in the list view!
           this.list_content = []
@@ -1072,33 +1072,22 @@ export default {
           console.log('Place from a different layer');
           // to proceed, we'd need more other_layer infos, like title...
           // for tooltip: Layer.title + Place.title
-          // for linking, call modal: modal must be generated OR
-          // deep link to other layer and focus on this place!
+          // for linking, call modal: modal must be generated
 
-          console.log(this.places_with_relations)
+          console.log(this.related_places_from_other_layers)
 
-          this.places_with_relations.forEach ((pplace, kkey) => {
+          this.related_places_from_other_layers.forEach ((relation_to, index) => {
 
-            console.log(pplace.relations);
-            pplace.relations.forEach ((rr, kkkey) => {
-                if ( rr.to.id === e.target.options.id ) {
-                  clicked_place = rr
-                  clicked_place_index = kkkey
-                }
-            })
-            // clicked_place = pplace.relations.find( relation => relation.to.id === e.target.options.id )
+            if ( relation_to.id === e.target.options.id ) {
+                clicked_place = relation_to
+                clicked_place_index = index
+            }
           })
-          console.log(clicked_place)
-          console.log(clicked_place.to.title)
-          console.log(clicked_place.to.id)
-          console.log(clicked_place_index)
+          // TODO: layer title and deeplink
 
-          // TODO
-          // a) make a flat array with alle relations, so index make sense
-          // b) trigger by place.id in relation.to.id
-          this.places[clicked_place_index].state = !this.places[clicked_place_index].state;
+          console.log("Clicked place: "+clicked_place.title+" :: place ID: "+clicked_place.id+" :: index: "+clicked_place_index);
+          this.related_places_from_other_layers[clicked_place_index].state = !this.related_places_from_other_layers[clicked_place_index].state;
           this.data.state = true;
-
         }
       }
     }

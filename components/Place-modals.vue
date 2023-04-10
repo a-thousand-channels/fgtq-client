@@ -43,7 +43,7 @@
 <template>
   <div class="places-list sm:relative z-50">
     <div :id="'layer-'+llayer.id" v-for='(llayer,lindex) in layer' class="">
-      <div v-for='(place,index) in llayer.places'>
+      <template v-for='(place,index) in llayer.places'>
         <div class="modal" :class="{ 'is-active' : place.state }" v-bind:id="'place-' + place.id">
           <div class="modal-background"></div>
           <div class="modal-content absolute inset-4 p-4 pt-2 m-1 z-50 sm:relative sm:inset-0 sm:mt-7 sm:mr-10 md:mt-8 md:mr-18 bg-white bg-a100c-white overflow-y-scroll max-h-[88vh] shadow min-w-none sm:min-w-min sm:max-w-md">
@@ -81,42 +81,40 @@
             </footer>
           </div>
         </div>
-      </div>
+      </template>
     </div>
-    <div id="place-modal-for-relations">
-      <div v-for='(place,index) in places_with_relations'>
-        <div v-for='(relation,rindex) in place.relations'>
-          <div class="modal" :class="{ 'is-active' : relation.to.state }" v-bind:id="'place-' + relation.to.id">
+    <div :id="'layer-'+llayer.id+'-relations'" v-for='(llayer,lindex) in layer'>
+      <template v-for='(relation_to,index) in related_places_from_other_layers'>
+          <div class="modal" :class="{ 'is-active' : relation_to.state }" v-bind:id="'place-' + relation_to.id">
             <div class="modal-background"></div>
             <div class="modal-content absolute inset-4 p-4 pt-2 m-1 z-50 sm:relative sm:inset-0 sm:mt-7 sm:mr-10 md:mt-8 md:mr-18 bg-white bg-a100c-white overflow-y-scroll max-h-[88vh] shadow min-w-none sm:min-w-min sm:max-w-md">
               <div class="text-right px-0 py-0 w-8 float-right text-3xl">
-                <button class="close-button" aria-label="close" @click="closeModal(relation.to)">&times;</button>
+                <button class="close-button" aria-label="close" @click="closeModal(relation_to)">&times;</button>
               </div>
-              <div v-if="relation.to.images && relation.to.images.length > 0" class="px-0 pb-4 sm:px-4">
+              <div v-if="relation_to.images && relation_to.images.length > 0" class="px-0 pb-4 sm:px-4">
                 <div class="">
-                  <div v-if="relation.to.images[0]">
-                    <img v-bind:src="relation.to.images[0].image_url" :alt="relation.to.images[0].alt" class="max-w-full sm:max-w-md max-h-56 sm:max-h-56 lg:max-h-64">
+                  <div v-if="relation_to.images[0]">
+                    <img v-bind:src="relation_to.images[0].image_url" :alt="relation_to.images[0].alt" class="max-w-full sm:max-w-md max-h-56 sm:max-h-56 lg:max-h-64">
                   </div>
                 </div>
               </div>
               <div class="modal-header pt-1 sm:pt-2 px-4">
                 <p class="text-sm sm:text-md my-0 sm:my-4"><span v-if="data.title != layer.title">{{data.title}} </span><span v-else><nuxt-link :to="{ path: '/'}">From Gay To Queer</nuxt-link></span> <span v-if="data.layer[0]">:: {{ data.layer[0].title}}</span></p>
-                <h2 class="text-sm sm:text-md">{{relation.to.title}}</h2>
+                <h2 class="text-sm sm:text-md">{{relation_to.title}}</h2>
               </div>
               <div class="modal-content">
-                <div v-if="relation.to.teaser" class="text-sm sm:text-md  text-gray-500 px-4" :inner-html.prop="relation.to.teaser | truncate(200, '...')"></div>
+                <div v-if="relation_to.teaser" class="text-sm sm:text-md  text-gray-500 px-4" :inner-html.prop="relation_to.teaser | truncate(200, '...')"></div>
               </div>
               <footer>
                 <p class="text-sm sm:text-md text-gray-500 px-4 py-1 sm:px-4 sm:py-4">
-                  <button v-if="metalevel" @click="showPlaceInList(relation.to,layers[0].slug)" class="text-link">Show details @ {{ layers[0].title}}</button>
-                  <button v-else @click="showPlaceInList(relation.to,'')" class="text-link">Show details</button>
+                  <button v-if="metalevel" @click="showPlaceInList(relation_to,layers[0].slug)" class="text-link">Show details @ {{ layers[0].title}}</button>
+                  <button v-else @click="showPlaceInList(relation_to,'')" class="text-link">Show details</button>
 
                 </p>
               </footer>
             </div>
           </div>
-        </div>
-      </div>
+      </template>
     </div>
   </div>
 </template>
@@ -145,7 +143,7 @@ export default {
       type: Boolean,
       required: true
     },
-    places_with_relations: {
+    related_places_from_other_layers: {
       type: Array,
       required: true
     }
