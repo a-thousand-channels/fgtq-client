@@ -454,7 +454,7 @@
                         :id="index"
                         :options="{ title: 'marker-' + place.id, id: place.id, place_index: place.place_index, layer_index: place.layer_index, layer_title: place.layer_title }"
                       >
-                        <l-tooltip :content="place.title + ' (' + place.id + ')'" :options="{ permanent: false, sticky: false, direction: 'top' }" />
+                        <l-tooltip :content="place.title" :options="{ permanent: false, sticky: false, direction: 'top' }" />
                       </l-circle-marker>
 
                       <span v-for="(place, index) in this.places_with_relations">
@@ -473,7 +473,7 @@
                           :id="iindex"
                           :options="{ title: 'marker-relation' + relation.to.id, id: relation.to.id, place_index: relation.to.place_index, layer_index: relation.to.layer_index, layer_title: relation.to.layer_title }"
                         >
-                          <l-tooltip :content="relation.to.title + ' (' + relation.to.id + ')'" :options="{ permanent: false, sticky: false, direction: 'top' }" />
+                          <l-tooltip :content="'See also: ' + relation.to.title" :options="{ permanent: false, sticky: false, direction: 'top' }" />
                         </l-circle-marker>
                       </span>
 
@@ -760,6 +760,9 @@ export default {
           let relation = this.data.places_with_relations[i].relations[ii];
           if ( relation.to.layer_id != relation.from.layer_id ) {
             this.$set(relation.to, 'state', false)
+            let layer_index = Object.values(this.layers).find(layer => layer.id === relation.to.layer_id.toString());
+            console.log('layer_index for '+relation.to.layer_id+': '+layer_index.uid)
+            this.$set(relation.to, 'layer_index', layer_index.uid)
             this.related_places_from_other_layers.push(relation.to)
           }
         }
@@ -1044,6 +1047,7 @@ export default {
       // toggleModal
       this.key_navigation_visible = false;
       console.log("onClick for ID " + e.target.options.id + " -- " + e.target.options.title);
+      console.log("LayerIndex " + e.target.options.layer_index + " -- PlaceIndex " + e.target.options.place_index);
       // console.log(this.data);
 
       if ( e.target.options.title ) {
@@ -1088,6 +1092,7 @@ export default {
           console.log("Clicked place: "+clicked_place.title+" :: place ID: "+clicked_place.id+" :: index: "+clicked_place_index);
           this.related_places_from_other_layers[clicked_place_index].state = !this.related_places_from_other_layers[clicked_place_index].state;
           this.data.state = true;
+          // this.data.layer[parseInt(e.target.options.layer_index)].places[parseInt(e.target.options.place_index)].state = !this.data.layer[parseInt(e.target.options.layer_index)].places[parseInt(e.target.options.place_index)].state.state;
         }
       }
     }

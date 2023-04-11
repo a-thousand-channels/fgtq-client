@@ -25,7 +25,8 @@ span#toggle-viewmode-label.darkmode:after {
 }
 #page.darkmode svg.icon path {
   fill: #eee;
-}</style>
+}
+</style>
 
 <template>
   <div>
