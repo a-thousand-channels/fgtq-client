@@ -52,7 +52,7 @@
       <template v-for='(place,index) in llayer.places'>
         <div class="modal" :class="{ 'is-active' : place.state }" v-bind:id="'place-' + place.id">
           <div class="modal-background"></div>
-          <div class="modal-content absolute inset-4 p-4 pt-2 m-1 z-50 sm:relative sm:inset-0 sm:mt-7 sm:mr-10 md:mt-8 md:mr-18 bg-white bg-a100c-white overflow-y-scroll max-h-[88vh] shadow min-w-none sm:min-w-min sm:max-w-md">
+          <div class="modal-content absolute inset-4 p-4 pt-2 m-1 z-50 sm:relative sm:inset-0 sm:mt-7 sm:mr-10 md:mt-8 md:mr-18 bg-white bg-a100c-white overflow-y-auto max-h-[88vh] shadow min-w-none sm:min-w-min sm:max-w-md">
             <div class="text-right px-0 py-0 w-8 float-right text-3xl">
               <button class="close-button" aria-label="close" @click="closeModal(place)">&times;</button>
             </div>
@@ -93,7 +93,7 @@
       <template v-for='(relation_to,index) in related_places_from_other_layers'>
           <div class="modal modal-relations" :class="{ 'is-active' : relation_to.state }" v-bind:id="'place-' + relation_to.id">
             <div class="modal-background"></div>
-            <div class="modal-content absolute inset-4 p-4 pt-2 m-1 z-50 sm:relative sm:inset-0 sm:mt-7 sm:mr-10 md:mt-8 md:mr-18 bg-white bg-a100c-white overflow-y-scroll max-h-[88vh] shadow min-w-none sm:min-w-min sm:max-w-md">
+            <div class="modal-content absolute inset-4 p-4 pt-2 m-1 z-50 sm:relative sm:inset-0 sm:mt-7 sm:mr-10 md:mt-8 md:mr-18 bg-white bg-a100c-white overflow-y-auto max-h-[88vh] shadow min-w-none sm:min-w-min sm:max-w-md">
               <div class="text-right px-0 py-0 w-8 float-right text-3xl">
                 <button class="close-button" aria-label="close" @click="closeRelationModal(relation_to)">&times;</button>
               </div>
@@ -175,7 +175,8 @@ export default {
     },
     showPlaceInList(place,slug) {
       this.$nextTick(() => {
-        this.data.state = !this.data.state
+        this.data.state = !this.data.state;
+        console.log('Place/Relation: '+place)
         place.state = !place.state;
         console.log("global slug "+this.slug);
         slug =  slug || this.$route.params.slug;

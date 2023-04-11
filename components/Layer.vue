@@ -1054,8 +1054,12 @@ export default {
 
         // set all state to false
         for (let i = 0; i < this.places.length; i++) {
-            this.$set(this.places[i], 'state', false)
+          this.$set(this.places[i], 'state', false)
         }
+        for (let i = 0; i < this.related_places_from_other_layers.length; i++) {
+          this.$set(this.related_places_from_other_layers[i], 'state', false)
+        }
+
         var clicked_place = this.places.find( place => place.id === e.target.options.id )
 
         if ( clicked_place ) {
@@ -1082,7 +1086,7 @@ export default {
 
           this.related_places_from_other_layers.forEach ((relation_to, index) => {
 
-            if ( relation_to.id === e.target.options.id ) {
+             if ( relation_to.id === e.target.options.id ) {
                 clicked_place = relation_to
                 clicked_place_index = index
             }
@@ -1092,7 +1096,6 @@ export default {
           console.log("Clicked place: "+clicked_place.title+" :: place ID: "+clicked_place.id+" :: index: "+clicked_place_index);
           this.related_places_from_other_layers[clicked_place_index].state = !this.related_places_from_other_layers[clicked_place_index].state;
           this.data.state = true;
-          // this.data.layer[parseInt(e.target.options.layer_index)].places[parseInt(e.target.options.place_index)].state = !this.data.layer[parseInt(e.target.options.layer_index)].places[parseInt(e.target.options.place_index)].state.state;
         }
       }
     }
