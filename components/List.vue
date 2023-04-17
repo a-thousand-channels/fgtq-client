@@ -212,7 +212,7 @@ export default {
       Object.keys(layers).forEach(function(index ) {
           if ( layers[index].id == layer_id ) { slug = layers[index].slug }
       })
-      return slug
+      return '/'+slug
     },
     getSwiperOptions(index){
      return {
