@@ -998,11 +998,6 @@ export default {
       console.log("jumpToMap " + this.$route.hash )
       if ( this.slug && ( this.slug !== 'undefined') && ( this.slug !== '/')) {
           console.log('Slug '+this.slug+' seems known')
-          this.$router.push({ path: '/layer/' + this.slug })
-          location.hash = '#map';
-      } else {
-        console.log('No known slug')
-        // jump in all three cases to map, the only stable version for now
         if ( this.$route.hash === '#info' ) {
           console.log('Jump to '+this.$route.hash)
           this.$router.push({ path: '/layer/' + this.slug, hash: 'info' })
@@ -1010,6 +1005,21 @@ export default {
         } else if ( this.$route.hash === '#list' ) {
           console.log('Jump to '+this.$route.hash)
           this.$router.push({ path: '/layer/' + this.slug, hash: 'list'  })
+          location.hash = this.$route.hash;
+        } else {
+          this.$router.push({ path: '/layer/' + this.slug })
+          location.hash = '#map';
+        }
+      } else {
+        console.log('No known slug')
+        // jump in all three cases to map, the only stable version for now
+        if ( this.$route.hash === '#info' ) {
+          console.log('Jump to '+this.$route.hash)
+          this.$router.push({ path: '/layer', hash: 'info' })
+          location.hash = this.$route.hash;
+        } else if ( this.$route.hash === '#list' ) {
+          console.log('Jump to '+this.$route.hash)
+          this.$router.push({ path: '/layer', hash: 'list'  })
           location.hash = this.$route.hash;
         } else {
           this.$router.push({ path: '/layer', hash:'map' })

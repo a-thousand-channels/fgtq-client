@@ -182,7 +182,7 @@ export default {
         slug =  slug || this.$route.params.slug;
         console.log("show place "+ place.id +" in list");
         console.log("with slug "+ slug +"");
-        this.$router.push({ path: '/layer/' + slug, hash: '#list', query: { place_id: "list-place-"+place.id }});
+        this.$router.push({ path: '/layer/' + slug, hash: 'list', query: { place_id: "list-place-"+place.id }});
       })
     }
   },
