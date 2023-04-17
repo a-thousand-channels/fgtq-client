@@ -382,7 +382,7 @@
         </div>
       </div>
       <div class="nav flex items-center content-center justify-center">
-        <nuxt-link :to="{ path: '/layer/' + this.slug, hash:'map'}" class="flex h-full w-full items-center justify-center text-white font-bold">
+        <nuxt-link :to="{ path: '/layer' + this.slug_for_link, hash:'map'}" class="flex h-full w-full items-center justify-center text-white font-bold">
           <svg class='icon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"/></svg>
         </nuxt-link>
       </div>
@@ -390,7 +390,7 @@
 
     <section ref="map" id="map" class="flex min-h-screen max-h-screen bg-a100c-2">
       <div class="nav flex flex-col content-center">
-        <nuxt-link :to="{ path: '/layer/' + this.slug, hash:'info'}" class="flex h-full self-center items-center justify-center text-white font-bold">
+        <nuxt-link :to="{ path: '/layer' + this.slug_for_link, hash:'info'}" class="flex h-full self-center items-center justify-center text-white font-bold">
           <svg class='icon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z"/></svg>
         </nuxt-link>
       </div>
@@ -405,7 +405,7 @@
               <nuxt-link :to="{ path: '/'}" class="text-red-300">From Gay To Queer</nuxt-link>
               <span v-if="this.slug">
                 —
-                <nuxt-link :to="{ path: '/layer/' + this.slug, hash: 'info'}">{{ this.data.title }}</nuxt-link>
+                <nuxt-link :to="{ path: '/layer' + this.slug_for_link, hash: 'info'}">{{ this.data.title }}</nuxt-link>
               </span>
             </p>
           </div>
@@ -496,7 +496,7 @@
       </div>
 
       <div class="nav flex flex-col  items-center content-center justify-center">
-        <nuxt-link :to="{ path: '/layer/' + this.slug, hash:'list'}" class="flex h-full self-center items-center justify-center text-white font-bold">
+        <nuxt-link :to="{ path: '/layer' + this.slug_for_link, hash:'list'}" class="flex h-full self-center items-center justify-center text-white font-bold">
           <svg class='icon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"/></svg>
         </nuxt-link>
       </div>
@@ -504,7 +504,7 @@
 
     <section ref="list"  id="list" class="flex min-h-screen max-h-screen bg-a100c-3 sm:pt-0">
       <div class="nav flex items-center content-center justify-center">
-        <nuxt-link :to="{ path: '/layer/' + this.slug, hash:'map'}" class="flex h-full w-full items-center justify-center text-white font-bold">
+        <nuxt-link :to="{ path: '/layer' + this.slug_for_link, hash:'map'}" class="flex h-full w-full items-center justify-center text-white font-bold">
           <svg class='icon' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z"/></svg>
         </nuxt-link>
       </div>
@@ -583,7 +583,18 @@ export default {
     if (this.$route.query.layer ) {
       this.custom_data_url = this.$route.query.layer
     }
-    this.jumpToMap()
+    const referrer = document.referrer;
+    const currentUrl = window.location.href;
+    console.log("refferer: "+referrer)
+    console.log("currentUrl: "+currentUrl)
+    if (referrer && currentUrl.includes(referrer)) {
+      // User clicked on an internal link to get to this page
+      console.log('Internal link to get to the contact page');
+    } else {
+      // User typed the URL directly in the browser to get to this page
+      console.log('User typed the URL directly in the browser to get to the contact page');
+    }
+    this.jumpToMap();
   },
   data() {
       return {
@@ -599,6 +610,7 @@ export default {
         list_content_layer_index: 0,
         tooltip: {},
         slug: this.$route.params.slug || '',
+        slug_for_link: '/' + this.$route.params.slug || '',
         metalevel: false,
         title: '',
         subtitle: '',
@@ -649,14 +661,17 @@ export default {
           localStorage.setItem('layer', this.custom_data_url)
         }
       } else {
-        console.log("Dont select data by slug undefined")
+        console.log("Don't select data if slug is undefined")
         this.metalevel = true
         this.slug = ''
+        this.slug_for_link = ''
         localStorage.setItem('layer', '')
         // this.$router.push({ path: '/layer/', hash: '#map' })
       }
     } else  {
       this.metalevel = true
+      this.slug = ''
+      this.slug_for_link = ''
       localStorage.setItem('layer', '')
     }
     /* first case: layer is defined via URL like ?layer=URL */
@@ -791,8 +806,6 @@ export default {
         }
       }
     }
-
-
     this.$set(this.data, 'state', false)
     console.log('Fetch ready...')
 
@@ -863,7 +876,6 @@ export default {
             // console.log("Check for data.layer w/"+this.data.layer.length+ " layer(s)")
             // this.drawCurves();
           }
-
         }
       })
     },
@@ -984,16 +996,26 @@ export default {
     },
     jumpToMap() {
       console.log("jumpToMap " + this.$route.hash )
-
-      if ( ( this.$route.hash === '#list' ) ||  ( this.$route.hash === '#info' ) )  {
-        this.$router.push({ path: '/layer/' + this.slug, hash: this.$route.hash })
-        location.hash = this.$route.hash;
-      } else {
-        if ( this.slug && ( this.slug !== 'undefined')) {
+      if ( this.slug && ( this.slug !== 'undefined') && ( this.slug !== '/')) {
           console.log('Slug '+this.slug+' seems known')
-          // this.$router.push({ path: '/layer/' + this.slug, hash: '#map' })
+          this.$router.push({ path: '/layer/' + this.slug })
+          location.hash = '#map';
+      } else {
+        console.log('No known slug')
+        // jump in all three cases to map, the only stable version for now
+        if ( this.$route.hash === '#info' ) {
+          console.log('Jump to '+this.$route.hash)
+          this.$router.push({ path: '/layer/' + this.slug, hash: 'info' })
+          location.hash = this.$route.hash;
+        } else if ( this.$route.hash === '#list' ) {
+          console.log('Jump to '+this.$route.hash)
+          this.$router.push({ path: '/layer/' + this.slug, hash: 'list'  })
+          location.hash = this.$route.hash;
+        } else {
+          this.$router.push({ path: '/layer', hash:'map' })
+          location.hash = '#map';
         }
-        location.hash = '#map';
+
       }
     },
     navigate_top() {
