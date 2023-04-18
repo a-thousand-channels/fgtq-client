@@ -21,7 +21,7 @@ export default {
       { hid: 'og:title', name: 'og:title', content: 'From Gay To Queer — A mapping by Queer narratives, mapped' },
       { hid: 'description', name: 'description', content: 'Mapping of the stories and material collected during the Intersections & Constellations: How to map queer narratives? project.' },
       { id: 'og:description', name: 'og:description', content: 'Mapping of the stories and material collected during the Intersections & Constellations: How to map queer narratives? project.' },
-      { name: 'og:image', content: 'https://from-gay-to-queer.net/fromgaytoqueer_sharepic1.png'
+      { name: 'og:image', content: 'https://from-gay-to-queer.net/fromgaytoqueer_sharepic-nightmode.png'
       },
       { name: 'format-detection', content: 'telephone=no' },
       { name: 'theme-color', content: '#ffffff' },
@@ -47,6 +47,7 @@ export default {
     { src: '@/plugins/vue-shortkey.js', mode: 'client' },
     { src: '@/plugins/vue-awesome-swiper.js', mode: 'client' },
     { src: '@/plugins/leaflet-curve.js', mode: 'client' },
+    { src: '@/plugins/vue2-leaflet-markercluster.js', mode: 'client' },
     { src: '@/plugins/filters.js', mode: 'client' }
   ],
 
@@ -111,7 +112,7 @@ export default {
       }
 
 
-      if (to.hash) {
+      if (to.hash && ( to.hash !== '#undefined')) {
         let el = await findEl(to.hash)
         if (el) {
           if ('scrollBehavior' in document.documentElement.style) {

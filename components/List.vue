@@ -27,25 +27,28 @@
   <div class="">
     <ul class="pb-10">
       <li v-if="places.length == 0" class="bg-a100c-white px-4 py-2 rounded shadow mt-4">
-        <svg class="inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path fill="none" d="M0 0h24v24H0z"/><path d="M14.935 7.204l-6-3L4 6.319v12.648l5.065-2.17 6 3L20 17.68V5.033l-5.065 2.17zM2 5l7-3 6 3 6.303-2.701a.5.5 0 0 1 .697.46V19l-7 3-6-3-6.303 2.701a.5.5 0 0 1-.697-.46V5zm4 6h2v2H6v-2zm4 0h2v2h-2v-2zm5.998-.063L17.236 9.7l1.06 1.06-1.237 1.238 1.237 1.238-1.06 1.06-1.238-1.237-1.237 1.237-1.061-1.06 1.237-1.238-1.237-1.237L14.76 9.7l1.238 1.237z"/></svg>
-        Please go left to see
-        <nuxt-link :to="{ name: '/layer/' + this.slug, hash:'map'}" class="text-link">
-          our map
-        </nuxt-link>
-        and select a place or layer to see more details here.
+        <p>
+          <svg class="inline icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M14.935 7.204l-6-3L4 6.319v12.648l5.065-2.17 6 3L20 17.68V5.033l-5.065 2.17zM2 5l7-3 6 3 6.303-2.701a.5.5 0 0 1 .697.46V19l-7 3-6-3-6.303 2.701a.5.5 0 0 1-.697-.46V5zm4 6h2v2H6v-2zm4 0h2v2h-2v-2zm5.998-.063L17.236 9.7l1.06 1.06-1.237 1.238 1.237 1.238-1.06 1.06-1.238-1.237-1.237 1.237-1.061-1.06 1.237-1.238-1.237-1.237L14.76 9.7l1.238 1.237z"/></svg>
+          Please go left to see
+          <nuxt-link :to="{ path: '/layer' + this.slug, hash:'map'}" class="text-link">
+            our map
+          </nuxt-link>
+          and select a place or layer to see more details here.
+        </p>
       </li>
       <li v-if="!places" class="bg-a100c-white px-4 py-2 rounded shadow mt-4">
-        <svg class="inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path fill="none" d="M0 0h24v24H0z"/><path d="M15 4H5v16h14V8h-4V4zM3 2.992C3 2.444 3.447 2 3.999 2H16l5 5v13.993A1 1 0 0 1 20.007 22H3.993A1 1 0 0 1 3 21.008V2.992zM11 11h2v6h-2v-6zm0-4h2v2h-2V7z"/></svg> Or check the
-        <nuxt-link :to="{ name: '/layer/' + this.slug, hash:'info'}" class="text-link">
+        <svg class="inline icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M15 4H5v16h14V8h-4V4zM3 2.992C3 2.444 3.447 2 3.999 2H16l5 5v13.993A1 1 0 0 1 20.007 22H3.993A1 1 0 0 1 3 21.008V2.992zM11 11h2v6h-2v-6zm0-4h2v2h-2V7z"/></svg> Or check the
+        <nuxt-link :to="{ path: '/layer' + this.slug, hash: 'info'}" class="text-link">
           info page
         </nuxt-link>
         to learn more about this map :)
       </li>
+      <li v-if="!this.slug"></li>
       <li v-else class="bg-a100c-white px-4 py-2 rounded shadow mt-4 ">
         <h2 class="font-semibold pl-0 sm:pl-4 md:pl-16"><span v-if="data.title != data.layer[parseInt(layerindex)].title">{{data.title}}</span><span v-else><nuxt-link :to="{ path: '/'}">From Gay To Queer</nuxt-link></span> <span v-if="data.layer[parseInt(layerindex)]">— <span class="text-a100c-1">{{ data.layer[parseInt(layerindex)].title}}</span></span></h2>
       </li>
 
-      <li v-for="(place,index) in places" :id="'list-place-'+place.id" class="bg-a100c-white px-4 py-2 rounded shadow mt-4">
+      <li v-for="(place,index) in places" :id="'list-place-'+place.id" class="list-place bg-a100c-white px-4 py-2 rounded shadow mt-4 pt-4">
         <div v-swiper:[index]="getSwiperOptions(index)" class="md:px-12">
           <div class="swiper-wrapper" v-if="place.images">
             <div v-for="(image,iindex) in place.images" :key="iindex" class="swiper-slide px-0 pb-4 pt-2 sm:px-4 sm:pt-4">
@@ -64,7 +67,7 @@
             <div tabindex="1" :class="`swiper-button-next swiper-button-next${index}`" role="button"></div>
           </div>
         </div>
-        <h3 class="font-semibold text-lg px-4 py-2 sm:px-16 sm:pt-6">{{ place.title }}</h3>
+        <h3 class="font-semibold text-lg px-4 py-2 mt-4 sm:mt-4 ml-4 sm:ml-8 sm:px-16 sm:pt-6 rounded">{{ place.title }}</h3>
         <div class="text-gray-800 px-4 md:text-lg sm:px-16 sm:py-3 lg:max-w-3xl teaser-block" v-html="place.teaser"></div>
         <div :id="'list-audio-'+place.id" class="player-wrapper px-4 sm:px-16 sm:py-3" v-if="place.audiolink" v-html="place.audiolink">
         </div>
@@ -95,8 +98,8 @@
                       <a @click="jumpToLayerAndEntry(relation.to.id, returnLayerSlug(relation.to.layer_id))" class="text-link" >
                         {{ relation.to.title }}
                       </a>
-                      (<nuxt-link :to="{ path: '/layer/' + returnLayerSlug(relation.to.layer_id), hash: 'map'}" class="text-link">
-                        <svg class="inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.004 9.414l-8.607 8.607-1.414-1.414L14.589 8H7.004V6h11v11h-2V9.414z"/></svg>
+                      (<nuxt-link :to="{ path: '/layer' + returnLayerSlug(relation.to.layer_id), hash: 'map'}" class="text-link">
+                        <svg class="inline icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M16.004 9.414l-8.607 8.607-1.414-1.414L14.589 8H7.004V6h11v11h-2V9.414z"/></svg>
                         {{ returnLayerTitle(relation.to.layer_id) }}
                       </nuxt-link>)
 
@@ -109,14 +112,14 @@
         </div>
         <footer class="flex pt-8 pb-4 lg:max-w-3xl pl-4 md:pl-16 lg:pl-14 pr-4 md:pr-12 lg:pr-4">
           <p class="flex-auto text-gray-500 px-0 py-2">
-            <button @click="recenterMap(place.lat,place.lon,index)" class="text-link2">
-              <svg class="inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path class="text-red-300 fill-current"  d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z"/></svg>
+            <button @click="recenterMap(place.id,place.lat,place.lon)" class="text-link2">
+              <svg class="inline icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path class="text-red-300 fill-current"  d="M10.828 12l4.95 4.95-1.414 1.414L8 12l6.364-6.364 1.414 1.414z"/></svg>
               Show on the map
             </button>
           </p>
           <p class="flex-auto text-gray-500 text-right x-0 py-2">
             <button @click="scrollToTop" class="text-link2">
-              <svg class="inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path class="text-red-300 fill-current" d="M12 10.828l-4.95 4.95-1.414-1.414L12 8l6.364 6.364-1.414 1.414z"/></svg>
+              <svg class="inline icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path class="text-red-300 fill-current" d="M12 10.828l-4.95 4.95-1.414-1.414L12 8l6.364 6.364-1.414 1.414z"/></svg>
               To top
             </button>
           </p>
@@ -160,11 +163,25 @@ export default {
   components: {
   },
   methods: {
-    recenterMap(lat,lon,index) {
+    recenterMap(id,lat,lon) {
       this.$nextTick(() => {
-        console.log("recenter map to "+ lat +"/"+lon);
+        console.log("Recenter map to "+ lat +"/"+lon);
         this.$router.push({ path: '/layer/' + this.slug, hash: '#map' });
         this.map.flyTo([lat,lon],17);
+        /* nice, but with this, the tooltip remains permanent :( */
+        /*
+        this.map.eachLayer(function(l) {
+          if (l.getTooltip()) {
+            console.log(l.options.id)
+            if ( l.options.id === id ) {
+              var tooltip = l.getTooltip();
+              l.unbindTooltip().bindTooltip(tooltip, {
+                  permanent: false
+              })
+            }
+          }
+        });
+        */
       })
     },
     scrollToTop() {
@@ -182,7 +199,6 @@ export default {
       this.$router.push({ path: '/layer/' + slug, hash: '#list', query: { place_id: "list-place-"+id }});
     },
     returnLayerTitle(layer_id) {
-      console.log(layer_id)
       var layers = this.layers
       var title = ''
       Object.keys(layers).forEach(function(index ) {
@@ -191,13 +207,12 @@ export default {
       return title
     },
     returnLayerSlug(layer_id) {
-      console.log(layer_id)
       var layers = this.layers
       var slug = ''
       Object.keys(layers).forEach(function(index ) {
           if ( layers[index].id == layer_id ) { slug = layers[index].slug }
       })
-      return slug
+      return '/'+slug
     },
     getSwiperOptions(index){
      return {
@@ -219,7 +234,7 @@ export default {
   },
   data() {
     return {
-      slug: this.$route.params.slug || 'thomas-b'
+      slug: this.$route.params.slug || ''
     }
   },
   computed: {
