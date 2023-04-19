@@ -20,6 +20,7 @@
 
     body {
       font-family: Work Sans, Graphik, sans-serif !important;
+      background-color: #333;
     }
    .bg-a100c-1-splash {
       background: rgb(255,0,249);
@@ -30,6 +31,7 @@
    .bg-a100c-1-hover {
       background: rgb(255,0,249);
       background: linear-gradient(90deg, rgba(255,0,249,0.65) 0%, rgba(255,117,0,0.6) 50%, rgba(255,0,35,0.65) 100%);
+      background: linear-gradient(90deg, rgba(255,0,249,0.85) 0%, rgba(255,117,0,0.8) 50%, rgba(255,0,35,0.85) 100%);
    }
    .bg-a100c-white-100 {
       background-color: rgba(255,255,255,1);
@@ -41,13 +43,14 @@
     #page.darkmode .bg-a100c-1-splash {
       background: rgb(255,0,249);
       background: linear-gradient(90deg, rgba(255,0,249,0.25) 0%, rgba(255,117,0,0.35) 50%, rgba(255,0,35,0.25) 100%);
+      background-image: url(~/assets/client-splash-background-dark.jpg);
       background-image: url(~/assets/IMG_5773.jpg);
       background-image: url(~/assets/manu_flyer_schlampenkneipe_mixedcolors.jpg);
-      background-image: url(~/assets/client-splash-background-dark.jpg);
       background-size: cover;
    }
     #page.darkmode .bg-a100c-white {
-      background-color: rgba(55,55,55,0.7) ;
+      background-color: rgba(55,55,55,0.7);
+      background-color: rgba(55,55,55,0.95);
    }
    #page.darkmode h2 {
       color: rgba(255,255,255,0.8);
@@ -96,8 +99,8 @@
 <template>
 <div id="page" :class="viewmode == 'Dark mode' ? 'darkmode' : ''">
   <div class="relative flex overflow-x-auto justify-center h-screen bg-pink-100 bg-a100c-1-splash sm:items-center px-8 pt-8 sm:pt-8">
-    <div class="max-w-4xl mx-auto mt-0 pt-0 sm:px-6 sm:pt-8 sm:mt-8 lg:px-12 ">
-      <div class="overflow-hidden bg-a100c-white shadow sm:rounded-lg mt-4 sm:mt-8 lg:mt-8 md:px-4 p-2 lg:px-8">
+    <div class="max-w-4xl mx-auto mt-0 pt-0 sm:px-6 sm:pt-8 sm:pt-8 sm:mt-8 lg:px-12 ">
+      <div class="overflow-hidden bg-a100c-white shadow sm:rounded-lg mt-4 sm:mt-8 lg:mt-8 p-2 sm:px-4 sm:pt-8 md:px-4 lg:px-8">
         <h2 class="text-3xl beta">
           <span class="text-a100c-1  font-semibold">"From Gay To Queer"</span> — A map of LGBTIQ+ subcultures in Bremen in the 90s</span>
         </h2>
