@@ -44,7 +44,6 @@
       background: rgb(255,0,249);
       background: linear-gradient(90deg, rgba(255,0,249,0.25) 0%, rgba(255,117,0,0.35) 50%, rgba(255,0,35,0.25) 100%);
       background-image: url(~/assets/client-splash-background-dark.jpg);
-      background-image: url(~/assets/IMG_5773.jpg);
       background-image: url(~/assets/manu_flyer_schlampenkneipe_mixedcolors.jpg);
       background-size: cover;
    }
