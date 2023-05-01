@@ -33,6 +33,9 @@
     #page {
 
     }
+    #page.darkmode {
+        background-color: #333;
+    }
     #page_inner.a1000c-horizontal {
       height: 100%;
       display: flex;
